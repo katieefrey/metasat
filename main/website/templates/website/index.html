@@ -1,0 +1,35 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block nav-home %}active{% endblock %}
+
+{% block title %}
+    MetaSat
+{% endblock %}
+
+{% block metadata %}
+    <meta name="description" content="MetaSat is open metadata to link data, software, and hardware from small satellite missions.">
+    <script type='application/ld+json' class='schema-graph schema-graph--main'>{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://schema.space/#website","url":"https://schema.space/","name":"MetaSat","inLanguage":"en-US","description":"Open, collaboratively-developed metadata to support the future of space exploration.","potentialAction":{"@type":"SearchAction","target":"https://schema.space/?s={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"ImageObject","@id":"https://schema.space/#primaryimage","inLanguage":"en-US","url":"https://schema.space/wp-content/uploads/2019/08/Sloan-Logo-primary-black-print.png","width":2100,"height":597,"caption":"Alfred P. Sloan Foundation"},{"@type":"WebPage","@id":"https://schema.space/#webpage","url":"https://schema.space/","name":"Home - MetaSat","isPartOf":{"@id":"https://schema.space/#website"},"inLanguage":"en-US","primaryImageOfPage":{"@id":"https://schema.space/#primaryimage"},"datePublished":"2019-08-16T18:58:11+00:00","dateModified":"2020-02-12T21:38:16+00:00","description":"MetaSat is a project to develop and prototype an open metadata schema to link data, software, and hardware from small satellite missions."}]}</script>
+{% endblock%}
+
+{% block customcss %}<link href="{% static 'website/css/the-big-picture.css' %}" rel="stylesheet">{% endblock %}
+
+{% block body %}
+
+    <section>
+        <div class="container">
+            <div class="align-self-center">
+                <div class="row">
+                    <div class="col-2">
+                        <img width="100%" src="{% static 'website/img/metasat_invert.png' %}"/>
+                        </div>
+            <div class="col-6">
+                        <h1 class="mt-5">MetaSat</h1>
+                        <p>Open, collaboratively-developed metadata to support the future of space exploration.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

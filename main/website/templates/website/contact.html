@@ -1,0 +1,72 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block nav-contact %}active{% endblock %}
+
+{% block customcss %}<link href="{% static 'website/css/metasat.css' %}" rel="stylesheet">{% endblock %}
+
+{% block title %}
+    Contact | MetaSat
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+
+        <div class="col-2">
+                <img width="100%" src="{% static 'website/img/MetaSat_Big.png' %}"/>
+            </div>
+            <div class="col-1">
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <br/>&nbsp;
+                <br/>&nbsp;
+                <br/>&nbsp;
+                <h3>Have a question?</h3>
+                <p style="padding-top:20px; margin:10px">Please reach out to:
+                    <br>Daniel Chivvis
+                    <br>MetaSat Research Fellow
+                    <br>John G. Wolbach Library
+                    <br>
+                    <a href="mailto:metasat@schema.space?subject=MetaSat question">metasat[at]schema.space</a>
+                </p>
+          </div>
+    </div>
+    <br>
+    <div class="row">
+
+        <div class="col-2">
+
+            </div>
+            <div class="col-1">
+            </div>
+        <div class="col-xs-12 col-md-4">
+            <p style="padding-top:20px; margin:10px">
+                <a href="https://library.cfa.harvard.edu">John G. Wolbach Library</a>
+                <br>Daina Bouquin
+                <br>Daniel Chivvis
+                <br>Katie Frey
+                <br>Allie Williams
+            </p>
+        </div>
+        <div class="col-xs-12 col-md-4">
+            <p style="padding-top:20px; margin:10px">
+                <a href="https://libre.space">Libre Space Foundation</a>
+                <br>Pierros Papadeas
+                <br>Manthos Papamatthaiou
+                <br>Eleftherios Kosmas
+                <br>Vasilis Tsiligiannis
+                <br>Alfredos Damkalis
+            </p>
+        </div>
+<!--         <div class="col-xs-12 col-md-4">
+            <p style="padding-top:20px; margin:10px">
+                <a href="https://www.nasa.gov/smallsat-institute">NASA, Small Spacecraft Systems Virtual Institute (S3VI)</a>
+                <br>Craig Burkhard
+                <br>Bruce Yost
+            </p>
+        </div> -->
+    </div>
+</div>
+
+{% endblock %}

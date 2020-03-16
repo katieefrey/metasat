@@ -1,0 +1,1833 @@
+{ 
+    "@context": {
+        "type": "@type",
+        "id": "@id",
+        "none": "@none",
+        "language": "@language",
+        "direction": "@direction",
+        "json": "@json",
+        "@vocab": "https://schema.space/metasat/",
+
+        "codemeta": "https://codemeta.github.io/terms/",
+        "foaf": "http://xmlns.com/foaf/0.1/",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "schema": "http://schema.org/",
+        "wdp": "https://www.wikidata.org/wiki/Property:",
+        "xhv": "http://www.w3.org/1999/xhtml/vocab#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+        "license": {
+            "@id" : "xhv:license",
+            "@type": "@id"
+        },
+        "label": "rdfs:label",
+        "comment": "rdfs:comment",
+        "isDefinedBy": {
+            "@id" : "rdfs:isDefinedBy",
+            "@type" : "@id"
+        },
+        "seeAlso": {
+            "@id" : "rdfs:seeAlso",
+            "@type" : "@id"
+        },
+        "HTML": "rdf:HTML",
+        "JSON": "rdf:JSON"
+    },
+    "@graph": [
+    {
+        "type": "satnogsObservation", 
+        "id": "",
+        "schema:startTime": "",
+        "schema:endTime": "",
+        "vettedStatus": "",
+        "vettedDateTime": "",
+        "waterfall": "",
+        "observer": { 
+            "id": "",
+            "schema:url": "",
+            "type": "schema:Person",
+            "schema:name": "",
+            "schema:alternateName": "",
+            "schema:jobTitle": "",
+            "schema:affiliation": {
+                "schema:url": "",
+                "schema:name": ""
+            },
+            "schema:email": "",
+            "schema:telephone": "",
+            "schema:address": ""
+        }
+    },
+    {
+        "groundSegment": {
+            "groundStation": {
+                "id": "",
+                "schema:name": "",
+                "schema:alternateName": "",
+                "schema:image": "",
+                "schema:identifier": "",
+                "schema:description": "",
+                "schema:GeoCoordinates": {
+                    "id": "",
+                    "schema:latitude": "",
+                    "schema:longitude": "",
+                    "schema:elevation": {
+                        "schema:value": "",
+                        "schema:unitCode": ""
+                    },
+                    "maidenheadLocator": ""
+                },
+                "groundStationNetwork": {
+                    "id": "",
+                    "type": "",
+                    "schema:name": "",
+                    "networkStatus": "",
+                    "schema:dateCreated": "",
+                    "lastSeen": "",
+                    "testingStatus": {
+                        "type": "xsd:Boolean",
+                        "@value": null
+                    },
+                    "software": ""
+                },
+                "owner": { 
+                    "id": "",
+                    "type": "schema:Person",
+                    "schema:url": "",
+                    "schema:name": "",
+                    "schema:alternateName": "",
+                    "schema:callSign": "",
+                    "schema:jobschema:name": "",
+                    "schema:affiliation": {
+                        "id": "",
+                        "type": "",
+                        "schema:url": "",
+                        "schema:name": ""
+                    },
+                    "schema:email": "",
+                    "schema:telephone": "",
+                    "schema:address": ""
+                },
+                "equipment": {
+                    "id": "",
+                    "antenna": {
+                        "id": "",
+                        "antennaType": "",
+                        "schema:heightAboveAverageTerrain": {
+                            "schema:value": "",
+                            "schema:unitCode": ""
+                        },
+                        "mastDiameter": {
+                            "schema:value": "",
+                            "schema:unitCode": ""
+                        },
+                        "boomDiameter": {
+                            "schema:value": "",
+                            "schema:unitCode": ""
+                        },
+                        "powerHandling": "",
+                        "windLoadRating": "",
+                        "verticalLoadRating": "",
+                        "windSurfaceArea": {
+                            "schema:value": "",
+                            "schema:unitCode": ""
+                        },
+                        "manufacturerInformation": {
+                            "id": "",
+                            "schema:manufacturer": "",
+                            "schema:Brand": "",
+                            "schema:ProductModel": "",
+                            "schema:serialNumber": "",
+                            "schema:category": ""
+                        },
+                        "bandwidth": {
+                            "id": "",
+                            "band": "",
+                            "frequencyRange": "",
+                            "minimumFrequency": {
+                                "schema:value": "",
+                                "schema:unitCode": ""
+                            },
+                            "maximumFrequency": {
+                                "schema:value": "",
+                                "schema:unitCode": ""
+                            },
+                            "centerFrequency": {
+                                "schema:value": "",
+                                "schema:unitCode": ""
+                            },
+                            "fractionalbandwidth": "",
+                            "qualityFactor": "",
+                            "antennaUplink": {
+                                "id": "",
+                                "band": "",
+                                "frequencyRange": "",
+                                "minimumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "maximumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "gain": "",
+                                "radiationEfficiency": "",
+                                "directivity": "",
+                                "effectiveRadiatedPower": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "totalRadiatedPower": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "effectiveIsotropicRadiatedPower": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "firstNullBeamwidth": "",
+                                "halfPowerBeamwidth": "",
+                                "sidelobeLevel": "",
+                                "voltageStandingWaveRatio": "",
+                                "electricalPower": {
+                                    "id": "",
+                                    "impedance": {
+                                        "schema:value": "",
+                                        "schema:unitCode": ""
+                                    },
+                                    "inputPower": {
+                                        "schema:value": "",
+                                        "schema:unitCode": ""
+                                    },
+                                    "outputPower": {
+                                        "schema:value": "",
+                                        "schema:unitCode": ""
+                                    },
+                                    "voltage": {
+                                        "schema:value": "",
+                                        "schema:unitCode": ""
+                                    },
+                                    "current": {
+                                        "schema:value": "",
+                                        "schema:unitCode": ""
+                                    }
+                                },
+                                "reflectionCoefficient": "",
+                                "polarization": {
+                                    "polarizationType": "",
+                                    "polarizationLossFactor": "",
+                                    "axialRatio": ""
+                                }
+                            },
+                            "antennaDownlink": {
+                                "id": "",
+                                "band": "",
+                                "frequencyRange": "",
+                                "minimumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "maximumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "effectiveAperture": "",
+                                "signalToNoiseRatio": "",
+                                "antennaNoiseTemperature": "",
+                                "gainToNoiseTemperature": "",
+                                "antennaNoiseFigure": "",
+                                "totalIsotropicSensitivity": "",
+                                "effectiveIsotropicSensitivity": "",
+                                "polarization": {
+                                    "id": "",
+                                    "polarizationType": "",
+                                    "polarizationLossFactor": "",
+                                    "axialRatio": ""
+
+                                }
+                            }
+                        },
+                        "rotator": {
+                            "id": "",
+                            "pointingAxis": "",
+                            "pointingAccuracy": "",
+                            "positionalAccuracyMeasurement": "",
+                            "operatingTemperatureRange": "",
+                            "dimensions": {
+                                "id": "",
+                                "schema:height": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:width": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:depth": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "schema:material": "",
+                            "gearRatio": "",
+                            "weatherproof": {
+                                "type": "xsd:Boolean",
+                                "@value": null
+                            },
+                            "trackingAid": "",
+                            "display": "",
+                            "voltageRequirement": "",
+                            "electromagneticInterference": "",
+                            "electromagneticCompatibility": "",
+                            "software": "",
+                            "manufacturerInformation": {
+                                "id": "",
+                                "schema:manufacturer": "",
+                                "schema:Brand": "",
+                                "schema:ProductModel": "",
+                                "schema:serialNumber": "",
+                                "schema:category": ""
+                            },
+                            "turningRange": {
+                                "id": "",
+                                "azimuthTurningRange": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "elevationTurningRange": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "rotationSpeed": {
+                                "id": "",
+                                "azimuthRotationSpeed": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "elevationRotationSpeed": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            }, 
+                            "acceleration": {
+                                "id": "",
+                                "azimuthAcceleration": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "elevationAcceleration": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            }, 
+                            "torque": {
+                                "id": "",
+                                "azimuthTorque": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "elevationTorque": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "rotatorBrake": {
+                                "id": "",
+                                "rotatorBrakeType": "",
+                                "azimuthBrakeTorque": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "elevationBrakeTorque": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "controllerElectronics": {
+                                "id": "",
+                                "electricalPower": {
+                                    "id": "",
+                                    "impedance": {
+                                        "schema:value": "",
+                                        "schema:unitCode": ""
+                                    },
+                                    "inputPower": {
+                                        "schema:value": "",
+                                        "schema:unitCode": ""
+                                    },
+                                    "outputPower": {
+                                        "schema:value": "",
+                                        "schema:unitCode": ""
+                                    },
+                                    "voltage": {
+                                        "schema:value": "",
+                                        "schema:unitCode": ""
+                                    },
+                                    "current": {
+                                        "schema:value": "",
+                                        "schema:unitCode": ""
+                                    }
+                                },
+                                "operatingTemperatureRange": "",
+                                "software": "",
+                                "dimensions": {
+                                    "id": "",
+                                    "schema:height": {
+                                        "schema:value": "",
+                                        "schema:unitCode": ""
+                                    },
+                                    "schema:width": {
+                                        "schema:value": "",
+                                        "schema:unitCode": ""
+                                    },
+                                    "schema:depth": {
+                                        "schema:value": "",
+                                        "schema:unitCode": ""
+                                    }
+                                },
+                                "manufacturerInformation": {
+                                    "id": "",
+                                    "schema:manufacturer": "",
+                                    "schema:Brand": "",
+                                    "schema:ProductModel": "",
+                                    "schema:serialNumber": "",
+                                    "schema:category": ""
+                                }
+                            },
+                            "motor": {
+                                "id": "",
+                                "motorType": "",
+                                "stepAngle": "",
+                                "holdingTorque": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "electricalPower": {
+                                    "id": "",
+                                    "impedance": {
+                                        "schema:value": "",
+                                        "schema:unitCode": ""
+                                    },
+                                    "inputPower": {
+                                        "schema:value": "",
+                                        "schema:unitCode": ""
+                                    },
+                                    "outputPower": {
+                                        "schema:value": "",
+                                        "schema:unitCode": ""
+                                    },
+                                    "voltage": {
+                                        "schema:value": "",
+                                        "schema:unitCode": ""
+                                    },
+                                    "current": {
+                                        "schema:value": "",
+                                        "schema:unitCode": ""
+                                    }
+                                },
+                                "phaseResistance": "",
+                                "dimensions": {
+                                    "id": "",
+                                    "schema:height": {
+                                        "schema:value": "",
+                                        "schema:unitCode": ""
+                                    },
+                                    "schema:width": {
+                                        "schema:value": "",
+                                        "schema:unitCode": ""
+                                    },
+                                    "schema:depth": {
+                                        "schema:value": "",
+                                        "schema:unitCode": ""
+                                    }
+                                },
+                                "manufacturerInformation": {
+                                    "id": "",
+                                    "schema:manufacturer": "",
+                                    "schema:Brand": "",
+                                    "schema:ProductModel": "",
+                                    "schema:serialNumber": "",
+                                    "schema:category": ""
+                                },
+                                "motorShaft": {
+                                    "id": "",
+                                    "motorShaftType": "",
+                                    "dimensions": {
+                                        "id": "",
+                                        "schema:height": {
+                                            "schema:value": "",
+                                            "schema:unitCode": ""
+                                        },
+                                        "schema:width": {
+                                            "schema:value": "",
+                                            "schema:unitCode": ""
+                                        },
+                                        "schema:depth": {
+                                            "schema:value": "",
+                                            "schema:unitCode": ""
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "singleBoardComputer": {
+                        "id": "",
+                        "schema:name": "",
+                        "generalPurposeInputOutput": "",
+                        "connectors": "",
+                        "cables": "",
+                        "dimensions": {
+                            "id": "",
+                            "schema:height": {
+                                "schema:value": "",
+                                "schema:unitCode": ""
+                            },
+                            "schema:width": {
+                                "schema:value": "",
+                                "schema:unitCode": ""
+                            },
+                            "schema:depth": {
+                                "schema:value": "",
+                                "schema:unitCode": ""
+                            }
+                        },
+                        "operatingTemperatureRange": "",
+                        "electricalPower": {
+                            "id": "",
+                            "impedance": {
+                                "schema:value": "",
+                                "schema:unitCode": ""
+                            },
+                            "inputPower": {
+                                "schema:value": "",
+                                "schema:unitCode": ""
+                            },
+                            "outputPower": {
+                                "schema:value": "",
+                                "schema:unitCode": ""
+                            },
+                            "voltage": {
+                                "schema:value": "",
+                                "schema:unitCode": ""
+                            },
+                            "current": {
+                                "schema:value": "",
+                                "schema:unitCode": ""
+                            }
+                        },
+                        "software": "",
+                        "manufacturerInformation": {
+                            "id": "",
+                            "schema:manufacturer": "",
+                            "schema:Brand": "",
+                            "schema:ProductModel": "",
+                            "schema:serialNumber": "",
+                            "schema:category": ""
+                        },
+                        "systemOnAChip": {
+                            "id": "",
+                            "schema:name": "",
+                            "dimensions": {
+                                "id": "",
+                                "schema:height": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:width": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:depth": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "operatingTemperatureRange": "",
+                            "software": "",
+                            "manufacturerInformation": {
+                                "id": "",
+                                "schema:manufacturer": "",
+                                "schema:Brand": "",
+                                "schema:ProductModel": "",
+                                "schema:serialNumber": "",
+                                "schema:category": ""
+                            }
+                        },
+                        "cpu": {
+                            "id": "",
+                            "cores": "",
+                            "instructionSetArchitechture": "",
+                            "clockSpeed": "",
+                            "dimensions": {
+                                "id": "",
+                                "schema:height": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:width": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:depth": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "operatingTemperatureRange": "",
+                            "manufacturerInformation": {
+                                "id": "",
+                                "schema:manufacturer": "",
+                                "schema:Brand": "",
+                                "schema:ProductModel": "",
+                                "schema:serialNumber": "",
+                                "schema:category": ""
+                            }
+                        },
+                        "computerMemory": {
+                            "id": "",
+                            "storage": "",
+                            "workingMemory": ""
+                        },
+                        "wirelessConnectivity": "",
+                        "multimedia": {
+                            "id": "",
+                            "videoCompressionFormat": "",
+                            "graphicsLibrary": ""
+                        },
+                        "computerFan": {
+                            "id": "",
+                            "fanControl": "",
+                            "dimensions": {
+                                "id": "",
+                                "schema:height": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:width": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:depth": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "manufacturerInformation": {
+                                "id": "",
+                                "schema:manufacturer": "",
+                                "schema:Brand": "",
+                                "schema:ProductModel": "",
+                                "schema:serialNumber": "",
+                                "schema:category": ""
+                            }
+                        }
+                    },
+                    "sdrBoard": {
+                        "id": "",
+                        "schema:name": "",
+                        "computerMemory": {
+                            "id": "",
+                            "storage": "",
+                            "workingMemory": ""                           
+                        },
+                        "gpio": "",
+                        "clockSystem": "",
+                        "connectors": "",
+                        "cables": "",
+                        "dimensions": {
+                            "id": "",
+                            "schema:height": {
+                                "schema:value": "",
+                                "schema:unitCode": ""
+                            },
+                            "schema:width": {
+                                "schema:value": "",
+                                "schema:unitCode": ""
+                            },
+                            "schema:depth": {
+                                "schema:value": "",
+                                "schema:unitCode": ""
+                            }
+                        },
+                        "operatingTemperatureRange": "",
+                        "software": "",
+                        "manufacturerInformation": {
+                            "id": "",
+                            "schema:manufacturer": "",
+                            "schema:Brand": "",
+                            "schema:ProductModel": "",
+                            "schema:serialNumber": "",
+                            "schema:category": ""
+                        },
+                        "fieldProgrammableGateArray": {
+                            "id": "",
+                            "schema:name": "",
+                            "logicElements": "",
+                            "logicArrayBlocks": "",
+                            "gpioPins": "",
+                            "computerMemory": {
+                                "id": "",
+                                "storage": "",
+                                "workingMemory": ""                           
+                            },
+                            "phaseLockedLoops": "",
+                            "mountingType": "",
+                            "electricalPower": {
+                                "id": "",
+                                "impedance": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "inputPower": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "outputPower": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "voltage": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "current": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "connectors": "",
+                            "cables": "",
+                            "dimensions": {
+                                "id": "",
+                                "schema:height": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:width": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:depth": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "operatingTemperatureRange": "",
+                            "software": "",
+                            "manufacturerInformation": {
+                                "id": "",
+                                "schema:manufacturer": "",
+                                "schema:Brand": "",
+                                "schema:ProductModel": "",
+                                "schema:serialNumber": "",
+                                "schema:category": ""
+                            }
+                        },
+                        "transceiver": {
+                            "id": "",
+                            "bandwidth": {
+                                "id": "",
+                                "band": "",
+                                "frequencyRange": "",
+                                "minimumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "maximumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "receivingSupplyCurrent": {
+                                "schema:value": "",
+                                "schema:unitCode": ""
+                            },
+                            "sensitivity": "",
+                            "noiseFigure": "",
+                            "modulation": "",
+                            "electricalPower": {
+                                "id": "",
+                                "impedance": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "inputPower": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "outputPower": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "voltage": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "current": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "connectors": "",
+                            "cables": "",
+                            "dimensions": {
+                                "id": "",
+                                "schema:height": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:width": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:depth": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "operatingTemperatureRange": "",
+                            "manufacturerInformation": {
+                                "id": "",
+                                "schema:manufacturer": "",
+                                "schema:Brand": "",
+                                "schema:ProductModel": "",
+                                "schema:serialNumber": "",
+                                "schema:category": ""
+                            }
+                        },
+                        "memoryController": ""
+                    },
+                    "uplinkEquipment": {
+                        "id": "",
+                        "transmitter": {
+                            "id": "",
+                            "bandwidth": {
+                                "id": "",
+                                "band": "",
+                                "frequencyRange": "",
+                                "minimumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "maximumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "electricalPower": {
+                                "id": "",
+                                "impedance": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "inputPower": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "outputPower": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "voltage": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "current": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "baudRate": "",
+                            "modulation": "",
+                            "phaseNoise": "",
+                            "spuriousEmmissionLevel": "",
+                            "harmonicOutput": "",
+                            "connectors": "",
+                            "cables": "",
+                            "dimensions": {
+                                "id": "",
+                                "schema:height": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:width": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:depth": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "operatingTemperatureRange": "",
+                            "manufacturerInformation": {
+                                "id": "",
+                                "schema:manufacturer": "",
+                                "schema:Brand": "",
+                                "schema:ProductModel": "",
+                                "schema:serialNumber": "",
+                                "schema:category": ""
+                            }
+                        },
+                        "powerAmplifier": {
+                            "id": "",
+                            "bandwidth": {
+                                "id": "",
+                                "band": "",
+                                "frequencyRange": "",
+                                "minimumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "maximumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "electricalPower": {
+                                "id": "",
+                                "impedance": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "inputPower": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "outputPower": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "voltage": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "current": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "schema:category": "",
+                            "gain": "",
+                            "voltageStandingWaveRatio": "",
+                            "modulation": "",
+                            "harmonicOutput": "",
+                            "connectors": "",
+                            "cables": "",
+                            "dimensions": {
+                                "id": "",
+                                "schema:height": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:width": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:depth": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "operatingTemperatureRange": "",
+                            "manufacturerInformation": {
+                                "id": "",
+                                "schema:manufacturer": "",
+                                "schema:Brand": "",
+                                "schema:ProductModel": "",
+                                "schema:serialNumber": "",
+                                "schema:category": ""
+                            }
+                        },
+                        "preamplifier": {
+                            "id": "",
+                            "bandwidth": {
+                                "id": "",
+                                "band": "",
+                                "frequencyRange": "",
+                                "minimumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "maximumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "electricalPower": {
+                                "id": "",
+                                "impedance": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "inputPower": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "outputPower": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "voltage": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "current": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "gain": "",
+                            "gainFlatness": "",
+                            "noiseFigure": "",
+                            "connectors": "",
+                            "cables": "",
+                            "dimensions": {
+                                "id": "",
+                                "schema:height": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:width": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:depth": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "operatingTemperatureRange": "",
+                            "manufacturerInformation": {
+                                "id": "",
+                                "schema:manufacturer": "",
+                                "schema:Brand": "",
+                                "schema:ProductModel": "",
+                                "schema:serialNumber": "",
+                                "schema:category": ""
+                            }
+                        },
+                        "filter": {
+                            "id": "",
+                            "filterType": "",
+                            "bandwidth": {
+                                "id": "",
+                                "band": "",
+                                "frequencyRange": "",
+                                "minimumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "maximumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "electricalPower": {
+                                "id": "",
+                                "impedance": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "inputPower": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "outputPower": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "voltage": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "current": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "insertionLoss": "",
+                            "voltageStandingWaveRatio": "",
+                            "connectors": "",
+                            "cables": "",
+                            "dimensions": {
+                                "id": "",
+                                "schema:height": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:width": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:depth": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "operatingTemperatureRange": "",
+                            "manufacturerInformation": {
+                                "id": "",
+                                "schema:manufacturer": "",
+                                "schema:Brand": "",
+                                "schema:ProductModel": "",
+                                "schema:serialNumber": "",
+                                "schema:category": ""
+                            }
+                        },
+                        "converter": {
+                            "id": "",
+                            "inputbandwidth": {
+                                "id": "",
+                                "band": "",
+                                "frequencyRange": "",
+                                "minimumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "maximumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "outputbandwidth": {
+                                "id": "",
+                                "band": "",
+                                "frequencyRange": "",
+                                "minimumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "maximumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "schema:category": "",
+                            "electricalPower": {
+                                "id": "",
+                                "impedance": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "inputPower": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "outputPower": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "voltage": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "current": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "gain": "",
+                            "gainFlatness": "",
+                            "noiseFigure": "",
+                            "connectors": "",
+                            "cables": "",
+                            "dimensions": {
+                                "id": "",
+                                "schema:height": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:width": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:depth": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "operatingTemperatureRange": "",
+                            "manufacturerInformation": {
+                                "id": "",
+                                "schema:manufacturer": "",
+                                "schema:Brand": "",
+                                "schema:ProductModel": "",
+                                "schema:serialNumber": "",
+                                "schema:category": ""
+                            }
+                        }
+                    },
+                    "downlinkEquipment": {
+                        "id": "",
+                        "receiver": { 
+                            "id": "",
+                            "inputbandwidth": {
+                                "id": "",
+                                "band": "",
+                                "frequencyRange": "",
+                                "minimumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "maximumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "outputbandwidth": {
+                                "id": "",
+                                "band": "",
+                                "frequencyRange": "",
+                                "minimumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "maximumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "schema:category": "",
+                            "electricalPower": {
+                                "id": "",
+                                "impedance": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "inputPower": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "outputPower": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "voltage": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "current": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "gain": "",
+                            "gainFlatness": "",
+                            "noiseFigure": "",
+                            "connectors": "",
+                            "cables": "",
+                            "dimensions": {
+                                "id": "",
+                                "schema:height": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:width": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:depth": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "operatingTemperatureRange": "",
+                            "manufacturerInformation": {
+                                "id": "",
+                                "schema:manufacturer": "",
+                                "schema:Brand": "",
+                                "schema:ProductModel": "",
+                                "schema:serialNumber": "",
+                                "schema:category": ""
+                            }
+                        },
+                        "lowNoiseAmplifier": {
+                            "id": "",
+                            "bandwidth": {
+                                "id": "",
+                                "band": "",
+                                "frequencyRange": "",
+                                "minimumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "maximumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },                            
+                            "electricalPower": {
+                                "id": "",
+                                "impedance": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "inputPower": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "outputPower": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "voltage": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "current": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "schema:category": "",
+                            "noiseFigure": "",
+                            "gain": "",
+                            "connectors": "",
+                            "cables": "",
+                            "dimensions": {
+                                "id": "",
+                                "schema:height": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:width": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:depth": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "operatingTemperatureRange": "",
+                            "manufacturerInformation": {
+                                "id": "",
+                                "schema:manufacturer": "",
+                                "schema:Brand": "",
+                                "schema:ProductModel": "",
+                                "schema:serialNumber": "",
+                                "schema:category": ""
+                            }
+                        },
+                        "filter": {
+                            "id": "",
+                            "filterType": "",
+                            "bandwidth": {
+                                "id": "",
+                                "band": "",
+                                "frequencyRange": "",
+                                "minimumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "maximumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "electricalPower": {
+                                "id": "",
+                                "impedance": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "inputPower": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "outputPower": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "voltage": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "current": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "insertionLoss": "",
+                            "voltageStandingWaveRatio": "",
+                            "connectors": "",
+                            "cables": "",
+                            "dimensions": {
+                                "id": "",
+                                "schema:height": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:width": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:depth": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "operatingTemperatureRange": "",
+                            "manufacturerInformation": {
+                                "id": "",
+                                "schema:manufacturer": "",
+                                "schema:Brand": "",
+                                "schema:ProductModel": "",
+                                "schema:serialNumber": "",
+                                "schema:category": ""
+                            }
+                        },
+                        "converter": {
+                            "id": "",
+                            "inputbandwidth": {
+                                "id": "",
+                                "band": "",
+                                "frequencyRange": "",
+                                "minimumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "maximumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "outputbandwidth": {
+                                "id": "",
+                                "band": "",
+                                "frequencyRange": "",
+                                "minimumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "maximumFrequency": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "schema:category": "",
+                            "electricalPower": {
+                                "id": "",
+                                "impedance": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "inputPower": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "outputPower": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "voltage": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "current": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "gain": "",
+                            "gainFlatness": "",
+                            "noiseFigure": "",
+                            "connectors": "",
+                            "cables": "",
+                            "dimensions": {
+                                "id": "",
+                                "schema:height": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:width": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                },
+                                "schema:depth": {
+                                    "schema:value": "",
+                                    "schema:unitCode": ""
+                                }
+                            },
+                            "operatingTemperatureRange": "",
+                            "manufacturerInformation": {
+                                "id": "",
+                                "schema:manufacturer": "",
+                                "schema:Brand": "",
+                                "schema:ProductModel": "",
+                                "schema:serialNumber": "",
+                                "schema:category": ""
+                            }
+                        }
+                    }                                      
+                }
+            },            
+            "missionOperations": {
+                "id": "",
+                "missionControl": {
+                    "id": "",
+                    "missionControlSystem": "",
+                    "flightOperationsProcedures": ""
+                },
+                "missionPlanning": "",
+                "automation": "",
+                "flightDynamics": "",
+                "dataArchive": "",
+                "dataDissemination": "",
+                "simulator": ""
+            }
+        }
+    },
+    {
+        "spacecraft": {
+            "id": "",
+            "schema:name": "",
+            "schema:alternateName": "",
+            "schema:Country": "",
+            "schema:image": "",
+            "spacecraftType": "",
+            "twoLineElementSet": {
+                "twoLineElement0": "",
+                "twoLineElement1": "",
+                "twoLineElement2": "",
+                "twoLineElementSource": ""
+            },
+            "dimensions": {
+                "id": "",
+                "schema:height": {
+                    "schema:value": "",
+                    "schema:unitCode": ""
+                },
+                "schema:width": {
+                    "schema:value": "",
+                    "schema:unitCode": ""
+                },
+                "schema:depth": {
+                    "schema:value": "",
+                    "schema:unitCode": ""
+                }
+            },
+            "communication": {
+                "linkParameters": {
+                    "uplink": {
+                        "high": {
+                            "schema:value": "",
+                            "schema:unitCode": ""
+                        },
+                        "low": {
+                            "schema:value": "",
+                            "schema:unitCode": ""
+                        },
+                        "drift": {
+                            "schema:value": "",
+                            "schema:unitCode": ""
+                        }
+                    },
+                    "downlink": {
+                        "high": {
+                            "schema:value": "",
+                            "schema:unitCode": ""
+                        },
+                        "low": {
+                            "schema:value": "",
+                            "schema:unitCode":""
+                        },
+                        "drift": {
+                            "schema:value": "",
+                            "schema:unitCode": ""
+                        }
+                    }
+                },
+                "payloadTelemetry": { 
+                    "schema:name": "",
+                    "schema": "",
+                    "decoder": "",
+                    "timestamp": ""
+                },
+                "demodData": { 
+                    "observer": {
+                        "type": "id",
+                        "@value": ""
+                    },
+                    "groundStation": {
+                        "type": "id",
+                        "@value": ""
+                    },
+                    "payloadFrame": "",
+                    "origin": ""
+                }
+            },
+            "orbitalDetermination": {
+                "orbitalElements": { 
+                    "regime": "",
+                    "epoch": {
+                        "schema:value": "",
+                        "schema:unitCode": ""
+                    },
+                    "radiusOfPeriapsis": {
+                        "schema:value": "",
+                        "schema:unitCode": ""
+                    },
+                    "radiusOfApoapsis": {
+                        "schema:value": "", 
+                        "schema:unitCode": ""
+                    },
+                    "eccentricAnomaly": {
+                        "schema:value": "",
+                        "schema:unitCode": ""
+                    },
+                    "meanAnomaly": {
+                        "schema:value": "",
+                        "schema:unitCode": ""
+                    },
+                    "meanMotion": {
+                        "schema:value": "",
+                        "schema:unitCode": ""
+                    },   
+                    "period": {
+                        "schema:value": "",
+                        "schema:unitCode": ""
+                    },
+                    "argumentOfLatitude": {
+                        "schema:value": "",
+                        "schema:unitCode": ""
+                    },
+                    "cartesianElements": {
+                        "position": "",
+                        "velocity": ""
+                    },
+                    "keplerianElements": {
+                        "eccentricity": {
+                            "schema:value": "",
+                            "schema:unitCode": ""
+                        },
+                        "semiMajorAxis": {
+                            "schema:value": "",
+                            "schema:unitCode": ""
+                        },
+                        "inclination": {
+                            "schema:value": "",
+                            "schema:unitCode": ""
+                        },
+                        "rightAscensionOfTheAscendingNode": {
+                            "schema:value": "",
+                            "schema:unitCode": ""
+                        },
+                        "argumentOfPeriapsis": {
+                            "schema:value": "",
+                            "schema:unitCode": ""
+                        },                        
+                        "trueAnomalyAtEpoch": {
+                            "schema:value": "",
+                            "schema:unitCode": ""
+                        }
+                    },
+                    "walkerModifiedEquinoctialElements": {
+                        "semilatusRectum": {
+                            "schema:value": "",
+                            "schema:unitCode": ""
+                        },
+                        "f": {
+                            "schema:value": "",
+                            "schema:unitCode": ""
+                        },
+                        "g": {
+                            "schema:value": "",
+                            "schema:unitCode": ""
+                        },
+                        "h": {
+                            "schema:value": "",
+                            "schema:unitCode": ""
+                        },
+                        "k": {
+                            "schema:value": "",
+                            "schema:unitCode": ""
+                        },
+                        "trueLongitude": {
+                            "schema:value": "",
+                            "schema:unitCode": ""
+                        }
+                    }
+                }
+            },
+            "referenceSystem": {
+                "center": "",
+                "fundamentalPlane": "",
+                "fundamentalDirection": ""
+            },
+            "payload": {
+                "id": "",
+                "schema:instrument": {
+                    "id": "",
+                    "schema:name": "",
+                    "schema:Brand": "",
+                    "schema:ProductModel": "",
+                    "schema:serialNumber": ""
+                },
+                "software": "",
+                "data": "",            
+                "platform": {
+                    "structure": "",
+                    "electricalPowerSystem": {
+                        "solarArray": {
+                            "power": {
+                                "schema:value": "",
+                                "schema:unitCode": ""
+                            }
+                        },
+                        "batteryPower": {
+                            "power": {
+                                "schema:value": "",
+                                "schema:unitCode": ""
+                            }
+                        },
+                        "PCDU": {
+                            "power": {
+                                "schema:value": "",
+                                "schema:unitCode": ""
+                            }
+                        }
+                    },
+                    "communicationEquipment": {
+                        "communicationEquipmentType": "",
+                        "schema:name": "",
+                        "band": "",
+                        "invert": {
+                            "type": "xsd:Boolean",
+                            "@value": false 
+                        },
+                        "baudRate": {
+                            "schema:value": "",
+                            "schema:unitCode": ""
+                        },
+                        "mode": "",
+                        "timestamp": "",
+                        "coordinationAndLicense": "",
+                        "travelingWaveTubeAmplifierPower": {
+                            "schema:value": "",
+                            "schema:unitCode": ""
+                        },
+                        "schema:Brand": "",
+                        "schema:ProductModel": "",
+                        "schema:serialNumber": ""
+                    },
+                    "thermalEquipment": {
+                        "schema:name": "",
+                        "schema:Brand": "",
+                        "schema:ProductModel": "",
+                        "schema:serialNumber": ""
+                    },
+                    "processing": {
+                        "schema:name": "",
+                        "schema:Brand": "",
+                        "schema:ProductModel": "",
+                        "schema:serialNumber": ""
+                    },
+                    "mechanism": {
+                        "schema:name": "",
+                        "schema:Brand": "",
+                        "schema:ProductModel": "",
+                        "schema:serialNumber": ""
+                    },
+                    "firmware": {
+                        "schema:name": "",
+                        "schema:Brand": "",
+                        "schema:ProductModel": "",
+                        "schema:serialNumber": ""
+                    },
+                    "supportEquipment": {
+                        "electricalGroundSupportEquipment": {
+                            "schema:name": "",
+                            "schema:Brand": "",
+                            "schema:ProductModel": "",
+                            "schema:serialNumber": ""
+                        },
+                        "mechanicalGroundSupportEquipment": {
+                            "schema:name": "",
+                            "schema:Brand": "",
+                            "schema:ProductModel": "",
+                            "schema:serialNumber": ""
+                        }
+                    }
+                },
+                "attitudeAndOrbitControlSystem": {
+                    "attitudeMeasurementAssembly": {
+                        "earthSensors": "",
+                        "sunSensors": "",
+                        "controlMomentGyroscopes": ""
+                    },
+                    "wheelsAndMagnetorquersAssembly": {
+                        "reactionWheels": "",
+                        "magnetorquers": "",
+                        "telemetryAndCommandUnits": ""
+                    },
+                    "propulsionSystem": {
+                        "solarArrayDriveMechanism": "",
+                        "fuelTanks": "",
+                        "propellantManagementDevice": "",
+                        "thrusters": ""
+                    }
+                }
+            },
+            "spacecraftMission": {
+                "missionschema:name": "",
+                "missionschema:alternateName": "",
+                "launchSegment": {
+                    "launchDate": "",
+                    "launchVehicle": {
+                        "schema:name": "",
+                        "id": ""
+                    },
+                    "launchSite": {
+                        "type": "schema:place",
+                        "schema:url": "",
+                        "schema:name": "",
+                        "pad": "",
+                        "schema:address": ""
+                    },
+                    "launchMass": {
+                        "schema:value": "",
+                        "schema:unitCode": ""
+                    },
+                    "dryMass": {
+                        "schema:value": "",
+                        "schema:unitCode": ""
+                    },
+                    "launchServiceProvider": {
+                        "schema:name": "",
+                        "schema:alternateName": "",
+                        "schema:address": "",
+                        "schema:affiliation": "",
+                        "schema:url": ""
+                    },
+                    "deploymentService": ""
+                },
+                "missionEnd": {
+                    "decayDate": "",
+                    "disposal": "",
+                    "status": "",
+                    "lastContact": ""
+                },
+                "stakeholder": { 
+                    "id": "",
+                    "schema:url": "",
+                    "schema:name": "",
+                    "schema:alternateName": "",
+                    "schema:jobschema:name": "",
+                    "schema:affiliation": {
+                        "schema:url": "",
+                        "schema:name": ""
+                    },
+                    "schema:email": "",
+                    "schema:telephone": "",
+                    "schema:address": ""
+                }
+            }
+        }
+    }
+    ]
+}

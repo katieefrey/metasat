@@ -1,0 +1,62 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block nav-about %}active{% endblock %}
+
+{% block customcss %}<link href="{% static 'website/css/metasat.css' %}" rel="stylesheet">{% endblock %}
+
+{% block title %}
+    About | MetaSat
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <img width="100%" src="{% static 'website/img/MetaSat_Big.png' %}"/>
+            </div>
+            <div class="col-1">
+            </div>
+            <div class="col-9">
+
+    <h1>Introducing MetaSat</h1>
+
+
+
+    <div>
+        <p>The MetaSat team is working to create metadata and example schemas that can be used to describe small satellite (SmallSat) missions. This work will help facilitate the ease of sharing information between missions and lower the barrier of entry into the field.</p>
+        <h2><strong>Why metadata?</strong></h2>
+        <p>Metadata is most simply defined as data about data. For example, a book contains data: the words on the page. The metadata is information about the book, such as the title, author, page count, publisher, and more. Space missions also have data&mdash;for example, the information a satellite collects and sends back to earth. The metadata about a space mission might include information about the satellite components, people and organizations involved with the mission, the launch date, or information about any ground stations receiving information from the spacecraft.</p>
+        <p>Right now, space mission metadata is not standardized, which makes it hard for different teams to talk to each other, collaborate, or share advice about what works or doesn&rsquo;t work in SmallSat missions. Our goal with MetaSat is to create a metadata schema that can be shared and expanded upon, and which will eventually facilitate information sharing between satellite missions.</p>
+        <h2><strong>Why linked data?</strong></h2>
+        <p>MetaSat is being designed to take advantage of linked. Linked data is used by the web to link together related information. This facilitates both the sharing of information and the synthesis of new ideas. For more information on linked data, visit&nbsp;<a href="http://linkeddata.org/">linkeddata.org</a>.</p>
+        <h2><strong>Our work so far</strong></h2>
+        <p>The Wolbach library is working closely with the Libre Space Foundation (LSF) to create MetaSat. LSF has direct experience working on SmallSat missions and runs SatNOGS, a global network of ground stations that collects satellite observations and stores them in a database. The&nbsp;<a href="https://network.satnogs.org/">SatNOGS Network</a>&nbsp;stores information about both the ground stations in the network and their observations, and the SatNOGS database (<a href="https://db.satnogs.org/">SatNOGS DB</a>) stores information about active satellites. SatNOGS will be one of the earliest adopters of MetaSat.</p>
+        <p>We are currently building example MetaSat schemas for these&nbsp;<a href="https://gitlab.com/metasat/metasat-schema#use-cases">use cases</a>:</p>
+        <ul>
+            <li><a href="https://gitlab.com/metasat/metasat-schema/blob/master/Examples/ObservationExample.jsonld"><strong>Observation</strong></a>: Scheduling an observation through a ground station network (e.g.,&nbsp;<a href="https://network.satnogs.org/" target="_blank" rel="noreferrer noopener">SatNOGS</a>).</li>
+            <li><a href="https://gitlab.com/metasat/metasat-schema/blob/master/Examples/SpaceSegmentExample.jsonld"><strong>Space Segment</strong></a>: Describing a space mission and associated spacecraft.</li>
+            <li><a href="https://gitlab.com/metasat/metasat-schema/blob/master/Examples/GroundSegmentExample.jsonld"><strong>Ground Segment</strong></a>: Describing a ground station and other ground-based components.</li>
+        </ul>
+        <p>Users will be able to mix and match the use cases as they see fit. For example, a user scheduling an observation on their ground station can link the Observation metadata to Ground Station metadata and Spacecraft metadata in a single JSON-LD file. A ground station owner can link their Ground Station metadata to several instances of Observation metadata to reflect the observations taken by their ground station. Our hope is that the modular nature of the project will allow a high degree of flexibility for our users.</p>
+    </div>
+</div></div>
+<div class="row">
+    <div class="col-2">
+            </div>
+    <div class="col-10">
+    <br>
+    <table style="height: 22px; width: 900px;">
+        <tbody>
+            <tr>
+                <td style="width: 261px;"><img src="{% static 'website/img/sloan.png' %}" alt="Alfred P. Sloan Foundation" width="285" height="81" /></td>
+                <td style="width: 319.6px;">Funding for MetaSat is provided by the Alfred P. Sloan Foundation through&nbsp;<a href="https://sloan.org/grant-detail/8955">a grant</a>&nbsp;awarded to the John G. Wolbach Library at the Center for Astrophysics and the Libre Space Foundation.</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+</div>
+
+{% endblock %}

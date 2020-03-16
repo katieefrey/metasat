@@ -1,0 +1,47 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block nav-crosswalk %}active{% endblock %}
+
+{% block customcss %}<link href="{% static 'website/css/metasat.css' %}" rel="stylesheet">{% endblock %}
+
+{% block title %}
+    Crosswalk | MetaSat
+{% endblock %}
+
+{% block body %}
+
+<section>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-2">
+                <img width="100%" src="{% static 'website/img/MetaSat_Big.png' %}"/>
+            </div>
+            <div class="col-1">
+            </div>
+            
+            <div class="col-8">
+                <h1>{{crosswalk}}</h1>
+                <br/><br/>
+                <table class=table>
+                    <tr>
+                        <th>External Identifier</th>
+                        <th>External Label</th>
+                        <th>Relationship</th>
+                        <th>MetaSat Element</th>
+                    </tr>
+                    {% for term in terms %}
+                    <tr>
+                        <td>{{term.identifier}}</td>
+                        <td><a href="{{term.url}}">{{term.label}}</a></td>
+                        <td>{{term.relationship}}</td>
+                        <td><a href="/metasat/{{term.metasat_element}}">{{term.metasat_element}}</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
