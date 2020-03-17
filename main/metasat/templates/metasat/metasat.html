@@ -24,11 +24,11 @@
                 <a href="https://schema.space/metasat/{{element.identifier}}">https://schema.space/metasat/{{element.identifier}}</a>
                 <br/>
                 <br/>
-                <b>Description:</b> {{element.desc}}
+                <b>Description:</b> {{element.desc}}{% if element.source != None %} (<a href="{{element.source}}">source</a>){% endif %}
                 <br/><br/>
                 <b>Examples:</b> {{element.example}}
                 <br/><br/>
-                <b>Types:</b> {% if element.schematype != None %}{{element.schematype}}{% endif %}
+                <b>Types:</b>{% if element.schematype != None %} {{element.schematype}}{% endif %}
                 <br/><br/>
                 <b>Segment(s):</b> {{segments}}
 
