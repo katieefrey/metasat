@@ -1,0 +1,98 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block nav-elements %}active{% endblock %}
+
+{% block customcss %}<link href="{% static 'website/css/metasat.css' %}" rel="stylesheet">{% endblock %}
+
+{% block title %}
+    Elements | MetaSat
+{% endblock %}
+
+{% block body %}
+
+<section>
+
+    <div class="container">
+        <div class="row">
+                <div class="col-6">
+                <h1>MetaSat Elements</h1>
+                <br/><br/>
+            </div>
+        </div>
+<!--         <div class="row">
+
+            <div class="col-4">
+
+                <table class=table>
+
+                    {% for element in all_elements %}
+                    <tr>
+                        <td><a href="/metasat/{{element.identifier}}">{{element.identifier}}</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div> -->
+
+        <div class="row">
+
+            <div class="col-6">
+
+            <div class="accordion" id="accordionExample">
+
+                {% for seg in all_segs %}
+
+              <div class="card">
+                <div class="card-header panel-heading" id="{{seg.id}}_heading">
+                  <h2 class="mb-0">
+                    <button class="panel-button btn btn-link " type="button" data-toggle="collapse" data-target="#collapse_{{seg.id}}" aria-expanded="true" aria-controls="collapse_{{seg.id}}">
+                      {{seg}}
+                    </button>
+                  </h2>
+                </div>
+
+                <div id="collapse_{{seg.id}}" class="collapse {%if seg.id == 1%}show{% endif %}" aria-labelledby="{{seg.id}}_heading" data-parent="#accordionExample">
+                  <div class="card-body">
+<!--                     <table class=table> -->
+                    {% for element in all_elements %}
+                        {% if seg in element.segment.all %}
+                            <a href="/metasat/{{element.identifier}}">{{element.identifier}}</a><br>
+<!--                             <tr>
+                                <td><a href="/metasat/{{element.identifier}}">{{element.identifier}}</a></td>
+                            </tr> -->
+                        {% endif %}
+                    {% endfor %}
+<!--                     </table> -->
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+            </div>
+
+
+            <div class="col-2">
+            </div>
+
+
+            <div class="col-4">
+            {% for seg in all_segs %}
+                <h3>{{seg}}</h3>
+                 {% for element in all_elements %}
+                    {% if seg in element.segment.all %}
+                        <a href="/metasat/{{element.identifier}}">{{element.identifier}}</a><br/>
+
+                    {% endif %}
+                {% endfor %}
+                <br/>
+            {% endfor %}
+
+        </div>
+    </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

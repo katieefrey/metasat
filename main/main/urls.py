@@ -20,5 +20,6 @@ urlpatterns = [
     path('', include('website.urls')),
     path('admin/', admin.site.urls),
     path('metasat/', include('metasat.urls')),
-    path('crosswalk/', include('crosswalk.urls'))
+    path('crosswalk/', include('crosswalk.urls')),
+    path('jsonld/', include('playground.urls'))
 ]

@@ -1,0 +1,55 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block nav-elements %}active{% endblock %}
+
+{% block customcss %}<link href="{% static 'website/css/metasat.css' %}" rel="stylesheet">{% endblock %}
+
+{% block title %}
+    JSON LD | MetaSat
+{% endblock %}
+
+{% block body %}
+
+<section>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-2">
+                <img width="100%" src="{% static 'website/img/MetaSat_Big.png' %}"/>
+            </div>
+            <div class="col-1">
+            </div>
+
+
+                <div class="col-6">
+                <h1>MetaSat JSON LD</h1>
+                <br/><br/>
+                
+                <h2>Compacted</h2>
+                {{compacted}}
+
+                <br/><br/>
+
+                <h2>Expanded</h2>
+                {{expanded}}
+
+
+                <table class=table>
+
+                    {% for element in all_elements %}
+                    <tr>
+                        <td><a href="/metasat/{{element.identifier}}">{{element.identifier}}</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+
+        </div>
+
+</section>
+
+{% endblock %}

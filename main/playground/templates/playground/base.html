@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Dictionary of all existing MetaSat elements in alphabetical order.">
+
+    <title>Elements | MetaSat</title>
+
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/metasat.css" rel="stylesheet">
+
+</head>
+
+<section>
+    <div class="container">
+        <h1>Element</h1>
+        <table border=1>
+            <tr>
+                <th>Element</th>
+                <th>Description</th>
+                <th>Examples</th>
+                <th>Data Type</th>
+            </tr>
+            <tr>
+                <td>{{element.name}}</td>
+                <td>{{element.desc}}</td>
+                <td>{{element.example}}</td>
+                <td>{{element.datatype}}</td>
+            </tr>
+        </table>
+        <BR>
+        <BR>
+        <h2>Crosswalks</h2>
+        <table border=1>
+            <tr>
+                <th>External Source</th>
+                <th>External Name</th>
+                <th>Relationship</th>
+            </tr>
+            <!--{% for x in walks %}-->
+            <tr>
+                <td>{{x.source}}</td>
+                <td>{{x.name}}</td>
+                <td>{{x.relationship}}</td>
+            </tr>
+            <!--{% endfor %}-->
+        </table>
+</section>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom">
+    <div class="container">
+        <a class="navbar-brand" href="#">MetaSat</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="https://schema.space">Home
+          <span class="sr-only">(current)</span>
+        </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://schema.space/metasat">Elements</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://schema.space/crosswalk">Crosswalk</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://schema.space/about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="mailto:metasat@schema.space">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

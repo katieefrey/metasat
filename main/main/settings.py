@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'website.apps.WebsiteConfig', # new
     'metasat.apps.MetasatConfig', # new
     'crosswalk.apps.CrosswalkConfig', # new
+    'playground.apps.PlaygroundConfig', # new
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser' # new

@@ -1,0 +1,89 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block nav-elements %}active{% endblock %}
+
+{% block customcss %}<link href="{% static 'website/css/metasat.css' %}" rel="stylesheet">{% endblock %}
+
+{% block title %}
+    Elements | MetaSat
+{% endblock %}
+
+{% block body %}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <img width="100%" src="{% static 'website/img/MetaSat_Big.png' %}"/>
+            </div>
+            <div class="col-1">
+            </div>
+            <div class="col-8">
+                <h1>{{element.identifier}}</h1>
+                <a href="https://schema.space/metasat/{{element.identifier}}">https://schema.space/metasat/{{element.identifier}}</a>
+                <br/>
+                <br/>
+                <b>Description:</b> {{element.desc}}{% if element.source != "" %} (<a href="{{element.source}}">source</a>){% endif %}
+                <br/><br/>
+                <b>Examples:</b> {{element.example}}
+                <br/><br/>
+                <b>Types:</b>{% if element.schematype != None %} {{element.schematype}}{% endif %}
+                <br/><br/>
+                <b>Segment(s):</b> {{segments}}
+
+                {% if crosswalks %}
+                <br/><br/><br/><br/>
+                <h3>Crosswalks</h3>
+                <table class=table>
+                    <tr>
+                        <th>External Source</th>
+                        <th>External Name</th>
+                        <th>External Identifier</th>
+                        <th>Relationship</th>
+                    </tr>
+                    {% for x in crosswalks %}
+                    <tr>
+                        <td>{{x.source}}</td>
+                        <td><a href="{{x.url}}">{{x.label}}</a></td>
+                        <td>{{x.identifier}}</td>
+                        <td>{{x.relationship}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% endif %}
+
+                <br/><br/><br/>
+                <a href="/metasat">Full MetaSat Elements List</a>
+            </div>
+        </div>
+
+        <div class="row">
+
+            
+        </div>
+    </div>
+
+<!--         
+<br/><br/><br/><br/>
+<table border=1>
+            <tr>
+                <th>Identifier</th>
+                <th>Description</th>
+                <th>Examples</th>
+                <th>Type</th>
+            </tr>
+            <tr>
+                <td>{{element.identifier}}</td>
+                <td>{{element.desc}}</td>
+                <td>{{element.example}}</td>
+                <td>{{element.schematype}}</td>
+            </tr>
+        </table>
+        <BR>
+        <BR> -->
+        
+</section>
+
+
+{% endblock %}
