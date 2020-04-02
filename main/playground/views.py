@@ -12,14 +12,14 @@ import requests
 
 def index(request):
 
-    url = "https://gitlab.com/metasat/metasat-schema/-/raw/master/MetaSat.jsonld"
+    url = "https://gitlab.com/metasat/metasat-schema/-/raw/master/Examples/QUBIK_EXAMPLE.jsonld"
     content = requests.get(url)
     k = json.loads(content.text)
 
-    doc = k["@graph"]
+    doc = k#["@graph"]
 
 
-    url2 = "https://gitlab.com/metasat/metasat-schema/-/raw/master/context.jsonld"
+    url2 = "https://gitlab.com/metasat/metasat-schema/-/raw/master/Examples/QUBIK_EXAMPLE.jsonld"
     content2 = requests.get(url2)
     j = json.loads(content2.text)
    

@@ -27,13 +27,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 #local
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
 
 #live
-#ALLOWED_HOSTS = ['schema.space' , 'www.schema.space']
+ALLOWED_HOSTS = ['schema.space' , 'www.schema.space','127.0.0.1']
 
 
 # Application definition
@@ -138,4 +138,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 #live
-#STATIC_ROOT = os.path.dirname(BASE_DIR) + '/public/static/'
+STATIC_ROOT = os.path.dirname(BASE_DIR) + '/public/static/'
