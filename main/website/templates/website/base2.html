@@ -1,0 +1,65 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% block metadata %}{% endblock %}
+
+    <script src="{% static 'website/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'website/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <link rel="icon" type="image/png" href="{% static 'website/img/flavicon.png' %}">
+
+    <meta name="description" content="{% block description %}{% endblock %}">
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <link href="{% static 'website/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'website/css/foundation.css' %}">
+    <link rel="stylesheet" href="{% static 'website/css/app.css' %}">
+
+    {% block customcss %}{% endblock %}
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">MetaSat</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item {% block nav-home %}{% endblock %}">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item {% block nav-elements %}{% endblock %}">
+                        <a class="nav-link" href="/metasat">Elements</a>
+                    </li>
+<!--                     <li class="nav-item {% block nav-crosswalk %}{% endblock %}">
+                        <a class="nav-link" href="/crosswalk">Crosswalk</a>
+                    </li>
+                    <li class="nav-item {% block nav-resources %}{% endblock %}">
+                        <a class="nav-link" href="/resources">Resources</a>
+                    </li> -->
+                    <li class="nav-item {% block nav-about %}{% endblock %}">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item {% block nav-contact %}{% endblock %}">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% block body %}
+    {% endblock %}    
+
+</body>
+</html>
