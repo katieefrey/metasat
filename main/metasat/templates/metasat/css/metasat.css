@@ -1,0 +1,33 @@
+body {
+     background-color: #FFFFFFFF;
+     text-align: left;
+     margin-right: 25%;
+     margin-left: 5%;
+     margin-top: 2%;
+     margin-bottom: 10%;
+}
+
+
+.panel-heading {
+  background-color: #014e6d!important;
+}
+
+.panel-button a {
+    color: white !important;
+}
+
+.panel-button {
+    font-weight: bold;
+    font-size: 20px;
+    color: #fff !important; 
+/*    text-decoration: underline;*/
+text-decoration: none;
+}
+
+.panel-button:hover {
+    font-weight: bold;
+    font-size: 20px;
+    color: #fff !important; 
+/*    text-decoration: underline;*/
+text-decoration: none;
+}

@@ -5,14 +5,18 @@
 
 {% block customcss %}<link href="{% static 'website/css/metasat.css' %}" rel="stylesheet">{% endblock %}
 
-{% block title %}
-    Elements | MetaSat
-{% endblock %}
+{% block description %}{{element.term}}: {{element.desc}}{% endblock %}
+
+{% block title %}{{element.identifier}} | MetaSat{% endblock %}
 
 {% block body %}
 
 
 <div class="container">
+    <div class="row">
+        <div class="col-12"><br/><br/>
+        </div>
+    </div>
     <div class="row">
         <div class="col-2">
             <img width="100%" src="{% static 'website/img/MetaSat_Big.png' %}"/>
@@ -21,16 +25,17 @@
         </div>
         <div class="col-8">
             <h1>{{element.identifier}}</h1>
+            <h3>{{element.term}}</h3>
             <a href="https://schema.space/metasat/{{element.identifier}}">https://schema.space/metasat/{{element.identifier}}</a>
             <br/>
             <br/>
-            <b>Description:</b> {{element.desc}}{% if element.source != "" %} (<a href="{{element.source}}">source</a>){% endif %}
+            <b>Description:</b> {% if element.desc == ""%}None{% else %}{{element.desc}}{% endif %}{% if element.source != None %} (<a href="{{element.source}}">source</a>){% endif %}
             <br/><br/>
-            <b>Examples:</b> {{element.example}}
-            <br/><br/>
-            <b>Types:</b>{% if element.schematype != None %} {{element.schematype}}{% endif %}
-            <br/><br/>
-            <b>Segment(s):</b> {{segments}}
+            <b>Example:</b> {% if element.example == ""%}None{% else %}{{element.example}}{% endif %}<br/><br/>
+            <b>Synonym(s):</b> {% if element.synonym == ""%}None{% else %}{{element.synonym}}{% endif %}<br/><br/>
+            <b>Element Segments:</b>  {% for f in element.segment.all %}{{ f }}{% if not forloop.last %}, {% endif %}{% endfor %}<br/><br/>
+            <b>Element Families:</b>  {% for f in element.family.all %}{{ f }}{% if not forloop.last %}, {% endif %}{% endfor %}
+            
 
             {% if crosswalks %}
             <br/><br/><br/><br/>
@@ -53,8 +58,10 @@
             </table>
             {% endif %}
 
-            <br/><br/><br/>
-            <a href="/metasat">Full MetaSat Elements List</a>
+<!--             <br/><br/><br/>
+            <a href="/metasat">Full MetaSat Elements List</a> -->
+<!--             <br/><br/>
+            <a href="/metasat/families">Element Families List</a> -->
         </div>
     </div>
     <br><br><br>
