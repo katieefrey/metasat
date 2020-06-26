@@ -5,6 +5,7 @@ main/*.csv
 main/crosswalk/*.xlsx
 main/crosswalk/*.csv
 main/crosswalk/migrations/*
+main/metasat/migrations/*
 notes.txt
 test.py
 index.html

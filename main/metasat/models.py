@@ -25,3 +25,7 @@ class Element(models.Model):
 
     def __str__(self):
         return f"{self.identifier}"
+
+
+    class Meta:
+       ordering = ('identifier',)

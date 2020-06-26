@@ -2,6 +2,7 @@ from django.db import models
 from metasat.models import Element
 
 class ExternalSchema(models.Model):
+    identifier = models.CharField(max_length=255, null=True, blank=True)
     name = models.CharField(max_length=255)
     url = models.CharField(max_length=255, null=True, blank=True)
 
@@ -36,3 +37,6 @@ class ExternalElement(models.Model):
 
     def __str__(self):
         return f"{self.source}: {self.identifier}"
+
+    class Meta:
+       ordering = ('metasat_element',)

@@ -292,7 +292,7 @@ with open('crosswalk.csv') as csv_file:
         if header == 0:
 
             for title in row:
-                print (title)
+                #print (title)
                 col_list.append(title)
             header = 1
         else:
@@ -306,6 +306,13 @@ with open('crosswalk.csv') as csv_file:
     new_list = col_list[1:]
 
     df = pandas.read_csv("crosswalk.csv", encoding = "ISO-8859-1", usecols=col_list)
+
+    # for y in new_list:
+    #     print (y)
+    #     schema = ExternalSchema.objects.get(name=y)
+    #     schema.identifier = y.replace(' ','-')
+    #     schema.save()
+
     
     for y in new_list:
         print(y) #vocab name
@@ -316,6 +323,8 @@ with open('crosswalk.csv') as csv_file:
                 pass
             else:
                 schema = ExternalSchema.objects.get(name=y)
+                schema.identifier = y.replace(' ','-')
+                schema.save()
                 print(x) # vocab id & url
                 print(df[elementid][count]) # elementid
                 elid = Element.objects.get(identifier=df[elementid][count])
