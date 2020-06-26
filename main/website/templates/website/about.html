@@ -11,7 +11,7 @@
 
 {% block body %}
 
-    <div class="container">
+    <div class="container" role="main" aria-labelledby="introduction">
         <div class="row">
             <div class="col-12"><br/><br/>
             </div>
@@ -24,7 +24,7 @@
             </div>
             <div class="col-sm-9 col-lg-8">
 
-                <h1>Introducing MetaSat</h1>
+                <h1 id="introduction">Introducing MetaSat</h1>
 
 
 
@@ -44,6 +44,9 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <footer>
         <div class="row">
             <div class="col-lg-3 col-sm-2 d-none d-sm-block">
             </div>
@@ -53,7 +56,6 @@
                 <p>Funding for MetaSat is provided by the Alfred P. Sloan Foundation through&nbsp;<a href="https://sloan.org/grant-detail/8955">a grant</a>&nbsp;awarded to the John G. Wolbach Library at the Center for Astrophysics and the Libre Space Foundation.</p>
             </div>
         </div>
-
         <div class="row">
             <div class="col-lg-3 col-sm-2 d-none d-sm-block">
                 <div class="col-sm-3">
@@ -62,7 +64,8 @@
                     <br/><br/>
                     <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
                 </div>
+            </div>
         </div>
-    </div>
+    </footer>
 
 {% endblock %}
