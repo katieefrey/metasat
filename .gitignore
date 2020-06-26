@@ -1,5 +1,15 @@
 main/main/secrets.py
 
+main/*.xlsx
+main/*.csv
+main/crosswalk/*.xlsx
+main/crosswalk/*.csv
+main/crosswalk/migrations/*
+notes.txt
+test.py
+index.html
+public/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
