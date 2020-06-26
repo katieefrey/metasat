@@ -47,7 +47,7 @@ div .topmenu {
                 <br/>&nbsp;<br/>&nbsp;
                 <h1>MetaSat Elements</h1>
                 <br/>
-                {% for x in alphabet %}<span tabindex=0 style="cursor:pointer;" class="text-primary" onkeypress='document.getElementById("{{x}}").scrollIntoView(true);' onclick='document.getElementById("{{x}}").scrollIntoView(true);'>{{x}}</span>&nbsp; &nbsp;{% endfor %}
+                {% for x in alphabet %}<span tabindex=0 style="cursor:pointer;" class="text-primary letter">{{x}}</span>&nbsp; &nbsp;{% endfor %}
                 <br/><br/>
                 <form name="testing1">
                     <input type="text" id="uat-autocomplete-single" name="uatterm1"> <INPUT TYPE="button" value="Find" onClick="parent.location='http://schema.space/metasat/' + uatterm1.value">
@@ -75,7 +75,8 @@ div .topmenu {
                 <div class="col-6"><br/>
 
                 {% for x in alphabet %}
-                <span id="{{x}}" class="anchor"></span>{{x|upper}}
+                <span id="{{x}}" class="anchor"></span>
+                <span id="letter{{x}}" tabindex=0> {{x|upper}}</span>
                 <table class=table>
                     
                         {% for element in all_elements %}
@@ -111,6 +112,31 @@ div .topmenu {
         </div>
 
 
+<script>
 
+$(document).ready(function(){
+
+    $(".letter").on("keyup", function(){
+        if (event.keyCode === 13) {
+            thisletter = event.target.innerHTML;
+            event.preventDefault();
+            document.getElementById(thisletter).scrollIntoView(true);
+            $("#letter"+thisletter).focus();
+        }
+
+
+    });
+
+
+    $(".letter").on("click", function(){
+        thisletter = event.target.innerHTML;
+        event.preventDefault();
+        document.getElementById(thisletter).scrollIntoView(true);
+
+    });
+
+});
+
+</script>
 
 {% endblock %}

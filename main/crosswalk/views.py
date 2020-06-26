@@ -8,7 +8,6 @@ from .models import ExternalSchema, ExternalElement
 def index(request):
 
     allcrosswalks = ExternalSchema.objects.all()
-
     context = {"allcrosswalks": allcrosswalks}
 
     return render(request, "crosswalk/index.html", context)
@@ -17,14 +16,9 @@ def index(request):
 
 def crosswalk(request,crosswalk):
 
-    cw = ExternalSchema.objects.get(name=crosswalk)
+    cw = ExternalSchema.objects.get(identifier=crosswalk)
+    terms = ExternalElement.objects.filter(source=cw.id)#.order_by('metasat_element')
 
-    cwid = cw.id
-    print(cwid)
-
-    terms = ExternalElement.objects.filter(source=cwid)
-    
-    print(terms)
     context = {"terms": terms,
                 "crosswalk": cw.name}
 
