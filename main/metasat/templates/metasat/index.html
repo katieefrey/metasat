@@ -47,7 +47,7 @@ div .topmenu {
                 <br/>&nbsp;<br/>&nbsp;
                 <h1>MetaSat Elements</h1>
                 <br/>
-                {% for x in alphabet %}<span style="cursor:pointer;" class="text-primary" onclick='document.getElementById("{{x}}").scrollIntoView(true);'>{{x}}</span>&nbsp; &nbsp;{% endfor %}
+                {% for x in alphabet %}<span tabindex=0 style="cursor:pointer;" class="text-primary" onkeypress='document.getElementById("{{x}}").scrollIntoView(true);' onclick='document.getElementById("{{x}}").scrollIntoView(true);'>{{x}}</span>&nbsp; &nbsp;{% endfor %}
                 <br/><br/>
                 <form name="testing1">
                     <input type="text" id="uat-autocomplete-single" name="uatterm1"> <INPUT TYPE="button" value="Find" onClick="parent.location='http://schema.space/metasat/' + uatterm1.value">

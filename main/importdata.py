@@ -13,7 +13,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE','main.settings')
 import django
 django.setup()
 
-from crosswalk.models import ExternalSchema, ExternalRelationshipSchema, Relationship, ExternalElement
+from crosswalk.models import ExternalSchema, ExternalElement#, ExternalRelationshipSchema, Relationship
 from metasat.models import Element, Segment, ElementFamily
 
 ## set up databases
@@ -62,7 +62,7 @@ from metasat.models import Element, Segment, ElementFamily
 
 
 def add_ExternalSchema(data1):
-    d, created = ExternalSchema.objects.get_or_create(name=data1,url=data2)
+    d, created = ExternalSchema.objects.get_or_create(name=data1)
     return d
 
 # add_ExternalSchema("wikidata","http://wikidata.org")
@@ -85,8 +85,8 @@ def add_Relationship(data1, data2):
 ## add content to databases
 
 
-def add_ExternalElement(data1, data2, data3, data4, data5, data6):
-    d, created = ExternalElement.objects.get_or_create(identifier=data1, label=data2, url=data3, source_id=data4, relationship_id=data5, metasat_element_id=data6)
+def add_ExternalElement(data1, data3, data4, data5):
+    d, created = ExternalElement.objects.get_or_create(identifier=data1, url=data3, source_id=data4, metasat_element_id=data5)
 
     return d
 
@@ -101,7 +101,7 @@ def add_ExternalElement(data1, data2, data3, data4, data5, data6):
 #     for x in segments:
 #         e1.segment.add(x)
 #     e1.save()
-
+"""
 
 s1 = Segment.objects.get(id=1) # Space Segment
 s2 = Segment.objects.get(id=2) # Ground Segment
@@ -126,7 +126,7 @@ f15 = ElementFamily.objects.get(id=15) # Signal Processing
 f16 = ElementFamily.objects.get(id=16) # Software
 f17 = ElementFamily.objects.get(id=17) # Thermal Control
 
-
+"""
 
 def add_Element(data1, data2, data3, data4, data5, data6, segments, families):
     #d, created = Element.objects.get_or_create(identifier=data1, desc=data2, synonym=data3, example=data4, schematype_id=data5)
@@ -166,6 +166,9 @@ def update_Element(data1, data2, data3, data4, data5, data6, segments, families)
   
 #add_Element("owner","Person or organization who owns the ground station","", "", 2, [s1,s2,s3])
 
+######### adding elements
+
+"""
 
 from openpyxl import load_workbook
 
@@ -273,27 +276,54 @@ for x in range(1,num+1):
         print(identifier.value)
         update_Element(identifier.value,term.value,desc.value,synonyms.value,example.value,source.value, seg, fam)
         #pass
-
-# with open('metasat2.csv') as csv_file:
-#     csv_reader = csv.reader(csv_file, delimiter=',')
-#     for row in csv_reader:
-#         print(row)
+"""
 
 
-#         add_Element(row[1],row[0],row[2],row[3],row[4],row[5])
+############ adding crosswalks
+
+import pandas
+
+with open('crosswalk.csv') as csv_file:
+    csv_reader = csv.reader(csv_file, delimiter=',')
+    header = 0
+    col_list = []
+
+    for row in csv_reader:
+        if header == 0:
+
+            for title in row:
+                print (title)
+                col_list.append(title)
+            header = 1
+        else:
+            pass
 
 
+    ExternalSchema.objects.all().delete()
+    ExternalElement.objects.all().delete()
 
-# with open('crosswalk.csv') as csv_file:
-#     csv_reader = csv.reader(csv_file, delimiter=',')
-#     for row in csv_reader:
-#         print(row)
+    elementid = col_list[0]
+    new_list = col_list[1:]
 
-        #add_ExternalElement("P127","Owned by","https://www.wikidata.org/wiki/Property:P127",1,1,15)
-        #add_ExternalElement(name, barcode, notes)
+    df = pandas.read_csv("crosswalk.csv", encoding = "ISO-8859-1", usecols=col_list)
+    
+    for y in new_list:
+        print(y) #vocab name
+        add_ExternalSchema(y)
+        count = 0
+        for x in df[y]:
+            if pandas.isnull(x):
+                pass
+            else:
+                schema = ExternalSchema.objects.get(name=y)
+                print(x) # vocab id & url
+                print(df[elementid][count]) # elementid
+                elid = Element.objects.get(identifier=df[elementid][count])
+                add_ExternalElement(x, x, schema.id, elid.id)
+            count+=1
 
 
-#     print ("finished!")
+print ("finished!")
 
 
 
