@@ -76,7 +76,7 @@ div .topmenu {
 
                 {% for x in alphabet %}
                 <span id="{{x}}" class="anchor"></span>
-                <span id="letter{{x}}" tabindex=0> {{x|upper}}</span>
+                <span id="letter{{x}}" tabindex=0>{{x|upper}}</span>
                 <table class=table>
                     
                         {% for element in all_elements %}
@@ -123,8 +123,6 @@ $(document).ready(function(){
             document.getElementById(thisletter).scrollIntoView(true);
             $("#letter"+thisletter).focus();
         }
-
-
     });
 
 
@@ -132,9 +130,7 @@ $(document).ready(function(){
         thisletter = event.target.innerHTML;
         event.preventDefault();
         document.getElementById(thisletter).scrollIntoView(true);
-
     });
-
 });
 
 </script>
