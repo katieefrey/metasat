@@ -62,7 +62,7 @@ def account(request):
         context = {
             "state": "home"
             }
-        return render(request, "website/account.html", context)
+        return render(request, "website/index.html", context)
         #return render(request, "website/home.html", context)
 
     #otherwise, if they are logged in...
@@ -77,24 +77,18 @@ def account(request):
 
     if request.method == 'POST':
 
-        try:
-            devk = request.POST["inputDevKey"]
-            username.devkey = devk
-            username.save()
-            context["update"] = "API Token Updated!"
+        pwform = PasswordChangeForm(request.user, request.POST)
 
-        except:
-            pass
+        if pwform.is_valid():
+            user = pwform.save()
+            update_session_auth_hash(request, user)  # Important!
+            #messages.success(request, 'Your password was successfully updated!')
+            #return redirect('main')
+            return HttpResponseRedirect(reverse("mainindex"))
+        else:
+            return HttpResponseRedirect(reverse("mainindex"))
+            #messages.error(request, 'Please correct the error below.')
 
-        try:
-            bibg = request.POST["inputBibgroup"]
-            bibgid = Bibgroup.objects.get(bibgroup=bibg)
-            username.bibgroup = bibgid
-            username.save()
-            context["update"] = "Bibgroup updated!"
-
-        except:
-            pass
 
     context["user"] = username
 

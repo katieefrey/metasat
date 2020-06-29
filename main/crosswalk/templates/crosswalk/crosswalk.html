@@ -35,7 +35,7 @@
                     {% for term in terms %}
                     <tr>
                         <td><a href="/metasat/{{term.metasat_element}}">{{term.metasat_element}}</a></td>
-                        <td><a href="{{term.url}}">{{term.identifier}}</a></td>
+                        <td>{% if term.url != None %}<a href="{{term.url}}">{{term.identifier}}</a>{% else %}{{term.identifier}}{% endif %}</td>
                     </tr>
                     {% endfor %}
                 </table>
