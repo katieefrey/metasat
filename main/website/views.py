@@ -80,13 +80,17 @@ def account(request):
         pwform = PasswordChangeForm(request.user, request.POST)
 
         if pwform.is_valid():
+            print("form IS valid")
             user = pwform.save()
             update_session_auth_hash(request, user)  # Important!
             #messages.success(request, 'Your password was successfully updated!')
             #return redirect('main')
-            return HttpResponseRedirect(reverse("mainindex"))
+            context["update"] = "Password updated successfully!"
+            #return HttpResponseRedirect(reverse("mainindex"))
         else:
-            return HttpResponseRedirect(reverse("mainindex"))
+            print("form not valid")
+            context["error"] = "Problem changing password."
+            #return HttpResponseRedirect(reverse("mainindex"))
             #messages.error(request, 'Please correct the error below.')
 
 

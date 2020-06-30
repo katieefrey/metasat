@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     'playground.apps.PlaygroundConfig', # new
 ]
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 AUTH_USER_MODEL = 'users.CustomUser' # new
 
 MIDDLEWARE = [

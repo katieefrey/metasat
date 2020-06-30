@@ -1,4 +1,5 @@
 {% extends "website/base.html" %}
+{% load crispy_forms_tags %}
 {% load static %}
 
 {% block nav-elements %}active{% endblock %}
@@ -26,21 +27,33 @@
         <div class="col-8" id="content">
             <h1>{{element.identifier}}</h1>
             <h3>{{element.term}}</h3>
-            <a href="https://schema.space/metasat/{{element.identifier}}">https://schema.space/metasat/{{element.identifier}}</a>
-            {% if request.user.is_authenticated %}
-                <br/><br/>
-                <a href="edit/{{element.identifier}}">(edit)</a>
-            {% endif%}
             <br/>
-            <br/>
-            <b>Description:</b> {% if element.desc == ""%}None{% else %}{{element.desc}}{% endif %}{% if element.source != None %} (<a href="{{element.source}}">source</a>){% endif %}
-            <br/><br/>
-            <b>Example:</b> {% if element.example == ""%}None{% else %}{{element.example}}{% endif %}<br/><br/>
-            <b>Synonym(s):</b> {% if element.synonym == ""%}None{% else %}{{element.synonym}}{% endif %}<br/><br/>
-            <b>Element Segments:</b>  {% for f in element.segment.all %}{{ f }}{% if not forloop.last %}, {% endif %}{% endfor %}<br/><br/>
-            <b>Element Families:</b>  {% for f in element.family.all %}{{ f }}{% if not forloop.last %}, {% endif %}{% endfor %}
-            
+            <form action="{% url 'update' %}" method="post">
+                {% csrf_token %}
 
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                    {{ elform|crispy }}
+                    </div>
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group col-md-3">
+                        {{ famcomp|crispy }}                        
+                    </div>
+                    <div class="form-group col-md-1">
+                                           
+                    </div>
+                    <div class="form-group col-md-3">
+                        {{ segcomp|crispy }}
+                    </div>
+                </div>
+
+                <input type="hidden" name="elid" value="{{element.id}}">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+            
             {% if crosswalks %}
             <br/><br/><br/><br/>
             <h3>Crosswalk Identifiers</h3>
@@ -53,10 +66,15 @@
                 {% endfor %}
             </table>
             {% endif %}
+            <br/>
+            <button type="submit" class="btn btn-danger">Deprecat Concept [nyi]</button>
 
         </div>
 
     </div>
+
+
+
     <br><br>
     <div class="row">
         <div class="col-3">

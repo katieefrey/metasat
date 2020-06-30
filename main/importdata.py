@@ -325,7 +325,7 @@ with open('crosswalk.csv') as csv_file:
                 schema = ExternalSchema.objects.get(name=y)
                 schema.identifier = y.replace(' ','-')
                 schema.save()
-                print(x) # vocab id & url
+                #print(x) # vocab id & url
                 print(df[elementid][count]) # elementid
 
                 if str(x).startswith("http"):
@@ -333,7 +333,7 @@ with open('crosswalk.csv') as csv_file:
                 else:
                     uri = None
                 elid = Element.objects.get(identifier=df[elementid][count])
-                add_ExternalElement(x, uri, schema.id, elid.id)
+                add_ExternalElement(str(x), uri, schema.id, elid.id)
             count+=1
 
 

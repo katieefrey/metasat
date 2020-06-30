@@ -9,8 +9,10 @@ urlpatterns = [
     path('segments', views.segments, name='segments'),
     path('index2', views.index2, name='index2'),
     path('index3', views.index3, name='index3'),
-    path('<element>', views.element, name='element'),
+    path('update', views.update, name='update'),
     path('term/<element>', views.element, name='element'),
+    path('edit/<element>', views.edit, name='edit'),
+    path('<element>', views.element, name='element'),
 ]
 
 
