@@ -32,42 +32,48 @@
                 {% csrf_token %}
 
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-9">
                     {{ elform|crispy }}
                     </div>
                 </div>
 
                 <div class="form-row">
 
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-4">
                         {{ famcomp|crispy }}                        
                     </div>
                     <div class="form-group col-md-1">
                                            
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-4">
                         {{ segcomp|crispy }}
                     </div>
                 </div>
 
+            <br/>
+            <h3>Crosswalk Identifiers</h3>
+
+                {{ exelformset.management_form }}
+                {% for form in exelformset %}
+                
+                <div class="form-row">
+                    
+                    <div class="form-group col-md-9">
+                    =================================
+                    {{ form|crispy }}
+
+                    </div>
+
+                </div>
+                {% endfor %}
+
                 <input type="hidden" name="elid" value="{{element.id}}">
                 <button type="submit" class="btn btn-primary">Save</button>
             </form>
-            
-            {% if crosswalks %}
-            <br/><br/><br/><br/>
-            <h3>Crosswalk Identifiers</h3>
-            <table class=table>
-                {% for x in crosswalks %}
-                <tr>
-                    <td>{{x.source}}</td>
-                    <td>{% if x.url != None %}<a href="{{x.url}}">{{x.identifier}}</a>{% else %}{{x.identifier}}{% endif %}</a></td></td>
-                </tr>
-                {% endfor %}
-            </table>
-            {% endif %}
-            <br/>
-            <button type="submit" class="btn btn-danger">Deprecat Concept [nyi]</button>
+
+
+        <br/><br/><br/>
+        <button type="submit" class="btn btn-danger">Deprecat Concept [nyi]</button>
 
         </div>
 

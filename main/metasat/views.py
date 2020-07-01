@@ -3,7 +3,10 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 
 from .models import Element, ElementFamily, Segment
 from .forms import ElementForm, FamComp, SegComp
+from crosswalk.forms import ExternalElementForm, ExElFormSet
 from crosswalk.models import ExternalElement
+
+# from django.forms import modelformset_factory
 
 import string
 
@@ -117,13 +120,22 @@ def edit(request,element):
         segcomp = SegComp(instance=Element.objects.get(identifier=element))
         elform = ElementForm(instance=Element.objects.get(identifier=element))
 
+        exelform = ExternalElementForm()
+
+        exelformset = ExElFormSet(queryset=ExternalElement.objects.filter(metasat_element_id=elid))
+
+        # for form in exelformset:
+        #     print(form.as_table())
+
         #context["elform"] = elform
         context = {"element": el,
                    "crosswalks": crosswalks,
                    "elform" : elform,
                    "famcomp" : famcomp,
                    "segcomp" : segcomp,
-                }
+                   "exelform" : exelform,
+                   "exelformset": exelformset,
+                    }
 
     except Element.DoesNotExist:
         context = {"element": element}

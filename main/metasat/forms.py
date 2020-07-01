@@ -21,8 +21,8 @@ class ElementForm(ModelForm):
         super(ElementForm, self).__init__(*args, **kwargs)
 
         
-        self.fields['example'].widget = forms.Textarea(attrs={'rows': 2})
-        self.fields['synonym'].widget = forms.Textarea(attrs={'rows': 2})
+        self.fields['example'].widget = forms.Textarea(attrs={'rows': 1})
+        self.fields['synonym'].widget = forms.Textarea(attrs={'rows': 1})
         self.fields['desc'].widget = forms.Textarea(attrs={'rows': 2})
         self.fields['source'].widget = forms.Textarea(attrs={'rows': 1})
 
