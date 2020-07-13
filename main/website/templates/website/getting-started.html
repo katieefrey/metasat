@@ -1,0 +1,154 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block nav-about %}active{% endblock %}
+
+{% block customcss %}<link href="{% static 'website/css/metasat.css' %}" rel="stylesheet">{% endblock %}
+
+{% block title %}
+    About | MetaSat
+{% endblock %}
+
+{% block body %}
+
+    <div class="container" role="main" aria-labelledby="introduction"> <!--div for all content-->
+        <div class="row"> <!--div for extra space at top - might want a new solution for this eventually-->
+            <div class="col-12"><br/><br/>
+            </div>
+        </div>
+        <div class="row"> <!--div for main content-->
+            <div class="col-2 d-none d-lg-block"> <!--div for metasat image-->
+                <img width="100%" src="{% static 'website/img/MetaSat_Big.png' %}"/>
+            </div>
+            <div class="col-1 d-none d-lg-block"> <!--div for extra blank column - spacing-->
+            </div>
+            <div class="col-12 col-lg-8"> <!--div for main column, content and "footer"-->
+
+                <div id="content"> <!--div for ARIA label, might want a better solution later-->
+                <h1 id="introduction">Getting Started with MetaSat</h1>
+                </div>
+
+                <div> <!--div for body content-->
+                    <p>The MetaSat vocabulary is the core of the MetaSat project. The MetaSat vocabulary is a list of unique terms that can be used to describe spacecraft, missions, ground stations, and more, each with a unique, permanent URI. A URI, or <b>U</b>niform <b>R</b>esource <b>I</b>dentifier, acts as a machine-readable identifier for the concept. The MetaSat vocabulary and its URIs can be used can be used to describe missions both in private databases and on the web; since each terms uses its own URI, the vocabulary can be used for linked data applications and schemas that use any format of the RDF data model, including RDF-XML, Turtle, N-Triples, and more. <em>Unfamiliar with RDF or linked data? Visit <a href="https://www.w3.org/standards/semanticweb/data">the W3C page on linked data</a> or <a href="https://5stardata.info/en/">5-star Open Data</a>.</em></p>
+
+                    <p>We are also creating example schemas that can be used with our vocabulary. Our schemas use JSON-LD, a highly flexible form of RDF that is built to be easily human-writable and machine-readable. The schemas combine our vocabulary with structure, and give examples and recommendations for how terms relate to each other. For an easy visual of how the sections of our schemas link together, see our <a href="https://drive.google.com/file/d/1lnQWKtYar0cZ8fxcJFXbaN_ZaXartp-S/view?usp=sharing">MetaSat "data model" diagram</a>.</p>
+
+                    <p>MetaSat is useful when describing items like fuel cells in databases such as NASA's <a href="https://spoonsite.com/openstorefront/login/index.html#/">SPOON</a> because our URIs can be referenced directly in your schema without changing its underlying structure. For example, existing entity-relationship models and naming conventions are retained even when incorporating MetaSat URIs. This is why the schema referred to by your database doesn't need to be a new JSON-LD schema developed by MetaSat.</p>
+                    <div class="row"> <!--extra div for spacing-->
+                        <div class="col-12"><br/><br/>
+                        </div>
+                    </div>
+                    
+                    <h2>Context and Crosswalks</h2>
+                    <div class="row"> <!--extra div for spacing-->
+                        <div class="col-12"><br/><br/>
+                        </div>
+                    </div>
+                    <h3>Context</h3>
+                    <p>The “magic” of JSON-LD, and what separates it from plain JSON, is the <code>@context</code> section at the beginning. The <code>@context</code> section lets you define a group of aliases that can then be used to expand each “key,” or attribute name, in the document into a machine-readable URI (Uniform Resource Identifier).</p>
+
+                    <p>For example, if you  add the line <code>"@vocab": "https://schema.space/metasat/"</code> to your <code>@context</code> section, this will allow each key you use to expand to “https://schema.space/metasat/key” (e.g., "dynamicalTime" will expand to https://schema.space/metasat/dynamicalTime).</p>
+
+                    <p>You can also include other vocabularies in your <code>@context</code> by creating aliases for their main URLs and using CURIEs. For example, the <code>@context</code> could include the line <code>"schema": "https://schema.org/"</code>; then, a key such as “schema:Person” would expand to “https://schema.org/Person.”
+                    Here is a simple example, describing a SatNOGS observation, that combines each of these ideas:</p>
+
+                    <pre><code>
+                        {
+                            "@context": {
+                                "@vocab": "https://schema.space/metasat/",
+                                "schema": "https://schema.org/"
+                            },
+                            "@id": "https://network.satnogs.org/observations/2243157/",
+                            "schema:identifier": "2243157",
+                            "groundStation": "1378 - Wolbach Library"
+                        }                        
+                    </code></pre>
+
+                    <p><code>@id</code> is another JSON-LD specific term, which stores a URI or URL for what is being described; here, it is the SatNOGS observation we are interested in. This code will expand to:</p>
+
+                    <pre><code>
+                        {
+                            "@id": "https://network.satnogs.org/observations/2243157/",
+                            "https://schema.space/metasat/groundStation": [
+                            {
+                                "@value": "1378 - Wolbach Library"
+                            }
+                            ],
+                            "https://schema.org/identifier": [
+                            {
+                                "@value": "2243157"
+                            }
+                            ]
+                        }                        
+                    </code></pre>
+
+                    <p>Notice that “groundStation” was expanded to “https://schema.space/metasat/groundStation,” and “schema:identifier” was expanded to “https://schema.org/identifier.”</p>
+
+                    <p>Linked data, often using JSON-LD, is also used for search engine optimization (SEO). For example, a search engine like Google might use JSON-LD metadata to inform its “<a href="https://en.wikipedia.org/wiki/Knowledge_Graph">Knowledge Graphs</a>,” which aggregate often-searched information about popular topics such as celebrities, businesses, and more. If you have ever Googled something like “how long is a marathon” and found the answer before any links show up, you have taken advantage of linked data!  Having structured and linked metadata is also crucial to ranking well in search engine indices.</p>
+
+                    <p>Ranking well in search engine indices helps the public and scientists alike find what they need to do their work, but this is also valuable to vendors. Search engine ranking is often the deciding factor of whether or not a sale is made by a vendor or their competitor. Good SEO through structured and linked metadata can therefore be thought of as a free form of advertising which takes full advantage of the emerging semantic web.</p>
+
+                    <div class="row"> <!--extra div for spacing-->
+                        <div class="col-12"><br/><br/>
+                        </div>
+                    </div>
+
+                    <h3>Crosswalking</h3>
+                    <p>We are also hard at work building crosswalks for MetaSat. A metadata crosswalk is a set of instructions for converting metadata of one schema or vocabulary into another. Using JSON-LD, it is easy to create crosswalks between different linked data vocabularies, since you just have to update the <code>@context</code> section. You can even combine different vocabularies into a single document, or convert into another RDF syntax, such as Turtle or RDF-XML, without losing any information.</p>
+
+                    <p>We are working on making conversions between different vocabularies even easier by building a full MetaSat Crosswalk. Many of our terms are already crosswalked to the popular schema.org vocabulary, as well as to WikiData items and properties as available.  We are currently working on building connections to other vocabularies, schemas, standards, thesauri, and taxonomies, as well.</p>
+
+                    <table>
+                        <th>
+                            <td>MetaSat</td>
+                            <td>WikiData Property</td>
+                            <td>Schema.org</td>
+                        </th>
+                        <tr>
+                            <td>duration</td>
+                            <td><a href="https://www.wikidata.org/wiki/Property:P2047">P2047</a></td>
+                            <td><a href="https://schema.org/Duration">Duration</a></td>
+                        </tr>
+                        <tr>
+                            <td>mass</td>
+                            <td><a href="https://www.wikidata.org/wiki/Property:P2067">P2067</a></td>
+                            <td><a href="https://schema.org/Mass">Mass</a></td>
+                        </tr>
+                    </table>
+
+                    <p><strong>We encourage linking out to existing URIs  when possible. This type of flexibility, combined with MetaSat being an open source project, is particularly beneficial to those who only want to adopt a portion of MetaSat's Vocabulary. In this way, MetaSat remains neutral even when adopted by parties competing against each other such as vendors.</strong></p>
+
+                    <p>Lastly, by crosswalking to MetaSat URIs, issues of language and the transfer of information in databases, product datasheets, specifications, etc., quickly diminish. If, for example, vendors in the U.K. wish to submit thermal “louvres” to the user-generated SPOON database, customers in the U.S will recognize these products as thermal “louvers” in American English.  These types of one-to-one connections are made possible by the MetaSat crosswalk and are particularly important when comparing product specifications that utilize different units and measurement systems.</p>
+
+                    <div class="row"> <!--extra div for spacing-->
+                        <div class="col-12"><br/><br/>
+                        </div>
+                    </div>
+
+                    <div class="text-center"> <!--div for "footer"-->
+                        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--
+    <footer>
+        <div class="row">
+            <div class="col-lg-3 col-sm-2 d-none d-sm-block">
+            </div>
+            <div class="col-sm-9 col-lg-8">
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-sm-2 d-none d-sm-block">
+            </div>
+            <div class="col-sm-9 col-lg-8 text-center">
+                
+            </div>
+        </div>
+    </footer> -->
+
+{% endblock %}
