@@ -104,7 +104,9 @@
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
                 <br/>
-                <a href="/register">Register</a>
+                <!-- <a href="/register">Register</a> -->
+                If you believe you should have access,<br/>
+                contact Daniel Chivvis or Katie Frey.
 
             </div>
         </div>
@@ -130,6 +132,18 @@
             <br/>
             <br/>
             <h5>Change Your Password</h5>
+                {% if error != "" %}
+                    <div class="alert alert-danger" role="alert">
+                        {{error | safe}}
+                    </div>
+                {% endif %}
+
+                {% if update != "" %}
+                    <div class="alert alert-success" role="alert">
+                        {{update | safe}}
+                    </div>
+                {% endif %}
+
                 <form method="post">
                     {% csrf_token %}
                     {{ pwform | crispy }}

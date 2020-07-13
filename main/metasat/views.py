@@ -1,8 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 
 from .models import Element, ElementFamily, Segment
+from .forms import ElementForm, FamComp, SegComp
+from crosswalk.forms import ExternalElementForm, ExElFormSet
 from crosswalk.models import ExternalElement
+
+# from django.forms import modelformset_factory
 
 import string
 
@@ -99,6 +103,106 @@ def element(request,element):
 
     return render(request, "metasat/metasat.html", context)
 
+
+
+def edit(request,element):
+    print("on the edit page!")
+    try:
+
+        el = Element.objects.get(identifier=element)
+
+        elid = el.id
+        print(el.family)
+
+        crosswalks = ExternalElement.objects.filter(metasat_element_id=elid)
+        
+        famcomp = FamComp(instance=Element.objects.get(identifier=element))
+        segcomp = SegComp(instance=Element.objects.get(identifier=element))
+        elform = ElementForm(instance=Element.objects.get(identifier=element))
+
+        exelform = ExternalElementForm()
+
+        exelformset = ExElFormSet(queryset=ExternalElement.objects.filter(metasat_element_id=elid))
+
+        # for form in exelformset:
+        #     print(form.as_table())
+
+        #context["elform"] = elform
+        context = {"element": el,
+                   "crosswalks": crosswalks,
+                   "elform" : elform,
+                   "famcomp" : famcomp,
+                   "segcomp" : segcomp,
+                   "exelform" : exelform,
+                   "exelformset": exelformset,
+                    }
+
+    except Element.DoesNotExist:
+        context = {"element": element}
+        return render(request, "metasat/unknown.html",context)
+
+    return render(request, "metasat/edit.html", context)
+
+
+def update(request):
+
+    if not request.user.is_authenticated:
+        context = {
+            "state": "home",
+            "error": "Please login and try again."
+            }
+        return render(request, "metasat/index.html", context)
+
+    #otherwise, if they are logged in...
+    username = request.user
+    userid = username.id
+
+    try:
+
+        fams = request.POST.getlist('family')
+        segs = request.POST.getlist('segment')
+
+        #loc = request.POST["location"]
+        elid = request.POST["elid"]
+
+        syn = request.POST['synonym']
+        ex = request.POST['example']
+        desc = request.POST['desc']
+        source = request.POST['source']
+
+        myElement = Element.objects.get(id=elid)
+        
+        myElement.family.clear()
+        for x in fams:
+            myElement.family.add(x)
+
+        myElement.segment.clear()
+        for x in segs:
+            myElement.segment.add(x)
+
+
+        #myElement.location_id = loc
+
+        myElement.synonym = syn
+        myElement.example = ex
+        myElement.desc = desc
+        myElement.source = source
+
+        myElement.save()
+
+        context = {
+            "item" : myElement
+        }
+
+        return HttpResponseRedirect('%s' % myElement.identifier)
+
+    except Element.DoesNotExist:
+
+        context = {
+            "state": "loggedin",
+            "error": "Item not found, try again."
+            }
+        return render(request, "metasat/index.html", context)
 
 
 #foundation
