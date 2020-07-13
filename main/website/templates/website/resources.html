@@ -1,0 +1,146 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block nav-about %}active{% endblock %}
+
+{% block customcss %}<link href="{% static 'website/css/metasat.css' %}" rel="stylesheet">{% endblock %}
+
+{% block title %}
+    About | MetaSat
+{% endblock %}
+
+{% block body %}
+
+    <div class="container" role="main" aria-labelledby="introduction"> <!--div for all content-->
+        <div class="row"> <!--div for extra space at top - might want a new solution for this eventually-->
+            <div class="col-12"><br/><br/>
+            </div>
+        </div>
+        <div class="row"> <!--div for main content-->
+            <div class="col-2 d-none d-lg-block"> <!--div for metasat image-->
+                <img width="100%" src="{% static 'website/img/MetaSat_Big.png' %}"/>
+            </div>
+            <div class="col-1 d-none d-lg-block"> <!--div for extra blank column - spacing-->
+            </div>
+            <div class="col-12 col-lg-8"> <!--div for main column, content and "footer"-->
+
+                <div id="content"> <!--div for ARIA label, might want a better solution later-->
+                <h1 id="introduction">Resources</h1>
+                </div>
+
+                <div> <!--div for cards and footer-->
+                    <p>About resources blurb</p>
+
+                    <h2>MetaSat Primer</h2>
+                    <div class="card-deck"> <!--MetaSat Primer cards-->
+                        <div class="card"> <!--card 1-->
+                            <!--this is where an image would go-->
+                          <div class="card-body">
+                            <h3 class="card-title">Getting started with MetaSat</h3>
+                            <p class="card-text">MetaSat has three main components: a vocabulary, a crosswalk, and a set of example schemas. Find out more about each here.</p>
+                          </div>
+                        </div>
+                        <div class="card"> <!--card 2-->
+                          <div class="card-body">
+                            <h3 class="card-title">Beyond the Basics</h3>
+                            <p class="card-text">Here, you will find advanced information on JSON-LD, ontologies, and how to use our tools.</p>
+                          </div>
+                        </div>
+                        <div class="card"><!--card 3-->
+                          <div class="card-body">
+                            <h3 class="card-title">Example files</h3>
+                            <p class="card-text">Basic examples</p>
+                            <p class="card-text">Advanced examples</p>
+                          </div>
+                        </div>
+                      </div>
+
+                    <div class="row"> <!--extra div for spacing-->
+                        <div class="col-12"><br/><br/>
+                        </div>
+                    </div>
+
+                    <h2>Linked Data Resources</h2>
+                    <div class="card-deck"> <!--LD resources cards-->
+                        <div class="card">
+                            <!--this is where an image would go-->
+                          <div class="card-body">
+                            <h3 class="card-title">Linked Data Resources</h3> <!--card 1-->
+                            <p class="card-text">Unfamiliar with linked data? Unsure how to incorporate it into your database or API? Start here!</p>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-body">
+                            <h3 class="card-title">W3C resources</h3>
+                            <p class="card-text">This link will take you to a page of resources about linked data from the World Wide Web Consortium.</p>
+                          </div>
+                        </div>
+                      </div>
+
+                    <div class="row"> <!--extra div for spacing-->
+                        <div class="col-12"><br/><br/>
+                        </div>
+                    </div>
+
+                    <h2>Tools</h2>
+                    <div class="card-deck"> <!--Tools cards-->
+                        <div class="card">
+                            <!--this is where an image would go-->
+                          <div class="card-body">
+                            <h3 class="card-title">Sorting Tool</h3>
+                            <p class="card-text">This tool can be used to visualize a relationship between MetaSat terms.</p>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-body">
+                            <h3 class="card-title">JSON-LD Playground</h3>
+                            <p class="card-text">Built by the W3C JSON-LD group, the JSON-LD playground is the closest thing that exists to a JSON-LD validator.</p>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-body">
+                            <h3 class="card-title">JSONLint</h3>
+                            <p class="card-text">JSONLint is a JSON validator. Start here to make sure your syntax is correct, then put your code into the JSON-LD playground to make sure your connections are working as you intend.</p>
+                          </div>
+                        </div>
+                      </div>
+
+                    <div class="row"> <!--extra div for spacing-->
+                        <div class="col-12"><br/><br/>
+                        </div>
+                    </div>
+                    
+                      <p><em>For more, see <a href="https://gitlab.com/metasat/metasat-schema">our GitLab repository</a>, FAQ page (coming soon!), or contact us at <a href="mailto:metasat@schema.space?subject=MetaSat question">metasat[at]schema.space</a>.</em></p>
+
+                    <div class="row"> <!--extra div for spacing-->
+                        <div class="col-12"><br/><br/>
+                        </div>
+                    </div>
+
+                    <div class="text-center"> <!--div for "footer"-->
+                        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--
+    <footer>
+        <div class="row">
+            <div class="col-lg-3 col-sm-2 d-none d-sm-block">
+            </div>
+            <div class="col-sm-9 col-lg-8">
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-sm-2 d-none d-sm-block">
+            </div>
+            <div class="col-sm-9 col-lg-8 text-center">
+                
+            </div>
+        </div>
+    </footer> -->
+
+{% endblock %}
