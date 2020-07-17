@@ -1,10 +1,6 @@
 body {
      background-color: #FFFFFFFF;
      text-align: left;
-/*     margin-right: 5%;
-     margin-left: 5%;*/
-     /*margin-top: 2%;*/
-     /*margin-bottom: 10%;*/
      overflow-x: hidden;
 }
 
@@ -31,4 +27,26 @@ text-decoration: none;
     color: #fff !important; 
 /*    text-decoration: underline;*/
     text-decoration: none;
+}
+
+
+div .topmenu {
+  background-color: white;
+}
+
+.anchor {
+    display: block;
+    position: relative;
+    visibility: hidden;
+}
+
+div.sidebar {
+    margin-top: 130px;
+    padding-right: 40px;
+    padding-left: 40px;
+    background-color: #fff;
+    height: 75vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 4;
 }

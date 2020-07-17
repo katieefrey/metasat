@@ -6,61 +6,10 @@
 {% block customcss %}<link href="{% static 'website/css/metasat.css' %}" rel="stylesheet">{% endblock %}
 
 {% block title %}
-    Elements | MetaSat
+    Crosswalks | MetaSat
 {% endblock %}
 
 {% block body %}
-
-<style>
-
-div .topmenu {
-  background-color: white;
-}
-
-.anchor {
-    display: block;
-    position: relative;
-/*    top: 0px;*/
-    visibility: hidden;
-}
-
-div.sidebar {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 80px;
-    /*border: 3px solid black;*/
-    padding: 0px;
-    background-color: #fff;
-    z-index: 10;
-}
-
-div.sidebar2 {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 160px;
-    /*border: 3px solid black;*/
-    padding: 0px;
-    background-color: #fff;
-    z-index: 6;
-}
-
-div.sidebar3 {
-/*    position: -webkit-sticky;
-    position: sticky;
-    top: 100px;*/
-    /*border: 3px solid black;*/
-    margin-top: 130px;
-    padding-right: 40px;
-    padding-left: 40px;
-    background-color: #fff;
-    height: 75vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    z-index: 4;
-
-}
-
-</style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
@@ -72,7 +21,7 @@ div.sidebar3 {
 
         <div class="row">
             
-            <div class="col-3 sidebar3">
+            <div class="col-3 sidebar">
 
                      <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item" role="presentation">
@@ -98,7 +47,7 @@ div.sidebar3 {
 
             </div>
 
-            <div class="col-9 sidebar3">
+            <div class="col-9 sidebar">
 
                 {% if crosswalk %}
 

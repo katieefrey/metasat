@@ -11,41 +11,6 @@
 
 {% block body %}
 
-<style>
-
-div .topmenu {
-  background-color: white;
-}
-
-.anchor {
-    display: block;
-    position: relative;
-/*    top: 0px;*/
-    visibility: hidden;
-}
-
-div.sidebar {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 80px;
-    /*border: 3px solid black;*/
-    padding: 0px;
-    background-color: #fff;
-    z-index: 10;
-}
-
-div.sidebar2 {
-    margin-top: 130px;
-    z-index: 6;
-}
-
-div.container-fluid {
-/*    margin-right: 5%;
-    margin-left: 5%;*/
-}
-
-
-</style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
@@ -111,48 +76,6 @@ div.container-fluid {
     </div>
     
     </div>
-<script>
-
-$(document).ready(function(){
-
-/* when document load, getElement byID (conceptname) scrollintoview true */
-
-    $(".letter").on("keyup", function(){
-        if (event.keyCode === 13) {
-            thisletter = event.target.innerHTML;
-            event.preventDefault();
-            document.getElementById(thisletter).scrollIntoView(true);
-            $("#letter"+thisletter).focus();
-        }
-    });
-
-
-    $(".letter").on("click", function(){
-        thisletter = event.target.innerHTML;
-        event.preventDefault();
-        document.getElementById(thisletter).scrollIntoView(true);
-    });
-
-
-    $(".totopimg").on("keyup", function(){
-        if (event.keyCode === 13) {
-            event.preventDefault();
-            document.getElementById("alpha-tab").scrollIntoView(true);
-            console.log("this working?");
-            $("#alpha-tab").focus();
-        }
-    });
-
-
-    $(".totopimg").on("click", function(){
-        event.preventDefault();
-        document.getElementById("alpha-tab").scrollIntoView(true);
-    });
-
-
-});
-
-</script>
 
 {% endblock %}
 
