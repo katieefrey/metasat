@@ -10,40 +10,78 @@
 {% endblock %}
 
 {% block body %}
-<div class="container">
-    <div class="row">
-        <div class="col-12"><br/><br/>
+
+<style>
+
+div .topmenu {
+  background-color: white;
+}
+
+.anchor {
+    display: block;
+    position: relative;
+/*    top: 0px;*/
+    visibility: hidden;
+}
+
+div.sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 80px;
+    /*border: 3px solid black;*/
+    padding: 0px;
+    background-color: #fff;
+    z-index: 10;
+}
+
+div.sidebar2 {
+    margin-top: 130px;
+    z-index: 6;
+}
+
+div.container-fluid {
+/*    margin-right: 5%;
+    margin-left: 5%;*/
+}
+
+
+</style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" id="rel">
+    <script src="{% static 'website/js/metasat_autocomplete.js' %}"></script> 
+
+
+
+    <div class="container-fluid">
+
+        <div class="row">
+            
+            <div class="col-3 sidebar2">
+            </div>
+ 
+
+            <div class="col-9 sidebar2">
+
+                <div id="content">
+                    <h1>Have a question?</h1>
+                    <p style="padding-top:20px; margin:10px">Please reach out to:
+                        <br>Daniel Chivvis
+                        <br>MetaSat Research Fellow
+                        <br>John G. Wolbach Library
+                        <br>
+                        <a href="mailto:metasat@schema.space?subject=MetaSat question">metasat[at]schema.space</a>
+                    </p>
+                </div>
+                        
+            </div>
         </div>
-    </div>
-    <div class="row">
 
-        <div class="col-2">
-                <img width="100%" src="{% static 'website/img/MetaSat_Big.png' %}"/>
-            </div>
-            <div class="col-1">
-            </div>
-            <div id="content" class="col-xs-12 col-md-4">
-                <br/>&nbsp;
-                <br/>&nbsp;
-                <br/>&nbsp;
-                <h1>Have a question?</h1>
-                <p style="padding-top:20px; margin:10px">Please reach out to:
-                    <br>Daniel Chivvis
-                    <br>MetaSat Research Fellow
-                    <br>John G. Wolbach Library
-                    <br>
-                    <a href="mailto:metasat@schema.space?subject=MetaSat question">metasat[at]schema.space</a>
-                </p>
-          </div>
-    </div>
-    <br>
-    <div class="row">
+        <div class="row">
 
-        <div class="col-2">
-
-            </div>
-            <div class="col-1">
-            </div>
+        <div class="col-3">
+        </div>
         <div class="col-xs-12 col-md-4">
             <p style="padding-top:20px; margin:10px">
                 <a href="https://library.cfa.harvard.edu">John G. Wolbach Library</a>
@@ -71,6 +109,63 @@
             </p>
         </div> -->
     </div>
-</div>
+    
+    </div>
+<script>
+
+$(document).ready(function(){
+
+/* when document load, getElement byID (conceptname) scrollintoview true */
+
+    $(".letter").on("keyup", function(){
+        if (event.keyCode === 13) {
+            thisletter = event.target.innerHTML;
+            event.preventDefault();
+            document.getElementById(thisletter).scrollIntoView(true);
+            $("#letter"+thisletter).focus();
+        }
+    });
+
+
+    $(".letter").on("click", function(){
+        thisletter = event.target.innerHTML;
+        event.preventDefault();
+        document.getElementById(thisletter).scrollIntoView(true);
+    });
+
+
+    $(".totopimg").on("keyup", function(){
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("alpha-tab").scrollIntoView(true);
+            console.log("this working?");
+            $("#alpha-tab").focus();
+        }
+    });
+
+
+    $(".totopimg").on("click", function(){
+        event.preventDefault();
+        document.getElementById("alpha-tab").scrollIntoView(true);
+    });
+
+
+});
+
+</script>
 
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

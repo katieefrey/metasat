@@ -1,0 +1,227 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block nav-elements %}active{% endblock %}
+
+{% block customcss %}<link href="{% static 'website/css/metasat.css' %}" rel="stylesheet">{% endblock %}
+
+{% block title %}
+    Elements | MetaSat
+{% endblock %}
+
+{% block body %}
+
+<style>
+
+div .topmenu {
+  background-color: white;
+}
+
+.anchor {
+    display: block;
+    position: relative;
+/*    top: 0px;*/
+    visibility: hidden;
+}
+
+div.sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 80px;
+    /*border: 3px solid black;*/
+    padding: 0px;
+    background-color: #fff;
+    z-index: 10;
+}
+
+div.sidebar2 {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 160px;
+    /*border: 3px solid black;*/
+    padding: 0px;
+    background-color: #fff;
+    z-index: 6;
+}
+
+div.sidebar3 {
+/*    position: -webkit-sticky;
+    position: sticky;
+    top: 100px;*/
+    /*border: 3px solid black;*/
+    margin-top: 130px;
+    padding-right: 40px;
+    padding-left: 40px;
+    background-color: #fff;
+    height: 75vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 4;
+
+}
+
+div.container-fluid {
+/*    margin-right: 5%;
+    margin-left: 5%;*/
+}
+
+
+</style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" id="rel">
+    <script src="{% static 'website/js/metasat_autocomplete.js' %}"></script> 
+
+
+
+    <div class="container-fluid">
+        <div class="row">
+            
+            <div class="col-3 sidebar3">
+
+                     <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="alpha-tab"  href="/metasat" tabindex=0 role="tab" aria-controls="alpha" aria-selected="true">Alphabetical</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="family-tab" href="/metasat?view=family" role="tab" aria-controls="family" aria-selected="false">Families</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="segment-tab" href="/metasat?view=segment" role="tab" aria-controls="segment" aria-selected="false">Segments</a>
+                        </li>
+                    </ul>
+                <div class="tab-content">
+
+                    <div class="tab-pane fade show active" id="segment" role="tabpanel" aria-labelledby="segment-tab">
+                        <br/>
+
+
+                    <div class="accordion" id="accordionExample">
+
+                    {% for key, values in segs.items %}
+                      <div class="card">
+                        <div class="card-header" id="{{key|cut:' '}}">
+                          <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse{{key|cut:' '}}" aria-expanded="false" aria-controls="collapse{{key|cut:' '}}">
+                              {{key}}
+                            </button>
+                          </h2>
+                        </div>
+
+                        <div id="collapse{{key|cut:' '}}" class="collapse" aria-labelledby="{{key}}" data-parent="#accordionExample">
+                          <div class="card-body">
+                                <table class=table>
+                                    {% for v in values %}
+                                        <tr>
+                                            <td><a href="/metasat/{{v.identifier}}?segment={{key|cut:' '}}">{{v.identifier}}</a></td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                          </div>
+                        </div>
+                      </div>
+                     {% endfor %}
+                    </div>
+
+                </div>
+
+                </div>
+
+
+            </div>
+
+            <div class="col-9 sidebar3">
+                <!-- <div style="height: 80vh;overflow-y: auto;overflow-x: hidden;"> -->
+
+
+                {% if element %}
+
+
+                    <div id="content">
+                        <h1>{{element.identifier}}</h1>
+                        <h3>{{element.term}}</h3>
+                        <a href="https://schema.space/metasat/{{element.identifier}}">https://schema.space/metasat/{{element.identifier}}</a>
+                        {% if request.user.is_authenticated %}
+                        <br/>
+                            <a href="edit/{{element.identifier}}">(admin edit)</a>
+                            <br/><br/>
+                        {% endif %}
+                        <strong>Description:</strong> {% if element.desc == ""%}None{% else %}{{element.desc}}{% endif %}{% if element.source != None %} (<a href="{{element.source}}">source</a>){% endif %}
+                        <br/><br/>
+                        <b>Example:</b> {% if element.example == ""%}None{% else %}{{element.example}}{% endif %}<br/><br/>
+                        <b>Synonym(s):</b> {% if element.synonym == ""%}None{% else %}{{element.synonym}}{% endif %}<br/><br/>
+                        <b>Element Segments:</b>  {% for f in element.segment.all %}{{ f }}{% if not forloop.last %}, {% endif %}{% endfor %}<br/><br/>
+                        <b>Element Families:</b>  {% for f in element.family.all %}{{ f }}{% if not forloop.last %}, {% endif %}{% endfor %}
+
+                        <br/><br/>
+                                <a href="mailto:metasat@schema.space?subject=suggestion: {{element.identifier}}">suggest an edit</a>
+                        
+
+                        {% if crosswalks %}
+                        <br/><br/><br/><br/>
+                                <h3>Crosswalk Identifiers</h3>
+                                <table class=table>
+                                    {% for x in crosswalks %}
+                                    <tr>
+                                        <td>{{x.source}}</td>
+                                        <td>{% if x.url != None %}<a href="{{x.url}}">{{x.identifier}}</a>{% else %}{{x.identifier}}{% endif %}</a></td></td>
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+                        {% endif %}
+
+                    {% else %}
+
+                        <div id="content">
+                            <h1>MetaSat Elements, by Segment</h1>
+                        </div>
+                    {% endif%}
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+
+$(document).ready(function(){
+
+/* when document load, getElement byID (conceptname) scrollintoview true */
+
+    $(".letter").on("keyup", function(){
+        if (event.keyCode === 13) {
+            thisletter = event.target.innerHTML;
+            event.preventDefault();
+            document.getElementById(thisletter).scrollIntoView(true);
+            $("#letter"+thisletter).focus();
+        }
+    });
+
+
+    $(".letter").on("click", function(){
+        thisletter = event.target.innerHTML;
+        event.preventDefault();
+        document.getElementById(thisletter).scrollIntoView(true);
+    });
+
+
+    $(".totopimg").on("keyup", function(){
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("alpha-tab").scrollIntoView(true);
+            console.log("this working?");
+            $("#alpha-tab").focus();
+        }
+    });
+
+
+    $(".totopimg").on("click", function(){
+        event.preventDefault();
+        document.getElementById("alpha-tab").scrollIntoView(true);
+    });
+
+
+});
+
+</script>
+
+{% endblock %}

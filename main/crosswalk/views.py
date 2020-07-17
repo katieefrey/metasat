@@ -16,10 +16,16 @@ def index(request):
 
 def crosswalk(request,crosswalk):
 
+    allcrosswalks = ExternalSchema.objects.all()
+
     cw = ExternalSchema.objects.get(identifier=crosswalk)
-    terms = ExternalElement.objects.filter(source=cw.id)#.order_by('metasat_element')
+    
+    terms = ExternalElement.objects.filter(source=cw.id)
 
-    context = {"terms": terms,
-                "crosswalk": cw.name}
+    context = {
+                "allcrosswalks": allcrosswalks,
+                "terms": terms,
+                "crosswalk": cw.name
+            }
 
-    return render(request, "crosswalk/crosswalk.html", context)
+    return render(request, "crosswalk/index.html", context)

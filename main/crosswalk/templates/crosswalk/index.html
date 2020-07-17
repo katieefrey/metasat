@@ -6,55 +6,186 @@
 {% block customcss %}<link href="{% static 'website/css/metasat.css' %}" rel="stylesheet">{% endblock %}
 
 {% block title %}
-    Crosswalk | MetaSat
+    Elements | MetaSat
 {% endblock %}
 
 {% block body %}
 
-<div class="container">
-    <div background-color="white" class="row">
-        <div class="col-2">
-            <br/>&nbsp;<br/>&nbsp;
-            <img class="img-fluid" src="{% static 'website/img/MetaSat_Big.png' %}"/>
-        </div>
+<style>
 
-        <div class="col-1">
-        </div>
+div .topmenu {
+  background-color: white;
+}
 
-        <div class="col-9" id="content">
-            <br/>&nbsp;<br/>&nbsp;
-            <h1>Crosswalks</h1>
-            <br/><br/>
-            <table class=table>
-                {% for walk in allcrosswalks %}
-                <tr>
-                    <td><a href="/crosswalk/{{walk.identifier}}">{{walk.name}}</a></td>
-                </tr>
-                {% endfor %}
-            </table>
-        </div>
-    </div>
+.anchor {
+    display: block;
+    position: relative;
+/*    top: 0px;*/
+    visibility: hidden;
+}
+
+div.sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 80px;
+    /*border: 3px solid black;*/
+    padding: 0px;
+    background-color: #fff;
+    z-index: 10;
+}
+
+div.sidebar2 {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 160px;
+    /*border: 3px solid black;*/
+    padding: 0px;
+    background-color: #fff;
+    z-index: 6;
+}
+
+div.sidebar3 {
+/*    position: -webkit-sticky;
+    position: sticky;
+    top: 100px;*/
+    /*border: 3px solid black;*/
+    margin-top: 130px;
+    padding-right: 40px;
+    padding-left: 40px;
+    background-color: #fff;
+    height: 75vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 4;
+
+}
+
+</style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" id="rel">
+    <script src="{% static 'website/js/metasat_autocomplete.js' %}"></script> 
+
+
+    <div class="container-fluid">
 
         <div class="row">
-        <div class="col-3">
-        </div>
-        <div class="col-9">
-            <div id="footer">
-              <div class="container text-center">
-                <br/><br/>
-                <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
-              </div>
+            
+            <div class="col-3 sidebar3">
+
+                     <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="cwalk-tab"  href="/crosswalk" tabindex=0 role="tab" aria-controls="cwalk" aria-selected="true">Crosswalk</a>
+                        </li>
+                    </ul>
+                <div class="tab-content">
+
+                    <div class="tab-pane fade show active" id="cwalk" role="tabpanel" aria-labelledby="cwalk-tab">
+                        <br/>
+                        <table class=table>
+                            {% for walk in allcrosswalks %}
+                            <tr>
+                                <td><a href="/crosswalk/{{walk.identifier}}">{{walk.name}}</a></td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+
+
+                </div>
+                </div>
+
+
+            </div>
+
+            <div class="col-9 sidebar3">
+
+                {% if crosswalk %}
+
+                    <div id="content">
+                        <h1>{{crosswalk}}</h1>
+
+                        <br/><br/>
+                        <table class=table>
+                            <tr>
+                                <th>MetaSat Element</th>
+                                <th>External Identifier</th>
+                            </tr>
+                            {% for term in terms %}
+                            <tr>
+                                <td><a href="/metasat/{{term.metasat_element}}">{{term.metasat_element}}</a></td>
+                                <td>{% if term.url != None %}<a href="{{term.url}}">{{term.identifier}}</a>{% else %}{{term.identifier}}{% endif %}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+
+                    {% else %}
+
+                        <div id="content">
+                            <h1>MetaSat Crosswalks</h1>
+                        </div>
+                        
+                    {% endif%}
+
+                </div>
             </div>
         </div>
     </div>
+<script>
+
+$(document).ready(function(){
+
+/* when document load, getElement byID (conceptname) scrollintoview true */
+
+    $(".letter").on("keyup", function(){
+        if (event.keyCode === 13) {
+            thisletter = event.target.innerHTML;
+            event.preventDefault();
+            document.getElementById(thisletter).scrollIntoView(true);
+            $("#letter"+thisletter).focus();
+        }
+    });
 
 
+    $(".letter").on("click", function(){
+        thisletter = event.target.innerHTML;
+        event.preventDefault();
+        document.getElementById(thisletter).scrollIntoView(true);
+    });
 
-</div>
+
+    $(".totopimg").on("keyup", function(){
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("alpha-tab").scrollIntoView(true);
+            console.log("this working?");
+            $("#alpha-tab").focus();
+        }
+    });
 
 
+    $(".totopimg").on("click", function(){
+        event.preventDefault();
+        document.getElementById("alpha-tab").scrollIntoView(true);
+    });
 
 
+});
 
+</script>
 
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
