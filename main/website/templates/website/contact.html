@@ -10,40 +10,43 @@
 {% endblock %}
 
 {% block body %}
-<div class="container">
-    <div class="row">
-        <div class="col-12"><br/><br/>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" id="rel">
+    <script src="{% static 'website/js/metasat_autocomplete.js' %}"></script> 
+
+
+
+    <div class="container-fluid">
+
+        <div class="row">
+            
+            <div class="col-3 sidebar2">
+            </div>
+ 
+
+            <div class="col-9 sidebar2">
+
+                <div id="content">
+                    <h1>Have a question?</h1>
+                    <p style="padding-top:20px; margin:10px">Please reach out to:
+                        <br>Daniel Chivvis
+                        <br>MetaSat Research Fellow
+                        <br>John G. Wolbach Library
+                        <br>
+                        <a href="mailto:metasat@schema.space?subject=MetaSat question">metasat[at]schema.space</a>
+                    </p>
+                </div>
+                        
+            </div>
         </div>
-    </div>
-    <div class="row">
 
-        <div class="col-2">
-                <img width="100%" src="{% static 'website/img/MetaSat_Big.png' %}"/>
-            </div>
-            <div class="col-1">
-            </div>
-            <div id="content" class="col-xs-12 col-md-4">
-                <br/>&nbsp;
-                <br/>&nbsp;
-                <br/>&nbsp;
-                <h1>Have a question?</h1>
-                <p style="padding-top:20px; margin:10px">Please reach out to:
-                    <br>Daniel Chivvis
-                    <br>MetaSat Research Fellow
-                    <br>John G. Wolbach Library
-                    <br>
-                    <a href="mailto:metasat@schema.space?subject=MetaSat question">metasat[at]schema.space</a>
-                </p>
-          </div>
-    </div>
-    <br>
-    <div class="row">
+        <div class="row">
 
-        <div class="col-2">
-
-            </div>
-            <div class="col-1">
-            </div>
+        <div class="col-3">
+        </div>
         <div class="col-xs-12 col-md-4">
             <p style="padding-top:20px; margin:10px">
                 <a href="https://library.cfa.harvard.edu">John G. Wolbach Library</a>
@@ -71,6 +74,21 @@
             </p>
         </div> -->
     </div>
-</div>
+    
+    </div>
 
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

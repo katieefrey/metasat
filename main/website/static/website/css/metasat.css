@@ -1,10 +1,7 @@
 body {
      background-color: #FFFFFFFF;
      text-align: left;
-     margin-right: 5%;
-     margin-left: 5%;
-     margin-top: 2%;
-     margin-bottom: 10%;
+     overflow-x: hidden;
 }
 
 code { /*Right now this is taken from https://www.w3schools.com/tags/tag_code.asp; will change eventually probably*/
@@ -36,5 +33,32 @@ text-decoration: none;
     font-size: 20px;
     color: #fff !important; 
 /*    text-decoration: underline;*/
-text-decoration: none;
+    text-decoration: none;
+}
+
+
+div .topmenu {
+  background-color: white;
+}
+
+.anchor {
+    display: block;
+    position: relative;
+    visibility: hidden;
+}
+
+div.sidebar {
+    margin-top: 130px;
+    padding-right: 40px;
+    padding-left: 40px;
+    background-color: #fff;
+    height: 75vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 4;
+}
+
+div.sidebar2 {
+    margin-top: 130px;
+    z-index: 6;
 }

@@ -12,74 +12,49 @@ import string
 
 def index(request):
 
-    view = request.GET.get('view', None)
-    print(view)
+    view = request.GET.get('view', '')
 
     if view == "family":
 
         all_fams = ElementFamily.objects.order_by('family')
-        all_elements = Element.objects.order_by('identifier')
 
         fams = {}
         for x in all_fams:
             fams[x] = Element.objects.filter(family=x).order_by('identifier')
-        alphabet = list(string.ascii_lowercase)
+        
 
         context = {
             "fams" : fams,
-            "alphabet": alphabet
                 }
 
-        return render(request, "metasat/families.html", context)
+        return render(request, "metasat/family.html", context)
+
+    elif view == "segment":
+
+        all_segs = Segment.objects.order_by('segment')
+
+        segs = {}
+        for x in all_segs:
+            segs[x] = Element.objects.filter(segment=x).order_by('identifier')
+
+        context = {
+            "segs" : segs,
+                }
+
+        return render(request, "metasat/segment.html", context)
 
     else:
 
+        alphabet = list(string.ascii_lowercase)
         all_elements = Element.objects.order_by('identifier')
 
-        alphabet = list(string.ascii_lowercase)
-
         context = {
-            "all_elements": all_elements,
-            "alphabet": alphabet
+                    "all_elements" : all_elements,
+                    "alphabet" : alphabet,
                 }
+        
+        return render(request, "metasat/element.html", context)
 
-        return render(request, "metasat/index.html", context)
-
-
-def families(request):
-
-    all_fams = ElementFamily.objects.order_by('family')
-    all_elements = Element.objects.order_by('identifier')
-
-    fams = {}
-    for x in all_fams:
-        fams[x] = Element.objects.filter(family=x).order_by('identifier')
-    alphabet = list(string.ascii_lowercase)
-
-    context = {
-        "fams" : fams,
-        "alphabet": alphabet
-            }
-
-    return render(request, "metasat/families.html", context)
-
-
-def segments(request):
-
-    all_segs = Segment.objects.order_by('segment')
-    all_elements = Element.objects.order_by('identifier')
-
-    segs = {}
-    for x in all_segs:
-        segs[x] = Element.objects.filter(segment=x).order_by('identifier')
-    alphabet = list(string.ascii_lowercase)
-
-    context = {
-        "segs" : segs,
-        "alphabet": alphabet
-            }
-
-    return render(request, "metasat/segments.html", context)
 
 def element(request,element):
 
@@ -88,21 +63,52 @@ def element(request,element):
         el = Element.objects.get(identifier=element)
 
         elid = el.id
-        print(el.family)
-
         crosswalks = ExternalElement.objects.filter(metasat_element_id=elid)
 
-        context = {"element": el,
-                    "crosswalks": crosswalks
+        context = {
+                    "element": el,
+                    "crosswalks": crosswalks,
                 }
-        
+    
 
     except Element.DoesNotExist:
         context = {"element": element}
         return render(request, "metasat/unknown.html",context)
+    
+    family = request.GET.get('family','')
+    segment = request.GET.get('segment','')
+    
+    if family != '':    
 
-    return render(request, "metasat/metasat.html", context)
+        all_fams = ElementFamily.objects.order_by('family')
+        fams = {}
+        for x in all_fams:
+            fams[x] = Element.objects.filter(family=x).order_by('identifier')
 
+        context["fams"] = fams
+        
+
+        return render(request, "metasat/family.html", context)
+    
+    elif segment != '':    
+
+        all_segs = Segment.objects.order_by('segment')
+        segs = {}
+        for x in all_segs:
+            segs[x] = Element.objects.filter(segment=x).order_by('identifier')
+
+        context["segs"] = segs
+
+        return render(request, "metasat/segment.html", context)
+
+    else:
+
+        alphabet = list(string.ascii_lowercase)
+        all_elements = Element.objects.order_by('identifier')
+        context["all_elements"] = all_elements
+        context["alphabet"] = alphabet
+
+        return render(request, "metasat/element.html", context)
 
 
 def edit(request,element):
@@ -205,31 +211,101 @@ def update(request):
         return render(request, "metasat/index.html", context)
 
 
-#foundation
-def index2(request):
+# #foundation
+# def index2(request):
 
-    all_elements = Element.objects.order_by('identifier')
+#     all_elements = Element.objects.order_by('identifier')
 
-    alphabet = list(string.ascii_lowercase)
+#     alphabet = list(string.ascii_lowercase)
 
-    context = {
-        "all_elements": all_elements,
-        "alphabet": alphabet
-            }
+#     context = {
+#         "all_elements": all_elements,
+#         "alphabet": alphabet
+#             }
 
-    return render(request, "metasat/index2.html", context)
+#     return render(request, "metasat/index2.html", context)
 
 
-# more bootstrap
-def index3(request):
+# # more bootstrap
+# def index3(request):
 
-    all_elements = Element.objects.order_by('identifier')
+#     all_elements = Element.objects.order_by('identifier')
 
-    alphabet = list(string.ascii_lowercase)
+#     alphabet = list(string.ascii_lowercase)
 
-    context = {
-        "all_elements": all_elements,
-        "alphabet": alphabet
-            }
+#     context = {
+#         "all_elements": all_elements,
+#         "alphabet": alphabet
+#             }
 
-    return render(request, "metasat/index3.html", context)
+#     return render(request, "metasat/index3.html", context)
+
+
+# # from scratch?
+# def index4(request):
+
+#     all_elements = Element.objects.order_by('identifier')
+
+#     alphabet = list(string.ascii_lowercase)
+
+#     context = {
+#         "all_elements": all_elements,
+#         "alphabet": alphabet
+#             }
+
+#     return render(request, "metasat/index4.html", context)
+
+
+# # more bootstrap
+# def alpha(request):
+
+#     all_elements = Element.objects.order_by('identifier')
+
+#     alphabet = list(string.ascii_lowercase)
+
+#     context = {
+#         "all_elements": all_elements,
+#         "alphabet": alphabet
+#             }
+
+#     return render(request, "metasat/metasat4.html", context)
+
+
+# # more bootstrap
+# def family(request):
+
+
+#     # ?hours=sunday&map=flash
+#     #hours = request.GET.get('hours', '')
+#     #map = request.GET.get('map', '')
+#     #127.0.0.1:8000/metasat/2/accelerometer?view=family&family=AttitudeControl
+
+#     all_elements = Element.objects.order_by('identifier')
+
+#     all_fams = ElementFamily.objects.order_by('family')
+#     fams = {}
+#     for x in all_fams:
+#         fams[x] = Element.objects.filter(family=x).order_by('identifier')
+
+#     context = {
+#         "fams" : fams,
+#         "all_elements": all_elements,
+#             }
+
+#     return render(request, "metasat/family.html", context)
+
+# # more bootstrap
+# def segment(request):
+
+#     all_elements = Element.objects.order_by('identifier')
+
+#     alphabet = list(string.ascii_lowercase)
+
+#     context = {
+#         "all_elements": all_elements,
+#         "alphabet": alphabet
+#             }
+
+#     return render(request, "metasat/segment.html", context)
+
+
