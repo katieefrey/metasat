@@ -19,6 +19,12 @@ def about(request):
 def contact(request):
     return render(request, "website/contact.html")
 
+def resources(request):
+    return render(request, "website/resources.html")
+
+def basic(request):
+    return render(request, "website/beyond-the-basics.html")
+
 
 
 #send user to login form
