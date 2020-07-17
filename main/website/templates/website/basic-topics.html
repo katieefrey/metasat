@@ -1,21 +1,17 @@
 {% extends "website/base.html" %}
 {% load static %}
 
-{% block nav-about %}active{% endblock %}
+{% block nav-resources %}active{% endblock %}
 
 {% block customcss %}<link href="{% static 'website/css/metasat.css' %}" rel="stylesheet">{% endblock %}
 
 {% block title %}
-    About | MetaSat
+    Getting Started | MetaSat
 {% endblock %}
 
 {% block body %}
 
-    <div class="container" role="main" aria-labelledby="introduction"> <!--div for all content-->
-        <div class="row"> <!--div for extra space at top - might want a new solution for this eventually-->
-            <div class="col-12"><br/><br/>
-            </div>
-        </div>
+    <div class="container sidebar" role="main" aria-labelledby="introduction"> <!--div for all content-->
         <div class="row"> <!--div for main content-->
             <div class="col-2 d-none d-lg-block"> <!--div for metasat image-->
                 <img width="100%" src="{% static 'website/img/MetaSat_Big.png' %}"/>
@@ -52,35 +48,31 @@
                     <p>You can also include other vocabularies in your <code>@context</code> by creating aliases for their main URLs and using CURIEs. For example, the <code>@context</code> could include the line <code>"schema": "https://schema.org/"</code>; then, a key such as “schema:Person” would expand to “https://schema.org/Person.”
                     Here is a simple example, describing a SatNOGS observation, that combines each of these ideas:</p>
 
-                    <pre><code>
-                        {
-                            "@context": {
-                                "@vocab": "https://schema.space/metasat/",
-                                "schema": "https://schema.org/"
-                            },
-                            "@id": "https://network.satnogs.org/observations/2243157/",
-                            "schema:identifier": "2243157",
-                            "groundStation": "1378 - Wolbach Library"
-                        }                        
-                    </code></pre>
+<pre><code>{
+    "@context": {
+        "@vocab": "https://schema.space/metasat/",
+        "schema": "https://schema.org/"
+    },
+    "@id": "https://network.satnogs.org/observations/2243157/",
+    "schema:identifier": "2243157",
+    "groundStation": "1378 - Wolbach Library"
+}</code></pre>
 
                     <p><code>@id</code> is another JSON-LD specific term, which stores a URI or URL for what is being described; here, it is the SatNOGS observation we are interested in. This code will expand to:</p>
 
-                    <pre><code>
-                        {
-                            "@id": "https://network.satnogs.org/observations/2243157/",
-                            "https://schema.space/metasat/groundStation": [
-                            {
-                                "@value": "1378 - Wolbach Library"
-                            }
-                            ],
-                            "https://schema.org/identifier": [
-                            {
-                                "@value": "2243157"
-                            }
-                            ]
-                        }                        
-                    </code></pre>
+<pre><code>{
+    "@id": "https://network.satnogs.org/observations/2243157/",
+    "https://schema.space/metasat/groundStation": [
+    {
+        "@value": "1378 - Wolbach Library"
+    }
+    ],
+    "https://schema.org/identifier": [
+    {
+        "@value": "2243157"
+    }
+    ]
+}</code></pre>
 
                     <p>Notice that “groundStation” was expanded to “https://schema.space/metasat/groundStation,” and “schema:identifier” was expanded to “https://schema.org/identifier.”</p>
 
@@ -99,11 +91,11 @@
                     <p>We are working on making conversions between different vocabularies even easier by building a full MetaSat Crosswalk. Many of our terms are already crosswalked to the popular schema.org vocabulary, as well as to WikiData items and properties as available.  We are currently working on building connections to other vocabularies, schemas, standards, thesauri, and taxonomies, as well.</p>
 
                     <table>
-                        <th>
-                            <td>MetaSat</td>
-                            <td>WikiData Property</td>
-                            <td>Schema.org</td>
-                        </th>
+                        <tr>
+                            <th>MetaSat</th>
+                            <th>WikiData Property</th>
+                            <th>Schema.org</th>
+                        </tr>
                         <tr>
                             <td>duration</td>
                             <td><a href="https://www.wikidata.org/wiki/Property:P2047">P2047</a></td>
@@ -116,7 +108,7 @@
                         </tr>
                     </table>
 
-                    <p><strong>We encourage linking out to existing URIs  when possible. This type of flexibility, combined with MetaSat being an open source project, is particularly beneficial to those who only want to adopt a portion of MetaSat's Vocabulary. In this way, MetaSat remains neutral even when adopted by parties competing against each other such as vendors.</strong></p>
+                    <br /><br /><p><strong>We encourage linking out to existing URIs  when possible. This type of flexibility, combined with MetaSat being an open source project, is particularly beneficial to those who only want to adopt a portion of MetaSat's Vocabulary. In this way, MetaSat remains neutral even when adopted by parties competing against each other such as vendors.</strong></p>
 
                     <p>Lastly, by crosswalking to MetaSat URIs, issues of language and the transfer of information in databases, product datasheets, specifications, etc., quickly diminish. If, for example, vendors in the U.K. wish to submit thermal “louvres” to the user-generated SPOON database, customers in the U.S will recognize these products as thermal “louvers” in American English.  These types of one-to-one connections are made possible by the MetaSat crosswalk and are particularly important when comparing product specifications that utilize different units and measurement systems.</p>
 

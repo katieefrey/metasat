@@ -22,8 +22,11 @@ def contact(request):
 def resources(request):
     return render(request, "website/resources.html")
 
-def basic(request):
-    return render(request, "website/beyond-the-basics.html")
+def basics(request):
+    return render(request, "website/basic-topics.html")
+
+def advanced(request):
+    return render(request, "website/advanced-topics.html")
 
 
 

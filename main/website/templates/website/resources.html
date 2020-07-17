@@ -1,21 +1,17 @@
 {% extends "website/base.html" %}
 {% load static %}
 
-{% block nav-about %}active{% endblock %}
+{% block nav-resources %}active{% endblock %}
 
 {% block customcss %}<link href="{% static 'website/css/metasat.css' %}" rel="stylesheet">{% endblock %}
 
 {% block title %}
-    About | MetaSat
+    Resources | MetaSat
 {% endblock %}
 
 {% block body %}
 
-    <div class="container" role="main" aria-labelledby="introduction"> <!--div for all content-->
-        <div class="row"> <!--div for extra space at top - might want a new solution for this eventually-->
-            <div class="col-12"><br/><br/>
-            </div>
-        </div>
+    <div class="container sidebar" role="main" aria-labelledby="introduction"> <!--div for all content-->
         <div class="row"> <!--div for main content-->
             <div class="col-2 d-none d-lg-block"> <!--div for metasat image-->
                 <img width="100%" src="{% static 'website/img/MetaSat_Big.png' %}"/>
@@ -36,13 +32,13 @@
                         <div class="card"> <!--card 1-->
                             <!--this is where an image would go-->
                           <div class="card-body">
-                            <h3 class="card-title">Getting started with MetaSat</h3>
+                            <h3 class="card-title"><a href="/resources/basics">Getting Started With MetaSat</a></h3>
                             <p class="card-text">MetaSat has three main components: a vocabulary, a crosswalk, and a set of example schemas. Find out more about each here.</p>
                           </div>
                         </div>
                         <div class="card"> <!--card 2-->
                           <div class="card-body">
-                            <h3 class="card-title">Beyond the Basics</h3>
+                            <h3 class="card-title"><a href="/resources/advanced">Beyond the Basics</a></h3>
                             <p class="card-text">Here, you will find advanced information on JSON-LD, ontologies, and how to use our tools.</p>
                           </div>
                         </div>
@@ -111,36 +107,9 @@
                     </div>
                     
                       <p><em>For more, see <a href="https://gitlab.com/metasat/metasat-schema">our GitLab repository</a>, FAQ page (coming soon!), or contact us at <a href="mailto:metasat@schema.space?subject=MetaSat question">metasat[at]schema.space</a>.</em></p>
-
-                    <div class="row"> <!--extra div for spacing-->
-                        <div class="col-12"><br/><br/>
-                        </div>
-                    </div>
-
-                    <div class="text-center"> <!--div for "footer"-->
-                        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!--
-    <footer>
-        <div class="row">
-            <div class="col-lg-3 col-sm-2 d-none d-sm-block">
-            </div>
-            <div class="col-sm-9 col-lg-8">
-                
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-3 col-sm-2 d-none d-sm-block">
-            </div>
-            <div class="col-sm-9 col-lg-8 text-center">
-                
-            </div>
-        </div>
-    </footer> -->
 
 {% endblock %}
