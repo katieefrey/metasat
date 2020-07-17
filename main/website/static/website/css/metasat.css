@@ -44,11 +44,12 @@ div.sidebar {
     margin-top: 130px;
     padding-right: 40px;
     padding-left: 40px;
+    position:fixed;
     background-color: #fff;
-    height: 75vh;
+    max-height: calc(100vh - 210px);
     overflow-y: auto;
     overflow-x: hidden;
-    z-index: 4;
+    z-index: 8;
 }
 
 div.sidebar2 {
