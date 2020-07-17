@@ -50,3 +50,8 @@ div.sidebar {
     overflow-x: hidden;
     z-index: 4;
 }
+
+div.sidebar2 {
+    margin-top: 130px;
+    z-index: 6;
+}
