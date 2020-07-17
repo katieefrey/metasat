@@ -4,11 +4,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    #path(r'^products/$', 'viewname', name='urlname')
-    path('families', views.families, name='families'),
-    path('segments', views.segments, name='segments'),
-    path('index2', views.index2, name='index2'),
-    path('index3', views.index3, name='index3'),
     path('update', views.update, name='update'),
     path('term/<element>', views.element, name='element'),
     path('edit/<element>', views.edit, name='edit'),

@@ -28,21 +28,6 @@ class ExternalElementForm(ModelForm):
 
         
         self.fields['url'].widget = forms.Textarea(attrs={'rows': 1})
-        # self.fields['synonym'].widget = forms.Textarea(attrs={'rows': 2})
-        # self.fields['desc'].widget = forms.Textarea(attrs={'rows': 2})
-        # self.fields['source'].widget = forms.Textarea(attrs={'rows': 1})
-
-        
-        # self.fields["family"].widget = CheckboxSelectMultiple()
-        # #self.fields["components"].queryset = Component.objects.all()
-        # self.fields["segment"].widget = CheckboxSelectMultiple()
-        #self.fields["cleaning"].queryset = Cleaning.objects.all()
-    #     self.fields["checking"].widget = CheckboxSelectMultiple()
-
-    # inst = forms.ChoiceField(
-            
-    #         choices = forms.CharField(widget=forms.Select(choices=INST_CHOICES))
-    # )
 
 
 ExElFormSet = modelformset_factory(ExternalElement,form=ExternalElementForm, fields = ('identifier','url','source'), extra=2)
