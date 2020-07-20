@@ -8,6 +8,7 @@ urlpatterns = [
     path("resources", views.resources, name="resources"),
     path("resources/basic-topics", views.basics, name="basics"),
     path("resources/advanced", views.advanced, name="advanced"),
+    path("resources/linked-data", views.linkeddata, name="linked-data"),
     path('contact', views.contact, name='contact'),
 
     #account related

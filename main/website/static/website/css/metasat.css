@@ -63,3 +63,18 @@ div.sidebar2 {
     margin-top: 130px;
     z-index: 6;
 }
+
+.subject {
+    color: #EE442F;
+    font: bold;
+}
+
+.predicate {
+    color: #601A4A;
+    font: italic;
+}
+
+.object {
+    color: #63ACBE;
+    font: bold italic;
+}

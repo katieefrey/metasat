@@ -28,6 +28,9 @@ def basics(request):
 def advanced(request):
     return render(request, "website/advanced-topics.html")
 
+def linkeddata(request):
+    return render(request, "website/linked-data.html")
+
 
 
 #send user to login form
