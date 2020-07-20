@@ -45,10 +45,10 @@
                             <span id="{{x}}" class="anchor"></span>
                             <span style="width:50%;float:left" id="letter{{x}}" tabindex=0>{{x|upper}}</span> <span class="text-right" style="width:50%;float:right"><img tabindex=0 class="totopimg" style="width:15px;cursor:pointer;" src="{% static 'website/img/totop1.png' %}"/>&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             <table class=table>
-                                    {% for element in all_elements %}
-                                        {% if element|make_list|first == x %}
+                                    {% for el in all_elements %}
+                                        {% if el|make_list|first == x %}
                                         <tr>
-                                            <td><a href="/metasat/{{element.identifier}}">{{element.identifier}}</a></td>
+                                            <td id="{{el.identifier}}"><a id="{{el.identifier}}link" href="/metasat/{{el.identifier}}">{{el}}</a></td>
                                         </tr>
                                         {% endif %}
                                     {% endfor %}
@@ -81,8 +81,8 @@
                     <br/><br/>
                     <strong>Example:</strong> {% if element.example == ""%}None{% else %}{{element.example}}{% endif %}<br/><br/>
                     <strong>Synonym(s):</strong> {% if element.synonym == ""%}None{% else %}{{element.synonym}}{% endif %}<br/><br/>
-                    <strong>Element Segments:</strong>  {% for f in element.segment.all %}{{ f }}{% if not forloop.last %}, {% endif %}{% endfor %}<br/><br/>
-                    <strong>Element Families:</strong>  {% for f in element.family.all %}{{ f }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                    <strong>Element Segments:</strong>  {% for f in element.segment.all %}<a href="/metasat/{{element.identifier}}?segment={{f|cut:' '}}">{{ f }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}<br/><br/>
+                    <strong>Element Families:</strong>  {% for f in element.family.all %}<a href="/metasat/{{element.identifier}}?family={{f|cut:' '}}">{{ f }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
 
                     <br/><br/>
                     <a href="mailto:metasat@schema.space?subject=suggestion: {{element.identifier}}">suggest an edit</a>
@@ -116,7 +116,15 @@
 
 $(document).ready(function(){
 
-/* when document load, getElement byID (conceptname) scrollintoview true */
+{% if element %}
+
+    $("#{{element.identifier}}").get(0).scrollIntoView();
+
+    $("#{{element.identifier}}").css("background-color","lightgrey");
+
+    $("#{{element.identifier}}").append('<span class="text-right" style="float:right"><img tabindex=0 class="totopimg" style="width:15px;cursor:pointer;" src={% static "website/img/totop1.png" %}/></span>');
+
+{% endif %}
 
     $(".letter").on("keyup", function(){
         if (event.keyCode === 13) {
@@ -139,7 +147,6 @@ $(document).ready(function(){
         if (event.keyCode === 13) {
             event.preventDefault();
             document.getElementById("alpha-tab").scrollIntoView(true);
-            console.log("this working?");
             $("#alpha-tab").focus();
         }
     });
