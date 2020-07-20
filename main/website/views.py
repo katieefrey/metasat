@@ -19,6 +19,18 @@ def about(request):
 def contact(request):
     return render(request, "website/contact.html")
 
+def resources(request):
+    return render(request, "website/resources.html")
+
+def basics(request):
+    return render(request, "website/basic-topics.html")
+
+def advanced(request):
+    return render(request, "website/advanced-topics.html")
+
+def linkeddata(request):
+    return render(request, "website/linked-data.html")
+
 
 
 #send user to login form
