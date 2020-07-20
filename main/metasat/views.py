@@ -86,9 +86,10 @@ def element(request,element):
             fams[x] = Element.objects.filter(family=x).order_by('identifier')
 
         context["fams"] = fams
-        
+        context["family"] = family
 
         return render(request, "metasat/family.html", context)
+
     
     elif segment != '':    
 
@@ -98,6 +99,7 @@ def element(request,element):
             segs[x] = Element.objects.filter(segment=x).order_by('identifier')
 
         context["segs"] = segs
+        context["segment"] = segment
 
         return render(request, "metasat/segment.html", context)
 
@@ -189,16 +191,16 @@ def update(request):
 
         #myElement.location_id = loc
 
-        myElement.synonym = syn
+        myElement.synonym = syn  
         myElement.example = ex
         myElement.desc = desc
         myElement.source = source
 
-        myElement.save()
+        myElement.save() 
 
         context = {
             "item" : myElement
-        }
+        } 
 
         return HttpResponseRedirect('%s' % myElement.identifier)
 

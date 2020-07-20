@@ -4,183 +4,146 @@
 
 {% block nav-home %}active{% endblock %}
 
+{% block customcss %}<link href="{% static 'website/css/metasat.css' %}" rel="stylesheet">{% endblock %}
+
 {% block title %}
     MetaSat Account
 {% endblock %}
 
 {% block body %}
 
-    <div class="container" id="content">
+    <div class="container-fluid">
 
-        <div class="row">
-            <div class="col-12"><br/><br/>
+        <div class="row">            
+            <div class="col-3 sidebar"><br/><br/>
             </div>
-        </div>
+
+            <div class="col-9 sidebar offset-3">
+                <div id="content">
 
 {% if state == "register" %}
 
-
-
-        <br/>
-        <h1>Register a New Account</h1>
-        <br/>
-
-        <div class="row">
-            <div class="col-1">        
-            </div>
-            <div class="col-4">
-
-                {% if error != "" %}
-                <div class="alert alert-danger" role="alert">
-                    {{error | safe}}
-                </div>
-                {% endif %}
-
-                <form action="{% url 'registering' %}" method="post">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="inputUsername">Username</label>
-                        <input type="username" class="form-control" id="inputUsername" name="inputUsername" placeholder="Enter Username">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputFirst">First Name</label>
-                        <input type="First" class="form-control" id="inputFirst" name="inputFirst" placeholder="Enter First Name">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputLast">Last Name</label>
-                        <input type="Last" class="form-control" id="inputLast" name="inputLast" placeholder="Enter Last Name">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputEmail">Email</label>
-                        <input type="Email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Enter Email">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPassword">Password</label>
-                        <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password">
-                        <small id="userHelp" class="form-text text-muted">Username and Password are case sensitive.</small>
-                        <small id="userHelp" class="form-text text-muted">All fields required.</small>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-                <br/>
-
-            </div>
-        </div>
- 
-
-    {% elif state == "login" %}
-
-
-
-        <br/>
-        <h3>Log In to Your Account</h3>
-        <br/>
-
-        <div class="row">
-            <div class="col-1">
-
-                </div>
-            <div class="col-4">
-
-                {% if error != "" %}
-                <div class="alert alert-danger" role="alert">
-                    {{error | safe}}
-                </div>
-                {% endif %}
-
-                <form action="{% url 'login_view' %}" method="post">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="inputUsername">Username</label>
-                        <input type="username" class="form-control" id="inputUsername" name="inputUsername" placeholder="Enter Username">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPassword">Password</label>
-                        <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password">
-                        <small id="userHelp" class="form-text text-muted">Username and Password are case sensitive.</small>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-                <br/>
-                <!-- <a href="/register">Register</a> -->
-                If you believe you should have access,<br/>
-                contact Daniel Chivvis or Katie Frey.
-
-            </div>
-        </div>
-
-
-    {% elif state == "loggedin" %}
        
-    <br />
+    <h1>Register a New Account</h1>
+    <br/>
+
+
+    {% if error != "" %}
+    <div class="alert alert-danger" role="alert">
+        {{error | safe}}
+    </div>
+    {% endif %}
+
+    <form action="{% url 'registering' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group col-md-4">
+            <label for="inputUsername">Username</label>
+            <input type="username" class="form-control" id="inputUsername" name="inputUsername" placeholder="Enter Username">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputFirst">First Name</label>
+            <input type="First" class="form-control" id="inputFirst" name="inputFirst" placeholder="Enter First Name">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputLast">Last Name</label>
+            <input type="Last" class="form-control" id="inputLast" name="inputLast" placeholder="Enter Last Name">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputEmail">Email</label>
+            <input type="Email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Enter Email">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputPassword">Password</label>
+            <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password">
+            <small id="userHelp" class="form-text text-muted">Username and Password are case sensitive.</small>
+            <small id="userHelp" class="form-text text-muted">All fields required.</small>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+{% elif state == "login" %}
+
+        <h1>Log In to Your Account</h1>
+        <br/>
+
+        {% if error != "" %}
+        <div class="alert alert-danger" role="alert">
+            {{error | safe}}
+        </div>
+        {% endif %}
+
+        <form action="{% url 'login_view' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group col-md-4">
+                <label for="inputUsername">Username</label>
+                <input type="username" class="form-control" id="inputUsername" name="inputUsername" placeholder="Enter Username">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputPassword">Password</label>
+                <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password">
+                <small id="userHelp" class="form-text text-muted">Username and Password are case sensitive.</small>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <br/>
+        <!-- <a href="/register">Register</a> -->
+        If you believe you should have access,<br/>
+        contact Daniel Chivvis or Katie Frey.
+
+
+{% elif state == "loggedin" %}
+       
     <h1>MetaSat Admin</h1>
 
-    <div class="row">
+    <h3>Hi {{user.first_name}}!</h3>
+    <br/>
+    You are now logged in as a MetaSat Admin.  Edit options will appear on Element and Crosswalk pages.
+    <br/>
+    go to <a href="/logout">http://schema.space/logout</a> to logout.
+    <br/>
+    <br/>
+    <h5>Change Your Password</h5>
+        {% if error != "" %}
+            <div class="alert alert-danger" role="alert">
+                {{error | safe}}
+            </div>
+        {% endif %}
 
-        <div class="col-7">
+        {% if update != "" %}
+            <div class="alert alert-success" role="alert">
+                {{update | safe}}
+            </div>
+        {% endif %}
 
-            <br/>
-            <h3>Hi {{user.first_name}}!</h3>
-            <br/>
-            You are now logged in as a MetaSat Admin.  Edit options will appear on Element and Crosswalk pages.
-            <br/><br/>
-            go to <a href="/logout">http://schema.space/logout</a> to logout.
-
-            <br/>
-            <br/>
-            <br/>
-            <h5>Change Your Password</h5>
-                {% if error != "" %}
-                    <div class="alert alert-danger" role="alert">
-                        {{error | safe}}
-                    </div>
-                {% endif %}
-
-                {% if update != "" %}
-                    <div class="alert alert-success" role="alert">
-                        {{update | safe}}
-                    </div>
-                {% endif %}
-
-                <form method="post">
-                    {% csrf_token %}
-                    {{ pwform | crispy }}
-                    <br/> 
-                    <button type="submit" class="btn btn-primary">Change Password</button>
-                </form>
-        </div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group col-md-4">
+                {{ pwform | crispy }}
+            </div>
+            <br/> 
+            <button type="submit" class="btn btn-primary">Change Password</button>
+        </form>
 
 
+{% else %}
 
-    </div>
-
-
-
-    {% else %}
-
-
-    <br />
-    <h1>CfA Publication Reports</h1>
-
-    <div class="row">
-
-        <div class="col-7">
-
-            <br/>
-            <h3>Welcome!</h3>
-            <br/>
-            This website was designed for CfA departmental adminstrators to generate publication reports.  If you think you should have access, please reach out to <a href="/about">Katie Frey</a>.
-            <br><br>
-            Publications Reports project is developed and supported by the <a href="http://library.cfa.harvard.edu">Wolbach Library</a>.
-        </div>
-
-    </div>
-
+    <h1>MetaSat Admin</h1>
+    <br/>
+    <h3>Hello</h3>
+    <br/>
+    If you believe you should have access,<br/>
+    contact Daniel Chivvis or Katie Frey.
 
 {% endif %}
 
+
+
+            <!-- </div> -->
+        </div>
+    </div>
 </div>
+
 
 {% endblock %}

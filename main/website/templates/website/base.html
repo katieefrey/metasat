@@ -11,6 +11,12 @@
     <script src="{% static 'website/vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'website/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" id="rel">
+    <script src="{% static 'website/js/metasat_autocomplete.js' %}"></script> 
+
     <link rel="icon" type="image/png" href="{% static 'website/img/flavicon.png' %}">
 
     <meta name="description" content="{% block description %}{% endblock %}">
@@ -19,6 +25,35 @@
 
     <link href="{% static 'website/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     {% block customcss %}{% endblock %}
+
+    <style>
+        #metasattermform {
+            margin-left: 0px;
+        }
+
+        #metasat-autocomplete {
+            width: 150px;
+        }
+
+/*        .ui-autocomplete {
+            z-index: 20000000;
+        }*/
+
+        #ui-id-1 {
+            z-index: 9999;
+        }
+
+        .ui-menu .ui-menu-item a{
+            /*color: #96f226;
+            border-radius: 0px;
+            border: 1px solid #454545;*/
+            width: 200px;
+         /*   z-index: 20000000;*/
+        }
+
+
+    </style>
+
 </head>
 
 <body>
@@ -32,8 +67,20 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
+
             <div class="collapse navbar-collapse" id="navbarResponsive">
+
+<!--                 <form id="metasattermform" class="form-inline">
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="inputPassword2" class="sr-only">Password</label>
+                        <input type="text" class="form-control-sm" id="metasat-autocomplete" placeholder="MetaSat Element">
+                    </div>
+                    <button type="submit" id="autocompletebutton" class="btn btn-outline-light btn-secondary btn-sm mb-2">Find</button>
+                </form> -->
+
                 <ul class="navbar-nav ml-auto">
+
                     <li class="nav-item">
                         <a class="nav-link sr-only sr-only-focusable" href="#content">Skip to main content</a>
                     </li>
@@ -55,21 +102,33 @@
                     <li class="nav-item {% block nav-contact %}{% endblock %}">
                         <a class="nav-link" href="/contact">Contact</a>
                     </li>
+                    
                     {% if request.user.is_authenticated %}
 
-                    <li class="nav-item dropdown {% block nav-lout %}{% endblock %}">
-                    <a class="nav-link dropdown-toggle" href="/account" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Account
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/account">Settings</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/logout">Logout</a>
-                    </div>
-                </li>
+                        <li class="nav-item dropdown {% block nav-lout %}{% endblock %}">
+                            <a class="nav-link dropdown-toggle" href="/account" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Account
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/account">Settings</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/logout">Logout</a>
+                            </div>
+                        </li>
                     {% endif %}
-                </ul>
+                </ul>          
+
             </div>
+
+            <form id="metasattermform" class="form-inline">
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="inputPassword2" class="sr-only">Password</label>
+                        <input type="text" class="form-control-sm" id="metasat-autocomplete" placeholder="MetaSat Element">
+                    </div>
+                    <button type="submit" id="autocompletebutton" class="btn btn-outline-light btn-secondary btn-sm mb-2">Find</button>
+                </form>
+
+
         </div>
     </nav>
 
@@ -86,6 +145,46 @@
             </div>
         </div>
     </div>
+
+<script>
+
+$(document).ready(function(){
+
+    $("#metasat-autocomplete").uatAutocomplete()
+
+    $("#metasat-autocomplete").on("keyup", function(){
+        if (event.keyCode === 13) {
+            var thisword = $("#metasat-autocomplete").val();
+            event.preventDefault();
+            parent.location='../metasat/' + thisword;
+        }
+    });
+
+    // $( "#metasat-autocomplete" ).autocomplete({
+    //     select: function( event, ui ) {
+    //         var thisword = $("#metasat-autocomplete").val();
+    //         event.preventDefault();
+    //         parent.location='../metasat/' + thisword;
+    //     }
+
+
+    // });
+
+    // $("#ui-menu").on("click", function(){
+    //     var thisword = $("#metasat-autocomplete").val()
+    //     event.preventDefault();
+    //     parent.location='../metasat/' + thisword
+    // });
+
+    $("#autocompletebutton").on("click", function(){
+        var thisword = $("#metasat-autocomplete").val();
+        event.preventDefault();
+        parent.location='../metasat/' + thisword;
+    });
+});
+
+</script>
+
 
 </body>
 </html>
