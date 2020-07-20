@@ -4,6 +4,13 @@ body {
      overflow-x: hidden;
 }
 
+code { /*Right now this is taken from https://www.w3schools.com/tags/tag_code.asp; will change eventually probably*/
+    font-family: Consolas,"courier new";
+    color: crimson;
+    background-color: #f1f1f1;
+    padding: 2px;
+    font-size: 105%;
+  }
 
 .panel-heading {
   background-color: #014e6d!important;
@@ -55,4 +62,19 @@ div.sidebar {
 div.sidebar2 {
     margin-top: 130px;
     z-index: 6;
+}
+
+.subject {
+    color: #EE442F;
+    font: bold;
+}
+
+.predicate {
+    color: #601A4A;
+    font: italic;
+}
+
+.object {
+    color: #63ACBE;
+    font: bold italic;
 }
