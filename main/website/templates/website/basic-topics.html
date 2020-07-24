@@ -70,29 +70,29 @@
                 Here is a simple example, describing a SatNOGS observation, that combines each of these ideas:</p>
 
 <pre><code>{
-"@context": {
-    "@vocab": "https://schema.space/metasat/",
-    "schema": "https://schema.org/"
-},
-"@id": "https://network.satnogs.org/observations/2243157/",
-"schema:identifier": "2243157",
-"groundStation": "1378 - Wolbach Library"
+    "@context": {
+        "@vocab": "https://schema.space/metasat/",
+        "schema": "https://schema.org/"
+    },
+    "@id": "https://network.satnogs.org/observations/2243157/",
+    "schema:identifier": "2243157",
+    "groundStation": "1378 - Wolbach Library"
 }</code></pre>
 
                 <p><code>@id</code> is another JSON-LD specific term, which stores a URI or URL for what is being described; here, it is the SatNOGS observation we are interested in. This code will expand to:</p>
 
 <pre><code>{
-"@id": "https://network.satnogs.org/observations/2243157/",
-"https://schema.space/metasat/groundStation": [
-{
-    "@value": "1378 - Wolbach Library"
-}
-],
-"https://schema.org/identifier": [
-{
-    "@value": "2243157"
-}
-]
+    "@id": "https://network.satnogs.org/observations/2243157/",
+    "https://schema.space/metasat/groundStation": [
+        {
+            "@value": "1378 - Wolbach Library"
+        }
+    ],
+    "https://schema.org/identifier": [
+        {
+            "@value": "2243157"
+        }
+    ]
 }</code></pre>
 
                 <p>Notice that “groundStation” was expanded to “https://schema.space/metasat/groundStation,” and “schema:identifier” was expanded to “https://schema.org/identifier.”</p>

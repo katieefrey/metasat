@@ -89,37 +89,37 @@
       <p>Expanding your JSON-LD relies on the <code>@context</code> section at the beginning of the document. Here's an example of a human-written JSON-LD document, which describes the song that spent the most weeks at number one on the Billboard Hot 100 music chart:</p>
 
 <pre><code>{
-"@context": {
-"@vocab": "https://schema.org/",
-"song": "https://schema.org/MusicRecording",
-"artist": "https://schema.org/byArtist",
-"title": "https://schema.org/name"
-},
-"@type": "song",
-"@id": "https://www.wikidata.org/wiki/Q62587323",
-"title": "Old Town Road",
-"artist": "Lil Nas X"
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "song": "https://schema.org/MusicRecording",
+    "artist": "https://schema.org/byArtist",
+    "title": "https://schema.org/name"
+  },
+  "@type": "song",
+  "@id": "https://www.wikidata.org/wiki/Q62587323",
+  "title": "Old Town Road",
+  "artist": "Lil Nas X"
 }</code></pre>
 
       <p>As a human, you know that this is describing a song called "Old Town Road" by the artist Lil Nas X. But a machine doesn't know what any of that means! This is why you use the <strong>expansion algorithm</strong>: It takes what is in the <code>@context</code> section and uses it to produce something that is easier for a program to understand by replacing the plaintext keys with IRIs. In this example, "song" is replaced with "https://schema.org/MusicRecording," "title" is replaced with "https://schema.org/name," and "artist" is replaced with "https://schema.org/byArtist":</p>
 
 <pre><code>[
 {
-"@id": "https://www.wikidata.org/wiki/Q62587323",
-"@type": [
-"https://schema.org/MusicRecording"
-],
-"https://schema.org/byArtist": [
-{
-"@value": "Lil Nas X"
-}
-],
-"https://schema.org/name": [
-{
-"@value": "Old Town Road"
-}
-]
-}
+  "@id": "https://www.wikidata.org/wiki/Q62587323",
+  "@type": [
+    "https://schema.org/MusicRecording"
+  ],
+  "https://schema.org/byArtist": [
+    {
+      "@value": "Lil Nas X"
+    }
+  ],
+  "https://schema.org/name": [
+    {
+      "@value": "Old Town Road"
+    }
+  ]
+  }
 ]</code></pre>
 
       <p>This output file is called an <strong>expanded file</strong>. <code>@id</code>, <code>@type</code>, and <code>@value</code> are not expanded, because they are described by the RDF Schema, which JSON-LD links to by default.</p>
@@ -131,21 +131,21 @@
       <p>The <strong>compaction algorithm</strong> requires two inputs: The expanded JSON-LD you see above, and a new <code>@context</code> section. Since you are using schema.org terms, your new context will just be:</p>
 
 <pre><code>{
-"@context": {
-"@vocab": "https://schema.org/"
-}
+  "@context": {
+    "@vocab": "https://schema.org/"
+  }
 }</code></pre>
 
       <p>When you run the two files through the compaction algorithm, your output will be:</p>
 
 <pre><code>{
-"@context": {
-"@vocab": "https://schema.org/"
-},
-"@id": "https://www.wikidata.org/wiki/Q62587323",
-"@type": "MusicRecording",
-"name": "Old Town Road",
-"byArtist": "Lil Nas X"
+  "@context": {
+    "@vocab": "https://schema.org/"
+  },
+  "@id": "https://www.wikidata.org/wiki/Q62587323",
+  "@type": "MusicRecording",
+  "name": "Old Town Road",
+  "byArtist": "Lil Nas X"
 }</code></pre>
 
       <p>Now, this <strong>compacted file</strong> is both human-readable and ready to populate your database.</p>
@@ -155,21 +155,21 @@
       <p>Flattening is used to remove any nesting from a JSON-LD document, which can make its processing faster. Before we go any further, let's add on to our original document:</p>
 
 <pre><code>{
-"@context": {
-"@vocab": "https://schema.org/",
-"song": "https://schema.org/MusicRecording",
-"artist": "https://schema.org/byArtist",
-"title": "https://schema.org/name"
-},
-"@type": "song",
-"@id": "https://www.wikidata.org/wiki/Q62587323",
-"title": "Old Town Road",
-"artist": {
-"@id": "https://www.wikidata.org/wiki/Q62591281",
-"@type": "Person",
-"name": "Montero Lamar Hill",
-"alternateName": "Lil Nas X"
-}
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "song": "https://schema.org/MusicRecording",
+    "artist": "https://schema.org/byArtist",
+    "title": "https://schema.org/name"
+  },
+  "@type": "song",
+  "@id": "https://www.wikidata.org/wiki/Q62587323",
+  "title": "Old Town Road",
+  "artist": {
+    "@id": "https://www.wikidata.org/wiki/Q62591281",
+    "@type": "Person",
+    "name": "Montero Lamar Hill",
+    "alternateName": "Lil Nas X"
+  }
 }</code></pre>
 
       <p>Here, we've added a little more information about the artist, including an @id (in the form of a Wikidata page), the artist's stage name, and his birth name.</p>
@@ -178,43 +178,43 @@
 
       <p>To make their job easier, we can run this code through a <strong>flattening algorithm</strong>. This algorithm separates out the individual JSON objects. The inputs are a nested document, like the one above, and, optionally, a new <code>@context</code>. If you want the output to immediately be machine-readable, don't include a new context. If you don't want the context to change, you can just copy the context you've already written.</p>
 
-      <p>The output of the algorithm, with no <code>@context</code>> added, will look like this:</p>
+      <p>The output of the algorithm, with no <code>@context</code> added, will look like this:</p>
 
 <pre><code>{
-"@graph": [
-{
-"@id": "https://www.wikidata.org/wiki/Q62587323",
-"@type": "https://schema.org/MusicRecording",
-"https://schema.org/name": "Old Town Road",
-"https://schema.org/byArtist": {
-"@id": "https://www.wikidata.org/wiki/Q62591281"
-}
-},
-{
-"@id": "https://www.wikidata.org/wiki/Q62591281",
-"@type": "https://schema.org/Person",
-"https://schema.org/alternateName": "Lil Nas X",
-"https://schema.org/name": "Montero Lamar Hill"
-}
-]
+  "@graph": [
+    {
+      "@id": "https://www.wikidata.org/wiki/Q62587323",
+      "@type": "https://schema.org/MusicRecording",
+      "https://schema.org/name": "Old Town Road",
+      "https://schema.org/byArtist": {
+        "@id": "https://www.wikidata.org/wiki/Q62591281"
+    }
+    },
+    {
+      "@id": "https://www.wikidata.org/wiki/Q62591281",
+      "@type": "https://schema.org/Person",
+      "https://schema.org/alternateName": "Lil Nas X",
+      "https://schema.org/name": "Montero Lamar Hill"
+    }
+  ]
 }</code></pre>
 
-      <p>This is a <strong>flattened document</strong>. Although this file is flattened, and the JSON objects separated, you can see that they still link together: The <code>@id</code> of the "byArtist" key in the first object is the same as the <code>@id</code>> of the second object!</p>
+      <p>This is a <strong>flattened document</strong>. Although this file is flattened, and the JSON objects separated, you can see that they still link together: The <code>@id</code> of the "byArtist" key in the first object is the same as the <code>@id</code> of the second object!</p>
 
       <p>You might have noticed that <code>@graph</code> was added to the beginning of the new file. This just means that multiple, non-hierarchical JSON items are in this file. The syntax is:</p>
 
 <pre><code>{
-"@graph": [
-{
-JSON object 1...
-},
-{
-JSON object 2...
-},
-{
-JSON object 3, etc...
-}
-]
+  "@graph": [
+    {
+    JSON object 1...
+    },
+    {
+    JSON object 2...
+    },
+    {
+    JSON object 3, etc...
+    }
+  ]
 }</code></pre>
 
       <p>Notice that there are square brackets after the <code>@graph</code>, instead of curly braces, since this is an array of JSON objects.</p>
@@ -226,36 +226,36 @@ JSON object 3, etc...
       <p>Let's start by adding a little to our flattened document. We'll add the <code>@context</code> back, too:</p>
 
 <pre><code>{
-"@context": {
-"@vocab": "https://schema.org/",
-"song": "https://schema.org/MusicComposition",
-"artist": "https://schema.org/provider",
-"title": "https://schema.org/name"
-},
-"@graph": [
-{
-"@id": "https://www.wikidata.org/wiki/Q62587323",
-"@type": "song",
-"title": "Old Town Road",
-"inAlbum": {
-"@id": "https://www.wikidata.org/wiki/Q64220899"
-},
-"artist": {
-"@id": "https://www.wikidata.org/wiki/Q62591281"
-}
-},
-{
-"@id": "https://www.wikidata.org/wiki/Q62591281",
-"@type": "Person",
-"alternateName": "Lil Nas X",
-"title": "Montero Lamar Hill"
-},
-{
-"@id": "https://www.wikidata.org/wiki/Q64220899",
-"@type": "MusicAlbum",
-"name": "7"
-}
-]
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "song": "https://schema.org/MusicComposition",
+    "artist": "https://schema.org/provider",
+    "title": "https://schema.org/name"
+  },
+  "@graph": [
+    {
+      "@id": "https://www.wikidata.org/wiki/Q62587323",
+      "@type": "song",
+      "title": "Old Town Road",
+      "inAlbum": {
+        "@id": "https://www.wikidata.org/wiki/Q64220899"
+      },
+      "artist": {
+        "@id": "https://www.wikidata.org/wiki/Q62591281"
+      }
+    },
+    {
+      "@id": "https://www.wikidata.org/wiki/Q62591281",
+      "@type": "Person",
+      "alternateName": "Lil Nas X",
+      "title": "Montero Lamar Hill"
+    },
+    {
+      "@id": "https://www.wikidata.org/wiki/Q64220899",
+      "@type": "MusicAlbum",
+      "name": "7"
+    }
+  ]
 }</code></pre>
 
       <p>This time we added some information about the album the song is found in. Now we have three separate JSON objects: One for the song, one for the artist, and one for the album. For a machine, this makes perfect sense, since the song is linked with both the artist and album by IRIs. But for a human, it can be a little hard to link together.</p>
@@ -263,19 +263,19 @@ JSON object 3, etc...
       <p>You can fix this easily by using a <strong>frame document</strong> and the <strong>framing algorithm</strong>. The frame document defines a structure that can be imposed on the original JSON-LD document. Here, since we want both artist and album nested under the song, our frame document might look like this:</p>
 
 <pre><code>{
-"@context": {
-"@vocab": "https://schema.org/",
-"song": "https://schema.org/MusicComposition",
-"artist": "https://schema.org/provider",
-"title": "https://schema.org/name"
-},
-"@type": "song",
-"inAlbum": {
-"@type": "MusicAlbum"
-},
-"artist": {
-"@type": "Person"
-}
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "song": "https://schema.org/MusicComposition",
+    "artist": "https://schema.org/provider",
+    "title": "https://schema.org/name"
+  },
+  "@type": "song",
+  "inAlbum": {
+    "@type": "MusicAlbum"
+  },
+  "artist": {
+    "@type": "Person"
+  }
 }</code></pre>
 
       <p>Notice that the frame document still has a <code>@context</code> section. The <code>@context</code> of the frame document can be the same as or different from the original document.</p>
@@ -287,30 +287,30 @@ JSON object 3, etc...
       <p>When we run the original document and the frame through the framing algorithm, we get the following output:</p>
 
 <pre><code>{
-"@context": {
-"@vocab": "https://schema.org/",
-"song": "https://schema.org/MusicComposition",
-"artist": "https://schema.org/provider",
-"title": "https://schema.org/name"
-},
-"@graph": [
-{
-"@id": "https://www.wikidata.org/wiki/Q62587323",
-"@type": "song",
-"inAlbum": {
-"@id": "https://www.wikidata.org/wiki/Q64220899",
-"@type": "MusicAlbum",
-"title": "7"
-},
-"title": "Old Town Road",
-"artist": {
-"@id": "https://www.wikidata.org/wiki/Q62591281",
-"@type": "Person",
-"alternateName": "Lil Nas X",
-"title": "Montero Lamar Hill"
-}
-}
-]
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "song": "https://schema.org/MusicComposition",
+    "artist": "https://schema.org/provider",
+    "title": "https://schema.org/name"
+  },
+  "@graph": [
+    {
+      "@id": "https://www.wikidata.org/wiki/Q62587323",
+      "@type": "song",
+      "inAlbum": {
+        "@id": "https://www.wikidata.org/wiki/Q64220899",
+        "@type": "MusicAlbum",
+        "title": "7"
+      },
+      "title": "Old Town Road",
+      "artist": {
+        "@id": "https://www.wikidata.org/wiki/Q62591281",
+        "@type": "Person",
+        "alternateName": "Lil Nas X",
+        "title": "Montero Lamar Hill"
+      }
+    }
+  ]
 }</code></pre>
 
       <p>This is our <strong>framed document</strong>. It's <em>framed</em> with a D because it has had a frame imposed on it.</p>
