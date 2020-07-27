@@ -4,13 +4,20 @@ body {
      overflow-x: hidden;
 }
 
-code { /*Right now this is taken from https://www.w3schools.com/tags/tag_code.asp; will change eventually probably*/
+code { /*Right now this is taken from https://www.w3schools.com/tags/tag_code.asp*/
     font-family: Consolas,"courier new";
     color: crimson;
-    background-color: #f1f1f1;
+    /*background-color: #f1f1f1;*/
     padding: 2px;
     font-size: 105%;
   }
+
+pre {
+    background-color: #444444;
+    color: #cccccc;
+    width: 80%;
+    overflow-x: scroll;
+}
 
 .panel-heading {
   background-color: #014e6d!important;
