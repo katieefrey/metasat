@@ -16,32 +16,36 @@ def index(request):
 
     if view == "family":
 
-        all_fams = ElementFamily.objects.order_by('family')
+        all_groups = ElementFamily.objects.order_by('family')
 
-        fams = {}
-        for x in all_fams:
-            fams[x] = Element.objects.filter(family=x).order_by('identifier')
+        groups = {}
+        for x in all_groups:
+            groups[x] = Element.objects.filter(family=x).order_by('identifier')
         
 
         context = {
-            "fams" : fams,
+            "groups" : groups, # all elements organized by family
+            "gtype" : "family",
                 }
 
-        return render(request, "metasat/family.html", context)
+        # even if the groups are renamed,
+        #this template should be able to handle it
+        return render(request, "metasat/grouping.html", context)
 
     elif view == "segment":
 
-        all_segs = Segment.objects.order_by('segment')
+        all_groups = Segment.objects.order_by('segment')
 
-        segs = {}
-        for x in all_segs:
-            segs[x] = Element.objects.filter(segment=x).order_by('identifier')
+        groups = {}
+        for x in all_groups:
+            groups[x] = Element.objects.filter(segment=x).order_by('identifier')
 
         context = {
-            "segs" : segs,
+            "groups" : groups, # all elements organized by segment
+            "gtype" : "segment",
                 }
 
-        return render(request, "metasat/segment.html", context)
+        return render(request, "metasat/grouping.html", context)
 
     else:
 
@@ -80,28 +84,30 @@ def element(request,element):
     
     if family != '':    
 
-        all_fams = ElementFamily.objects.order_by('family')
-        fams = {}
-        for x in all_fams:
-            fams[x] = Element.objects.filter(family=x).order_by('identifier')
+        all_groups = ElementFamily.objects.order_by('family')
+        groups = {}
+        for x in all_groups:
+            groups[x] = Element.objects.filter(family=x).order_by('identifier')
 
-        context["fams"] = fams
-        context["family"] = family
+        context["groups"] = groups
+        context["groupname"] = family
+        context["gtype"] = "family"
 
-        return render(request, "metasat/family.html", context)
+        return render(request, "metasat/grouping.html", context)
 
     
     elif segment != '':    
 
-        all_segs = Segment.objects.order_by('segment')
-        segs = {}
-        for x in all_segs:
-            segs[x] = Element.objects.filter(segment=x).order_by('identifier')
+        all_groups = Segment.objects.order_by('segment')
+        groups = {}
+        for x in all_groups:
+            groups[x] = Element.objects.filter(segment=x).order_by('identifier')
 
-        context["segs"] = segs
-        context["segment"] = segment
+        context["groups"] = groups
+        context["groupname"] = segment
+        context["gtype"] = "segment"
 
-        return render(request, "metasat/segment.html", context)
+        return render(request, "metasat/grouping.html", context)
 
     else:
 
