@@ -20,7 +20,7 @@ def index(request):
 
         groups = {}
         for x in all_groups:
-            groups[x] = Element.objects.filter(family=x).order_by('identifier')
+            groups[x] = Element.objects.filter(family=x,deprecated=False).order_by('identifier')
         
 
         context = {
@@ -38,7 +38,7 @@ def index(request):
 
         groups = {}
         for x in all_groups:
-            groups[x] = Element.objects.filter(segment=x).order_by('identifier')
+            groups[x] = Element.objects.filter(segment=x,deprecated=False).order_by('identifier')
 
         context = {
             "groups" : groups, # all elements organized by segment
@@ -50,7 +50,7 @@ def index(request):
     else:
 
         alphabet = list(string.ascii_lowercase)
-        all_elements = Element.objects.order_by('identifier')
+        all_elements = Element.objects.filter(deprecated=False).order_by('identifier')
 
         context = {
                     "all_elements" : all_elements,
@@ -87,7 +87,7 @@ def element(request,element):
         all_groups = ElementFamily.objects.order_by('family')
         groups = {}
         for x in all_groups:
-            groups[x] = Element.objects.filter(family=x).order_by('identifier')
+            groups[x] = Element.objects.filter(family=x,deprecated=False).order_by('identifier')
 
         context["groups"] = groups
         context["groupname"] = family
@@ -101,7 +101,7 @@ def element(request,element):
         all_groups = Segment.objects.order_by('segment')
         groups = {}
         for x in all_groups:
-            groups[x] = Element.objects.filter(segment=x).order_by('identifier')
+            groups[x] = Element.objects.filter(segment=x,deprecated=False).order_by('identifier')
 
         context["groups"] = groups
         context["groupname"] = segment
@@ -112,7 +112,7 @@ def element(request,element):
     else:
 
         alphabet = list(string.ascii_lowercase)
-        all_elements = Element.objects.order_by('identifier')
+        all_elements = Element.objects.filter(deprecated=False).order_by('identifier')
         context["all_elements"] = all_elements
         context["alphabet"] = alphabet
 

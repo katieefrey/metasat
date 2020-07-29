@@ -14,7 +14,7 @@ from django.forms.widgets import CheckboxSelectMultiple
 class ExternalElementForm(ModelForm):
     class Meta:
         model = ExternalElement
-        fields = ('identifier','url','source','metasat_element')
+        fields = ('identifier','url','source','metasatelement')
         # labels = {
         #     'desc': 'Description',
         #     'source': 'Source of Description',

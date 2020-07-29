@@ -20,11 +20,37 @@ def crosswalk(request,crosswalk):
 
     cw = ExternalSchema.objects.get(identifier=crosswalk)
     
-    terms = ExternalElement.objects.filter(source=cw.id)
+    print ("step1")
+
+    #terms = ExternalElement.objects.filter(source=cw.id, metasatelement_deprecated=False)
+
+    terms = ExternalElement.objects.filter(source=cw.id).exclude(metasatelement__deprecated=True)
+
+    print(terms)
+    print ("step2")
+    walkterms = []
+    print ("step3")
+    # for term in terms:
+    #     if term.metasatelement.deprecated == False:
+    #         newterm = {
+    #             "element" : term.metasatelement,
+    #             "url" : term.url,
+    #             "id" : term.identifier,
+    #         }
+
+    #         walkterms.append(newterm)
+    #     else:
+    #         print ("this is deprecated")
+    #         print(term)
+
+
+    # #print (walkterms)
+    # print ("step4")
 
     context = {
                 "allcrosswalks": allcrosswalks,
                 "terms": terms,
+                "walkterms" : walkterms,
                 "crosswalk": cw.name
             }
 

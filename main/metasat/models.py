@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class ElementFamily(models.Model):
     family = models.CharField(max_length=255, unique=True)
 
@@ -13,6 +14,7 @@ class Segment(models.Model):
     def __str__(self):
         return f"{self.segment}"
 
+
 class Element(models.Model):
     identifier = models.CharField(max_length=255, unique=True)
     term = models.CharField(max_length=255)
@@ -22,10 +24,22 @@ class Element(models.Model):
     source = models.TextField(null=True, blank=True)
     family = models.ManyToManyField(ElementFamily, blank=True)
     segment = models.ManyToManyField(Segment, blank=True)
+    deprecated = models.BooleanField(default=False)
+    deprecatedon = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=True)
+    #version = models.foreignkey? #im not tracking versioning otherwise...
+    mapping = models.ManyToManyField("self", blank=True)#, symmetrical=True)
 
     def __str__(self):
         return f"{self.identifier}"
 
-
     class Meta:
        ordering = ('identifier',)
+
+
+
+"""
+- date of deprecation
+- version of deprecation
+- map to another URI(s), if applicable
+???
+"""
