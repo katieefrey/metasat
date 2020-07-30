@@ -10,6 +10,36 @@ from crosswalk.models import ExternalElement
 
 import string
 
+
+
+from django.db import connection, reset_queries
+import time
+import functools
+
+def query_debugger(func):
+
+    @functools.wraps(func)
+    def inner_func(*args, **kwargs):
+
+        reset_queries()
+        
+        start_queries = len(connection.queries)
+
+        start = time.perf_counter()
+        result = func(*args, **kwargs)
+        end = time.perf_counter()
+
+        end_queries = len(connection.queries)
+
+        print(f"Function : {func.__name__}")
+        print(f"Number of Queries : {end_queries - start_queries}")
+        print(f"Finished in : {(end - start):.2f}s")
+        return result
+
+    return inner_func
+
+
+@query_debugger
 def index(request):
 
     view = request.GET.get('view', '')
@@ -59,7 +89,7 @@ def index(request):
         
         return render(request, "metasat/element.html", context)
 
-
+@query_debugger
 def element(request,element):
 
     try:
@@ -67,7 +97,7 @@ def element(request,element):
         el = Element.objects.get(identifier=element)
 
         elid = el.id
-        crosswalks = ExternalElement.objects.filter(metasat_element_id=elid)
+        crosswalks = ExternalElement.objects.filter(metasatelement_id=elid).select_related('source')
 
         context = {
                     "element": el,
@@ -128,7 +158,7 @@ def edit(request,element):
         elid = el.id
         print(el.family)
 
-        crosswalks = ExternalElement.objects.filter(metasat_element_id=elid)
+        crosswalks = ExternalElement.objects.filter(metasatelement_id=elid)
         
         famcomp = FamComp(instance=Element.objects.get(identifier=element))
         segcomp = SegComp(instance=Element.objects.get(identifier=element))
@@ -136,7 +166,7 @@ def edit(request,element):
 
         exelform = ExternalElementForm()
 
-        exelformset = ExElFormSet(queryset=ExternalElement.objects.filter(metasat_element_id=elid))
+        exelformset = ExElFormSet(queryset=ExternalElement.objects.filter(metasatelement_id=elid))
 
         # for form in exelformset:
         #     print(form.as_table())

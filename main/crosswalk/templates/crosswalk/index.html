@@ -61,27 +61,12 @@
                                 <th>External Identifier</th>
                             </tr>
                             {% for term in terms %}
-                            {% if term.metasatelement.deprecated == False %}
                             <tr>
-                                <td><a href="/metasat/{{term.metasat_element}}">{{term.metasatelement}}</a></td>
+                                <td><a href="/metasat/{{term.metasatelement}}">{{term.metasatelement}}</a></td>
                                 <td>{% if term.url != None %}<a href="{{term.url}}">{{term.identifier}}</a>{% else %}{{term.identifier}}{% endif %}</td>
                             </tr>
-                            {% endif %}
                             {% endfor %}
                         </table>
-
-                        <!-- <table class=table>
-                            <tr>
-                                <th>MetaSat Element</th>
-                                <th>External Identifier</th>
-                            </tr>
-                            {% for term in walkterms %}
-                              <tr>
-                                <td><a href="/metasat/{{term.element}}">{{term.element}}</a></td>
-                                <td>{% if term.url != None %}<a href="{{term.url}}">{{term.id}}</a>{% else %}{{term.id}}{% endif %}</td>
-                            </tr>
-                            {% endfor %}
-                        </table> -->
 
                     {% else %}
 

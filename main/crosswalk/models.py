@@ -16,7 +16,6 @@ class ExternalElement(models.Model):
     label = models.CharField(max_length=50, null=True, blank=True)
     url = models.TextField(null=True, blank=True)
     source = models.ForeignKey(ExternalSchema, on_delete=models.CASCADE, null=True, blank=True)
-    #relationship = models.ForeignKey(Relationship, on_delete=models.CASCADE, null=True, blank=True)
     metasatelement = models.ForeignKey(Element, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):

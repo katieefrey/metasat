@@ -25,19 +25,7 @@ class ElementForm(ModelForm):
         self.fields['synonym'].widget = forms.Textarea(attrs={'rows': 1})
         self.fields['desc'].widget = forms.Textarea(attrs={'rows': 2})
         self.fields['source'].widget = forms.Textarea(attrs={'rows': 1})
-
         
-        # self.fields["family"].widget = CheckboxSelectMultiple()
-        # #self.fields["components"].queryset = Component.objects.all()
-        # self.fields["segment"].widget = CheckboxSelectMultiple()
-        #self.fields["cleaning"].queryset = Cleaning.objects.all()
-    #     self.fields["checking"].widget = CheckboxSelectMultiple()
-
-    # inst = forms.ChoiceField(
-            
-    #         choices = forms.CharField(widget=forms.Select(choices=INST_CHOICES))
-    # )
-
 
 class FamComp(ModelForm):
     

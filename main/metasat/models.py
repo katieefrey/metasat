@@ -34,12 +34,3 @@ class Element(models.Model):
 
     class Meta:
        ordering = ('identifier',)
-
-
-
-"""
-- date of deprecation
-- version of deprecation
-- map to another URI(s), if applicable
-???
-"""
