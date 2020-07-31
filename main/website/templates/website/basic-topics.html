@@ -41,6 +41,9 @@
                         <tr>
                             <td><a href="#crosswalks">Crosswalks</a></td>
                         </tr>
+                        <tr>
+                            <td><a href="#examples">Example Files</a></td>
+                        </tr>
           
                     </table>
                   </div>
@@ -50,8 +53,9 @@
         <div class="col-9 sidebar offset-3" id="content">
 
             <h1 id="introduction">Getting Started With MetaSat</h1>
+            <br />
 
-                <p>The MetaSat vocabulary is the core of the MetaSat project. The MetaSat vocabulary is a list of unique terms that can be used to describe spacecraft, missions, ground stations, and more, each with a unique, permanent URI. A URI, or <b>U</b>niform <b>R</b>esource <b>I</b>dentifier, acts as a machine-readable identifier for the concept. The MetaSat vocabulary and its URIs can be used can be used to describe missions both in private databases and on the web; since each terms uses its own URI, the vocabulary can be used for linked data applications and schemas that use any format of the RDF data model, including RDF-XML, Turtle, N-Triples, and more. <em>Unfamiliar with RDF or linked data? Visit <a href="https://www.w3.org/standards/semanticweb/data">the W3C page on linked data</a> or <a href="https://5stardata.info/en/">5-star Open Data</a>.</em></p>
+                <p>The MetaSat vocabulary is the core of the MetaSat project. The MetaSat vocabulary is a list of unique terms that can be used to describe spacecraft, missions, ground stations, and more, each with a unique, permanent URI. A URI, or <b>U</b>niform <b>R</b>esource <b>I</b>dentifier, acts as a machine-readable identifier for the concept. The MetaSat vocabulary and its URIs can be used can be used to describe missions both in private databases and on the web; since each terms uses its own URI, the vocabulary can be used for linked data applications and schemas that use any format of the RDF data model, including RDF-XML, Turtle, N-Triples, and more. <em>Unfamiliar with RDF or linked data? Read <a href="/resources/linked-data">our guide here</a>, or visit <a href="https://www.w3.org/standards/semanticweb/data">the W3C page on linked data</a> or <a href="https://5stardata.info/en/">5-star Open Data</a>.</em></p>
 
                 <p>We are also creating example schemas that can be used with our vocabulary. Our schemas use JSON-LD, a highly flexible form of RDF that is built to be easily human-writable and machine-readable. The schemas combine our vocabulary with structure, and give examples and recommendations for how terms relate to each other. For an easy visual of how the sections of our schemas link together, see our <a href="https://drive.google.com/file/d/1lnQWKtYar0cZ8fxcJFXbaN_ZaXartp-S/view?usp=sharing">MetaSat "data model" diagram</a>.</p>
 
@@ -129,6 +133,12 @@
                 <br /><br /><p><strong>We encourage linking out to existing URIs  when possible. This type of flexibility, combined with MetaSat being an open source project, is particularly beneficial to those who only want to adopt a portion of MetaSat's Vocabulary. In this way, MetaSat remains neutral even when adopted by parties competing against each other such as vendors.</strong></p>
 
                 <p>Lastly, by crosswalking to MetaSat URIs, issues of language and the transfer of information in databases, product datasheets, specifications, etc., quickly diminish. If, for example, vendors in the U.K. wish to submit thermal “louvres” to the user-generated SPOON database, customers in the U.S will recognize these products as thermal “louvers” in American English.  These types of one-to-one connections are made possible by the MetaSat crosswalk and are particularly important when comparing product specifications that utilize different units and measurement systems.</p>
+
+                <h3 id="examples">Example Files</h3>
+
+                <p>In our GitLab repository, you will find a folder with <a href="https://gitlab.com/metasat/metasat-schema/-/tree/master/Examples">example MetaSat files</a>. These files are complete MetaSat JSON-LD files that describe real space missions, satellites, ground stations, and more. These files combine a number of linked-data concepts, including combining vocabularies, using JSON-LD @ids, and linking concepts within a JSON-LD file.</p>
+                <p>These files are only examples, and do not reflect the only way that MetaSat and JSON-LD could be used to describe their concepts.</p>
+                <p>Unless specified otherwise in the file name, the example files describe entities that can be found in the <a href="https://network.satnogs.org/">SatNOGS network</a> or <a href="https://db.satnogs.org/">SatNOGS DB</a>.</p>
         </div>
     </div>
 </div>
