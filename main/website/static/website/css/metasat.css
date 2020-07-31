@@ -85,3 +85,15 @@ div.sidebar2 {
     color: #63ACBE;
     font: bold italic;
 }
+
+table#basic-table {
+    border-collapse: collapse;
+}
+
+table#basic-table, th.basic-header, td.basic-data {
+    border: 1px solid black;
+}
+
+th.basic-header, td.basic-data {
+    padding: 10px;
+}
