@@ -65,6 +65,7 @@
 
     <div class="col-9 sidebar offset-3" id="content">
       <h1 id="introduction">Advanced Topics</h1>
+      <br />
 
       <h2 id="using-JSON-LD">How to use JSON-LD</h2>
 
@@ -72,17 +73,17 @@
 
       <h3 id="linked-data">Linked Data</h3>
 
-      <p>JSON-LD is one of several W3C-recommended implementations of the <a href="https://www.w3.org/TR/rdf11-primer/">Resource Description Framework (RDF)</a>, making it ideal to create <a href="http://linkeddata.org/">linked data</a>. Linking data makes data and information more accessible to both machines and people. It can help simplify knowledge management, or even help search engines find information more efficiently. Google already uses JSON-LD and linked data: if you Google something like the name of a famous celebrity, the distance to the sun, or the capital of Nepal, you might see a box with information on the subject before you even get to any links. These are called "<a href="https://support.google.com/knowledgepanel/answer/9163198?hl=en">knowledge panels</a>," and they are created using the magic of JSON-LD and linked data!</p>
+      <p>JSON-LD is one of several W3C-recommended implementations of the <a href="/resources/linked-data">Resource Description Framework (RDF)</a>, making it ideal to create <a href="https://www.w3.org/standards/semanticweb/data">linked data</a>. Linking data makes data and information more accessible to both machines and people. It can help simplify knowledge management, or even help search engines find information more efficiently. Google already uses JSON-LD and linked data: if you Google something like the name of a famous celebrity, the distance to the sun, or the capital of Nepal, you might see a box with information on the subject before you even get to any links. These are called "<a href="https://support.google.com/knowledgepanel/answer/9163198?hl=en">knowledge panels</a>," and they are created using the magic of JSON-LD and linked data.</p>
 
       <p>That being said, you don't need to know anything about W3C, RDF, or the semantic web to take advantage of JSON-LD and linked data! You can find examples of how you can use transforming algorithms to tap into the power of JSON-LD in the next few sections.</p>
 
       <h3 id="algorithms">Transformation algorithms</h3>
 
-      <p>The magic of JSON-LD lies in the fact that human-readable keys can be transformed into machine-readable IRIs (Internationalized Resource Identifiers, a superset of URIs). The human-readable form is called the "compacted" form, and the machine-readable is "expanded."</p>
+      <p>The magic of JSON-LD lies in the fact that human-readable keys can be transformed into machine-readable IRIs (<b>I</b>nternationalized <b>R</b>esource <b>I</b>dentifiers, a superset of <a href="/resources/basic-topics">URIs</a>). The human-readable form is called the "compacted" form, and the machine-readable is "expanded."</p>
 
       <p>In addition, JSON-LD can be either "flattened" or "framed." A framed document includes nesting, looks more hierarchical, and is easier for humans to understand. Machines prefer the non-nested "flattened" form, which is faster for them to process. Luckily, there are algorithms to flatten and frame JSON-LD, too!</p>
 
-      <p>These algorithms all exist as part of the JSON-LD specification, and can be used in several programming environments. You can find them all on the <a href="https://json-ld.org/">JSON-LD homepage</a>; scroll down to the "Developers" section. You can also try out any of these transformations in the <a href="https://json-ld.org/playground/">JSON-LD playground</a>.</p>
+      <p>These algorithms all exist as part of the JSON-LD specification, and can be used in several programming environments. You can find them all on the <a href="https://json-ld.org/#developers">JSON-LD homepage</a>. You can also try out any of these transformations in the <a href="https://json-ld.org/playground/">JSON-LD playground</a>.</p>
 
       <h4 id="expansion">Expansion</h4>
 
@@ -172,7 +173,7 @@
   }
 }</code></pre>
 
-      <p>Here, we've added a little more information about the artist, including an @id (in the form of a Wikidata page), the artist's stage name, and his birth name.</p>
+      <p>Here, we've added a little more information about the artist, including an <code>@id</code> (in the form of a Wikidata URL), the artist's stage name, and his birth name.</p>
 
       <p>The additional information after the "artist" key is nested—the curly braces mean that this is a separate, new JSON object. Nesting in this way makes it easy for humans to understand, but can take longer for machines to parse, since they have to separate out the individual JSON objects.</p>
 
@@ -188,7 +189,7 @@
       "https://schema.org/name": "Old Town Road",
       "https://schema.org/byArtist": {
         "@id": "https://www.wikidata.org/wiki/Q62591281"
-    }
+      }
     },
     {
       "@id": "https://www.wikidata.org/wiki/Q62591281",
