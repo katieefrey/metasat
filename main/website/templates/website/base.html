@@ -138,12 +138,12 @@
     {% block body %}
     {% endblock %}    
     <br/>
-    <div style="background-color: grey;" class="row fixed-bottom ">
+    <div style="background-color: #726E6D;" class="row fixed-bottom ">
         <div class="col-12">
             <div id="footer">
               <div class="container text-center">
                 <br/>
-                <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+                <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span style="color: #000000">This work is licensed under a <a rel="license" style="color: #000000" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</span>
               </div>
             </div>
         </div>
@@ -162,22 +162,6 @@ $(document).ready(function(){
             parent.location='../metasat/' + thisword;
         }
     });
-
-    // $( "#metasat-autocomplete" ).autocomplete({
-    //     select: function( event, ui ) {
-    //         var thisword = $("#metasat-autocomplete").val();
-    //         event.preventDefault();
-    //         parent.location='../metasat/' + thisword;
-    //     }
-
-
-    // });
-
-    // $("#ui-menu").on("click", function(){
-    //     var thisword = $("#metasat-autocomplete").val()
-    //     event.preventDefault();
-    //     parent.location='../metasat/' + thisword
-    // });
 
     $("#autocompletebutton").on("click", function(){
         var thisword = $("#metasat-autocomplete").val();

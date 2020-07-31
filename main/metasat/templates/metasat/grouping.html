@@ -71,8 +71,8 @@
                 {% if element %}
 
                     <div id="content">
-                        <h1>{{element.identifier}}</h1>
-                        <h3>{{element.term}}</h3>
+                        <h1>{% if element.deprecated == True %}Deprecated: {% endif %}{{element.identifier}}</h1>
+                        <h3>{% if element.deprecated == True %}Deprecated: {% endif %}{{element.term}}</h3>
                         <a href="https://schema.space/metasat/{{element.identifier}}">https://schema.space/metasat/{{element.identifier}}</a>
                     </div>
 
@@ -80,6 +80,20 @@
                             <br/>
                             <a href="edit/{{element.identifier}}">(admin edit)</a>
                             <br/>
+                        {% endif %}
+
+                        {% if element.deprecated == True %}
+                        <br/>
+                        This element was deprecated on {{element.deprecatedon}}.
+                        <br/>
+                            {% if element.mapping.all %}
+                                <br/>Use Instead:
+                                {% for f in element.mapping.all %}<a href="/metasat/{{f.identifier}}">{{ f }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
+                                <br/>
+                            {% endif %}
+                        <br/><br/>
+                        <h3>Legacy information</h3>
+
                         {% endif %}
 
                         <br/>

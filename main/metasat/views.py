@@ -10,6 +10,36 @@ from crosswalk.models import ExternalElement
 
 import string
 
+
+
+from django.db import connection, reset_queries
+import time
+import functools
+
+def query_debugger(func):
+
+    @functools.wraps(func)
+    def inner_func(*args, **kwargs):
+
+        reset_queries()
+        
+        start_queries = len(connection.queries)
+
+        start = time.perf_counter()
+        result = func(*args, **kwargs)
+        end = time.perf_counter()
+
+        end_queries = len(connection.queries)
+
+        print(f"Function : {func.__name__}")
+        print(f"Number of Queries : {end_queries - start_queries}")
+        print(f"Finished in : {(end - start):.2f}s")
+        return result
+
+    return inner_func
+
+
+@query_debugger
 def index(request):
 
     view = request.GET.get('view', '')
@@ -20,7 +50,7 @@ def index(request):
 
         groups = {}
         for x in all_groups:
-            groups[x] = Element.objects.filter(family=x).order_by('identifier')
+            groups[x] = Element.objects.filter(family=x,deprecated=False).order_by('identifier')
         
 
         context = {
@@ -38,7 +68,7 @@ def index(request):
 
         groups = {}
         for x in all_groups:
-            groups[x] = Element.objects.filter(segment=x).order_by('identifier')
+            groups[x] = Element.objects.filter(segment=x,deprecated=False).order_by('identifier')
 
         context = {
             "groups" : groups, # all elements organized by segment
@@ -50,7 +80,7 @@ def index(request):
     else:
 
         alphabet = list(string.ascii_lowercase)
-        all_elements = Element.objects.order_by('identifier')
+        all_elements = Element.objects.filter(deprecated=False).order_by('identifier')
 
         context = {
                     "all_elements" : all_elements,
@@ -59,7 +89,7 @@ def index(request):
         
         return render(request, "metasat/element.html", context)
 
-
+@query_debugger
 def element(request,element):
 
     try:
@@ -67,7 +97,7 @@ def element(request,element):
         el = Element.objects.get(identifier=element)
 
         elid = el.id
-        crosswalks = ExternalElement.objects.filter(metasat_element_id=elid)
+        crosswalks = ExternalElement.objects.filter(metasatelement_id=elid).select_related('source')
 
         context = {
                     "element": el,
@@ -87,7 +117,7 @@ def element(request,element):
         all_groups = ElementFamily.objects.order_by('family')
         groups = {}
         for x in all_groups:
-            groups[x] = Element.objects.filter(family=x).order_by('identifier')
+            groups[x] = Element.objects.filter(family=x,deprecated=False).order_by('identifier')
 
         context["groups"] = groups
         context["groupname"] = family
@@ -101,7 +131,7 @@ def element(request,element):
         all_groups = Segment.objects.order_by('segment')
         groups = {}
         for x in all_groups:
-            groups[x] = Element.objects.filter(segment=x).order_by('identifier')
+            groups[x] = Element.objects.filter(segment=x,deprecated=False).order_by('identifier')
 
         context["groups"] = groups
         context["groupname"] = segment
@@ -112,7 +142,7 @@ def element(request,element):
     else:
 
         alphabet = list(string.ascii_lowercase)
-        all_elements = Element.objects.order_by('identifier')
+        all_elements = Element.objects.filter(deprecated=False).order_by('identifier')
         context["all_elements"] = all_elements
         context["alphabet"] = alphabet
 
@@ -128,7 +158,7 @@ def edit(request,element):
         elid = el.id
         print(el.family)
 
-        crosswalks = ExternalElement.objects.filter(metasat_element_id=elid)
+        crosswalks = ExternalElement.objects.filter(metasatelement_id=elid)
         
         famcomp = FamComp(instance=Element.objects.get(identifier=element))
         segcomp = SegComp(instance=Element.objects.get(identifier=element))
@@ -136,7 +166,7 @@ def edit(request,element):
 
         exelform = ExternalElementForm()
 
-        exelformset = ExElFormSet(queryset=ExternalElement.objects.filter(metasat_element_id=elid))
+        exelformset = ExElFormSet(queryset=ExternalElement.objects.filter(metasatelement_id=elid))
 
         # for form in exelformset:
         #     print(form.as_table())
