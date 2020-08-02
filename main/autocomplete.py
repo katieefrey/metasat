@@ -43,6 +43,10 @@ for x in range(1,num+1):
     flat_j = '{value:"'+element.value+'",label:"'+term.value+'",uri:"'+uri+'"}'
     pl.append(flat_j)
 
+    if element.value != term.value:
+        flat_k = '{value:"'+element.value+'",label:"'+element.value+'",uri:"'+uri+'"}'
+        pl.append(flat_k)
+
     try:
         synonym = (synonyms.value).split(",")
 
@@ -84,7 +88,7 @@ for x in range(1,num+1):
 q = ','.join(pl).encode('utf-8').strip()
 #print (q)
 
-js_file = open("metasat_autocomplete.js", "w")
+js_file = open("metasat_autocomplete1.js", "w")
 
 #opening javascript code, from Alex
 js_file.write(str("(function(b){function a(d){return d.split(/,\s*/)}function c(d){return a(d).pop()}uat_json=["))

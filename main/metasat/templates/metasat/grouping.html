@@ -127,11 +127,19 @@
                         <div id="content">
                             <h1>MetaSat Elements, by Family</h1>
                         </div>
+                        <div style="width:80%">
+                            <br/><br/>
+                            On the left, the MetaSat elements have been organized into sections by their element family.  A family is a collection of conceptually related elements. These elements do not have any hierarchical structure, they are simply collected into groupings of related concepts.  You can also navigate to view elements alphabetically or by "segment."
+                        </div>
 
                     {% elif gtype == "segment" %}
 
                         <div id="content">
                             <h1>MetaSat Elements, by Segment</h1>
+                        </div>
+                        <div style="width:80%">
+                            <br/><br/>
+                            On the left, the MetaSat elements have been organized into sections by their segments.  A segment represents concepts related to a specific phase of a satellite mission. These elements do not have any hierarchical structure, they are simply collected into groupings of concepts based on when or where they are relevant to an overall mission.  You can also navigate to view elements alphabetically or by "family."
                         </div>
 
                     {% else %}
@@ -161,7 +169,7 @@ console.log("testing!");
 
     $("#{{element.identifier}}{{groupname}}").css("background-color","lightgrey");
 
-     $("#{{element.identifier}}{{groupname}}").append('<span class="text-right" style="float:right"><img tabindex=0 class="totopimg" style="width:15px;cursor:pointer;" src={% static "website/img/totop1.png" %}/></span>');
+     $("#{{element.identifier}}{{groupname}}").append('<span class="text-right" style="float:right"><img tabindex=0 class="totopimg" style="width:15px;cursor:pointer;" src={% static "website/img/totop1.png" %}></span>');
 
     $(".totopimg").on("keyup", function(){
         if (event.keyCode === 13) {

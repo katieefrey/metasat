@@ -6,40 +6,8 @@ from .forms import ElementForm, FamComp, SegComp
 from crosswalk.forms import ExternalElementForm, ExElFormSet
 from crosswalk.models import ExternalElement
 
-# from django.forms import modelformset_factory
-
 import string
 
-
-
-from django.db import connection, reset_queries
-import time
-import functools
-
-def query_debugger(func):
-
-    @functools.wraps(func)
-    def inner_func(*args, **kwargs):
-
-        reset_queries()
-        
-        start_queries = len(connection.queries)
-
-        start = time.perf_counter()
-        result = func(*args, **kwargs)
-        end = time.perf_counter()
-
-        end_queries = len(connection.queries)
-
-        print(f"Function : {func.__name__}")
-        print(f"Number of Queries : {end_queries - start_queries}")
-        print(f"Finished in : {(end - start):.2f}s")
-        return result
-
-    return inner_func
-
-
-@query_debugger
 def index(request):
 
     view = request.GET.get('view', '')
@@ -89,7 +57,7 @@ def index(request):
         
         return render(request, "metasat/element.html", context)
 
-@query_debugger
+
 def element(request,element):
 
     try:
@@ -103,7 +71,6 @@ def element(request,element):
                     "element": el,
                     "crosswalks": crosswalks,
                 }
-    
 
     except Element.DoesNotExist:
         context = {"element": element}
@@ -125,7 +92,6 @@ def element(request,element):
 
         return render(request, "metasat/grouping.html", context)
 
-    
     elif segment != '':    
 
         all_groups = Segment.objects.order_by('segment')
@@ -168,10 +134,6 @@ def edit(request,element):
 
         exelformset = ExElFormSet(queryset=ExternalElement.objects.filter(metasatelement_id=elid))
 
-        # for form in exelformset:
-        #     print(form.as_table())
-
-        #context["elform"] = elform
         context = {"element": el,
                    "crosswalks": crosswalks,
                    "elform" : elform,
@@ -206,7 +168,6 @@ def update(request):
         fams = request.POST.getlist('family')
         segs = request.POST.getlist('segment')
 
-        #loc = request.POST["location"]
         elid = request.POST["elid"]
 
         syn = request.POST['synonym']
@@ -223,9 +184,6 @@ def update(request):
         myElement.segment.clear()
         for x in segs:
             myElement.segment.add(x)
-
-
-        #myElement.location_id = loc
 
         myElement.synonym = syn  
         myElement.example = ex
@@ -247,103 +205,3 @@ def update(request):
             "error": "Item not found, try again."
             }
         return render(request, "metasat/index.html", context)
-
-
-# #foundation
-# def index2(request):
-
-#     all_elements = Element.objects.order_by('identifier')
-
-#     alphabet = list(string.ascii_lowercase)
-
-#     context = {
-#         "all_elements": all_elements,
-#         "alphabet": alphabet
-#             }
-
-#     return render(request, "metasat/index2.html", context)
-
-
-# # more bootstrap
-# def index3(request):
-
-#     all_elements = Element.objects.order_by('identifier')
-
-#     alphabet = list(string.ascii_lowercase)
-
-#     context = {
-#         "all_elements": all_elements,
-#         "alphabet": alphabet
-#             }
-
-#     return render(request, "metasat/index3.html", context)
-
-
-# # from scratch?
-# def index4(request):
-
-#     all_elements = Element.objects.order_by('identifier')
-
-#     alphabet = list(string.ascii_lowercase)
-
-#     context = {
-#         "all_elements": all_elements,
-#         "alphabet": alphabet
-#             }
-
-#     return render(request, "metasat/index4.html", context)
-
-
-# # more bootstrap
-# def alpha(request):
-
-#     all_elements = Element.objects.order_by('identifier')
-
-#     alphabet = list(string.ascii_lowercase)
-
-#     context = {
-#         "all_elements": all_elements,
-#         "alphabet": alphabet
-#             }
-
-#     return render(request, "metasat/metasat4.html", context)
-
-
-# # more bootstrap
-# def family(request):
-
-
-#     # ?hours=sunday&map=flash
-#     #hours = request.GET.get('hours', '')
-#     #map = request.GET.get('map', '')
-#     #127.0.0.1:8000/metasat/2/accelerometer?view=family&family=AttitudeControl
-
-#     all_elements = Element.objects.order_by('identifier')
-
-#     all_fams = ElementFamily.objects.order_by('family')
-#     fams = {}
-#     for x in all_fams:
-#         fams[x] = Element.objects.filter(family=x).order_by('identifier')
-
-#     context = {
-#         "fams" : fams,
-#         "all_elements": all_elements,
-#             }
-
-#     return render(request, "metasat/family.html", context)
-
-# # more bootstrap
-# def segment(request):
-
-#     all_elements = Element.objects.order_by('identifier')
-
-#     alphabet = list(string.ascii_lowercase)
-
-#     context = {
-#         "all_elements": all_elements,
-#         "alphabet": alphabet
-#             }
-
-#     return render(request, "metasat/segment.html", context)
-
-
