@@ -18,37 +18,43 @@ from metasat.models import Element, Segment, ElementFamily
 
 ## set up databases
 
-# def add_Segment(data1):
-#     d, created = Segment.objects.get_or_create(segment=data1)
-#     return d
+def add_Segment(data1):
+    d, created = Segment.objects.get_or_create(segment=data1)
+    return d
 
-# add_Segment("Space Segment")
-# add_Segment("Ground Segment")
-# add_Segment("Launch Segment")
-# add_Segment("User Segment")
+add_Segment("Space Segment")
+add_Segment("Ground Segment")
+add_Segment("Launch Segment")
+add_Segment("User Segment")
 
 
-# def add_Family(data1):
-#     d, created = ElementFamily.objects.get_or_create(family=data1)
-#     return d
+def add_Family(data1):
+    d, created = ElementFamily.objects.get_or_create(family=data1)
+    return d
 
-# add_Family("Attitude Control")
-# add_Family("Communications")
-# add_Family("Computer Hardware")
-# add_Family("Data")
-# add_Family("Electrical")
-# add_Family("General")
-# add_Family("Instrumentation")
-# add_Family("Lens")
-# add_Family("Mission")
-# add_Family("Observation")
-# add_Family("Optics")
-# add_Family("Orbital Mechanics")
-# add_Family("Product")
-# add_Family("Propulsion")
-# add_Family("Signal Processing")
-# add_Family("Software")
-# add_Family("Thermal Control")
+add_Family("Attitude Control")
+add_Family("Communications")
+add_Family("Computer Hardware")
+add_Family("Data")
+add_Family("Electrical")
+add_Family("General")
+add_Family("Instrumentation")
+add_Family("Lens")
+add_Family("Mission")
+add_Family("Observation")
+add_Family("Optics")
+add_Family("Orbital Mechanics")
+add_Family("Product")
+add_Family("Propulsion")
+add_Family("Signal Processing")
+add_Family("Software")
+add_Family("Thermal Control")
+
+add_Family("Person")
+add_Family("Service")
+add_Family("Solid Mechanics")
+add_Family("Structure")
+add_Family("TT&C")
 
 
 
@@ -86,7 +92,7 @@ def add_Relationship(data1, data2):
 
 
 def add_ExternalElement(data1, data3, data4, data5):
-    d, created = ExternalElement.objects.get_or_create(identifier=data1, url=data3, source_id=data4, metasat_element_id=data5)
+    d, created = ExternalElement.objects.get_or_create(identifier=data1, url=data3, source_id=data4, metasatelement_id=data5)
 
     return d
 
@@ -101,7 +107,7 @@ def add_ExternalElement(data1, data3, data4, data5):
 #     for x in segments:
 #         e1.segment.add(x)
 #     e1.save()
-"""
+
 
 s1 = Segment.objects.get(id=1) # Space Segment
 s2 = Segment.objects.get(id=2) # Ground Segment
@@ -115,7 +121,7 @@ f4 = ElementFamily.objects.get(id=4) # Data
 f5 = ElementFamily.objects.get(id=5) # Electrical
 f6 = ElementFamily.objects.get(id=6) # General
 f7 = ElementFamily.objects.get(id=7) # Instrumentation
-f8 = ElementFamily.objects.get(id=8) # Lens
+f18 = ElementFamily.objects.get(id=18) # Lens
 f9 = ElementFamily.objects.get(id=9) # Mission
 f10 = ElementFamily.objects.get(id=10) # Observation
 f11 = ElementFamily.objects.get(id=11) # Optics
@@ -126,13 +132,20 @@ f15 = ElementFamily.objects.get(id=15) # Signal Processing
 f16 = ElementFamily.objects.get(id=16) # Software
 f17 = ElementFamily.objects.get(id=17) # Thermal Control
 
-"""
+f19 = ElementFamily.objects.get(id=19) # Person
+f20 = ElementFamily.objects.get(id=20) # Service
+f21 = ElementFamily.objects.get(id=21) # Solid Mechanics
+f22 = ElementFamily.objects.get(id=22) # Structure
+f23 = ElementFamily.objects.get(id=23) # TT&C
+
+
 
 def add_Element(data1, data2, data3, data4, data5, data6, segments, families):
     #d, created = Element.objects.get_or_create(identifier=data1, desc=data2, synonym=data3, example=data4, schematype_id=data5)
 
 
-    e1 = Element(identifier=data1, term=data2, desc=data3, synonym=data4, example=data5, source=data6)
+    e1, created = Element.objects.get_or_create(identifier=data1, term=data2, desc=data3, synonym=data4, example=data5, source=data6)
+    #e1 = Element(identifier=data1, term=data2, desc=data3, synonym=data4, example=data5, source=data6)
     e1.save()
 
     for x in segments:
@@ -141,9 +154,6 @@ def add_Element(data1, data2, data3, data4, data5, data6, segments, families):
     for x in families:
         e1.family.add(x)
     e1.save()
-
-
-#Element.objects.all().delete()
 
 
 def update_Element(data1, data2, data3, data4, data5, data6, segments, families):
@@ -163,16 +173,15 @@ def update_Element(data1, data2, data3, data4, data5, data6, segments, families)
         d.family.add(x)
     d.save()
 
-  
-#add_Element("owner","Person or organization who owns the ground station","", "", 2, [s1,s2,s3])
+
 
 ######### adding elements
 
-"""
+#Element.objects.all().delete()
 
 from openpyxl import load_workbook
 
-wb = load_workbook(filename = 'metasat6.xlsx')
+wb = load_workbook(filename = 'metasat1.xlsx')
 
 
 #wb_obj = openpyxl.load_workbook(path) 
@@ -203,14 +212,14 @@ num = sheet_obj.max_row
 
 for x in range(1,num+1):
 
-    term = sheet_obj.cell(row = x, column = 1) 
-    identifier = sheet_obj.cell(row = x, column = 7) 
-    families = sheet_obj.cell(row = x, column = 3) 
-    segments = sheet_obj.cell(row = x, column = 4) 
-    desc = sheet_obj.cell(row = x, column = 5) 
-    example = sheet_obj.cell(row = x, column = 6)
-    synonyms = sheet_obj.cell(row = x, column = 8)
-    source = sheet_obj.cell(row = x, column = 10)
+    term = sheet_obj.cell(row = x, column = 2) 
+    identifier = sheet_obj.cell(row = x, column = 1) 
+    families = sheet_obj.cell(row = x, column = 4) 
+    segments = sheet_obj.cell(row = x, column = 5) 
+    desc = sheet_obj.cell(row = x, column = 6) 
+    example = sheet_obj.cell(row = x, column = 7)
+    synonyms = sheet_obj.cell(row = x, column = 3)
+    source = sheet_obj.cell(row = x, column = 8)
 
 
     familys = (families.value).split(", ")
@@ -233,7 +242,7 @@ for x in range(1,num+1):
         if x == "Instrumentation":
             fam.append(f7)
         if x == "Lens":
-            fam.append(f8)
+            fam.append(f18)
         if x == "Mission":
             fam.append(f9)
         if x == "Observation":
@@ -253,6 +262,17 @@ for x in range(1,num+1):
         if x == "Thermal Control":
             fam.append(f17)
 
+        if x == "Person":
+            fam.append(f19)
+        if x == "Service":
+            fam.append(f20)
+        if x == "Solid Mechanics":
+            fam.append(f21)
+        if x == "Structure":
+            fam.append(f22)
+        if x == "TT&C":
+            fam.append(f23)
+
     segs1 = (segments.value).split(", ")
     seg = []
     for x in segs1:
@@ -267,26 +287,27 @@ for x in range(1,num+1):
 
 
 
-    try:
+    #try:
+    print (identifier.value)
+    #e1 = Element(identifier=data1, term=data2, desc=data3, synonym=data4, example=data5, source=data6)
+    add_Element(identifier.value,term.value,desc.value,synonyms.value,example.value,source.value, seg, fam)
+    # except django.db.utils.IntegrityError:
+    #     print("dupe concept")
+    #     print(identifier.value)
+    #     update_Element(identifier.value,term.value,desc.value,synonyms.value,example.value,source.value, seg, fam)
+    #     #pass
 
-        #e1 = Element(identifier=data1, term=data2, desc=data3, synonym=data4, example=data5, source=data6)
-        add_Element(identifier.value,term.value,desc.value,synonyms.value,example.value,source.value, seg, fam)
-    except django.db.utils.IntegrityError:
-        print("dupe concept")
-        print(identifier.value)
-        update_Element(identifier.value,term.value,desc.value,synonyms.value,example.value,source.value, seg, fam)
-        #pass
-"""
 
 
 ############ adding crosswalks
 
 import pandas
 
-with open('crosswalk.csv') as csv_file:
+with open('crosswalk1.csv') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     header = 0
     col_list = []
+    name_list = []
 
     for row in csv_reader:
         if header == 0:
@@ -295,38 +316,44 @@ with open('crosswalk.csv') as csv_file:
                 #print (title)
                 col_list.append(title)
             header = 1
+        elif header == 1:
+
+            for name in row:
+                name_list.append(name)
+            header = 2
         else:
             pass
-
 
     ExternalSchema.objects.all().delete()
     ExternalElement.objects.all().delete()
 
     elementid = col_list[0]
+
+    #print (elementid)
+    
+
     new_list = col_list[1:]
 
-    df = pandas.read_csv("crosswalk.csv", encoding = "ISO-8859-1", usecols=col_list)
+    nameread = name_list[1:]
 
-    # for y in new_list:
-    #     print (y)
-    #     schema = ExternalSchema.objects.get(name=y)
-    #     schema.identifier = y.replace(' ','-')
-    #     schema.save()
+    print (new_list)
 
-    
+    df = pandas.read_csv("crosswalk1.csv", encoding = "ISO-8859-1", usecols=col_list, skiprows=[1])
+
+    num = 0
     for y in new_list:
-        print(y) #vocab name
         add_ExternalSchema(y)
+        print (y)
         count = 0
         for x in df[y]:
             if pandas.isnull(x):
                 pass
             else:
                 schema = ExternalSchema.objects.get(name=y)
-                schema.identifier = y.replace(' ','-')
+                schema.identifier = (nameread[num]).replace(' ','-')
                 schema.save()
                 #print(x) # vocab id & url
-                print(df[elementid][count]) # elementid
+                #print(df[elementid][count]) # elementid
 
                 if str(x).startswith("http"):
                     uri = x
@@ -335,6 +362,7 @@ with open('crosswalk.csv') as csv_file:
                 elid = Element.objects.get(identifier=df[elementid][count])
                 add_ExternalElement(str(x), uri, schema.id, elid.id)
             count+=1
+        num+=1
 
 
 print ("finished!")

@@ -46,7 +46,7 @@
                             <span style="width:50%;float:left" id="letter{{x}}" tabindex=0>{{x|upper}}</span> <span class="text-right" style="width:50%;float:right"><img tabindex=0 class="totopimg" style="width:15px;cursor:pointer;" src="{% static 'website/img/totop1.png' %}"/>&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             <table class=table>
                                     {% for el in all_elements %}
-                                        {% if el|make_list|first == x %}
+                                        {% if el|make_list|first|lower == x %}
                                         <tr>
                                             <td id="{{el.identifier}}"><a id="{{el.identifier}}link" href="/metasat/{{el.identifier}}">{{el}}</a></td>
                                         </tr>
@@ -121,6 +121,10 @@
                     <div id="content">
                         <h1>MetaSat Elements, Alphabetically</h1>
                     </div>
+                    <div style="width:80%">
+                        <br/><br/>
+                        The full alphabetical list of MetaSat elements is available on the left.  You can also navigate to view elements by "family" or by "segment."
+                    </div>
 
                 {% endif%}
             
@@ -154,7 +158,7 @@ $(document).ready(function(){
 
         $("#{{element.identifier}}").css("background-color","lightgrey");
 
-        $("#{{element.identifier}}").append('<span class="text-right" style="float:right"><img tabindex=0 class="totopimg" style="width:15px;cursor:pointer;" src={% static "website/img/totop1.png" %}/></span>');
+        $("#{{element.identifier}}").append('<span class="text-right" style="float:right"><img tabindex=0 class="totopimg" style="width:15px;cursor:pointer;" src={% static "website/img/totop1.png" %}></span>');
 
     {% endif %}
 
