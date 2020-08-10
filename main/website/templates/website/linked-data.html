@@ -76,7 +76,7 @@
 
                 <p>JSON-LD uses a special section called the <code>@context</code> section to define how human-readable keys can be <a href="/resources/advanced#expansion">expanded</a> into machine-readable URIs. One especially useful term that can be used in the <code>@context</code> is <code>@vocab</code>. This term defines the base vocabulary of the file. Most keys will expand so that they are concatenated to the end of the URI specified by <code>@vocab</code>. In the following example, the <code>@context</code> section contains the line <code>"@vocab": "https://schema.org/"</code>, so the key “color” is expanded to “https://schema.org/color.” (note that the slash after “https://schema.org” is necessary; otherwise the key will concatenate to “https://schema.orgcolor.” Make sure to always have a delimiter at the end when using this strategy!)</p>
 
-                <p>After using these techniques, our new semantic triple will be “<span class="subject font-weight-bold">My car</span> <span class="predicate font-italic">https://schema.org/color</span> <span class="object font-weight-bold font-italic">silver</span>.” A JSON-LD file holding this triple might look like:</p>
+                <p>After using these techniques, our new semantic triple will be “<span class="subject font-weight-bold">My car</span><span class="sr-only">Subject</span> <span class="predicate font-italic">https://schema.org/color</span><span class="sr-only">Object</span> <span class="object font-weight-bold font-italic">silver</span><span class="sr-only">Predicate</span>.” A JSON-LD file holding this triple might look like:</p>
 
 <pre><code>{
     "@context": {
@@ -87,7 +87,7 @@
 
                 <p>In this case, you would have to know that this is metadata describing my car&mdash;maybe the file is named “myCar.jsonld.”</p>
 
-                <p>We can also define a URI or URL for the subject of the triple. Since there isn’t a URI for my personal car, we’re going to look at <a href="https://network.satnogs.org/observations/2243157/">a SatNOGS observation</a> for the rest of the examples. We want to make a JSON-LD file to store the triple “<span class="subject font-weight-bold">This specific observation</span> <span class="predicate font-italic">has ground station</span> <span class="object font-weight-bold font-italic">1378 - Wolbach Library</span>.” MetaSat has a URI for the concept “has ground station”: https://schema.space/metasat/groundStation. In addition, the observation has a unique URL: https://network.satnogs.org/observations/2243157/. How do we store the URL for the subject using JSON-LD?</p>
+                <p>We can also define a URI or URL for the subject of the triple. Since there isn’t a URI for my personal car, we’re going to look at <a href="https://network.satnogs.org/observations/2243157/">a SatNOGS observation</a> for the rest of the examples. We want to make a JSON-LD file to store the triple “<span class="subject font-weight-bold">This specific observation</span><span class="sr-only">Subject</span> <span class="predicate font-italic">has ground station</span><span class="sr-only"> Object</span> <span class="object font-weight-bold font-italic">1378 - Wolbach Library</span><span class="sr-only">Predicate</span>.” MetaSat has a URI for the concept “has ground station”: https://schema.space/metasat/groundStation. In addition, the observation has a unique URL: https://network.satnogs.org/observations/2243157/. How do we store the URL for the subject using JSON-LD?</p>
 
                 <p>There is a special term that can be used with JSON-LD to store the identifier for the subject: <code>@id</code>. <code>@id</code> can ONLY store IRIs, including URIs and URLs, for its value. If anything else is stored in the value of <code>@id</code>, it will be expanded using the base vocabulary. Using <code>@id</code> to store the URL, our JSON-LD file for the observation will look like this (notice that the base vocabulary was changed to “https://schema.space/metasat/”):</p>
 
@@ -99,7 +99,7 @@
     "groundStation": "1378 - Wolbach Library"
 }</code></pre>
 
-                <p>Now the machine-readable RDF triple is “<span class="subject font-weight-bold">https://network.satnogs.org/observations/2243157/</span> <span class="predicate font-italic">https://schema.space/metasat/groundStation</span> <span class="object font-weight-bold font-italic">1378 - Wolbach Library</span>.”</p>
+                <p>Now the machine-readable RDF triple is “<span class="subject font-weight-bold">https://network.satnogs.org/observations/2243157/</span><span class="sr-only">Subject</span> <span class="predicate font-italic">https://schema.space/metasat/groundStation</span><span class="sr-only">Object</span> <span class="object font-weight-bold font-italic">1378 - Wolbach Library</span><span class="sr-only">Predicate</span>.”</p>
 
                 <p>What if we want to use terms that are not in the MetaSat vocabulary? You can also include other vocabularies by creating aliases for their main URLs and using <a href="https://en.wikipedia.org/wiki/CURIE">CURIEs</a>. For example, the context could include the line <code>"schema": "https://schema.org/"</code>; then, a key such as “schema:Person” would expand to “https://schema.org/Person.”</p>
 
@@ -115,7 +115,7 @@
     "groundStation": "1378 - Wolbach Library"
 }</code></pre>
 
-                <p>Just like plain JSON, JSON-LD can be used to nest information to make it look more hierarchical. JSON-LD isn’t inherently hierarchical, but nesting can help make files more human-readable. Right now, the ground station is an object with respect to the observation, but we can also include triples where the ground station is a subject. We can use <code>@id</code> to make the ground station’s URL a subject, then add another predicate and object. For example, maybe we want to add a triple that says “<span class="subject font-weight-bold">This ground station</span> <span class="predicate font-italic">has name</span> <span class="object font-weight-bold font-italic">1378 - Wolbach Library</span>.” The file would look like:</p>
+                <p>Just like plain JSON, JSON-LD can be used to nest information to make it look more hierarchical. JSON-LD isn’t inherently hierarchical, but nesting can help make files more human-readable. Right now, the ground station is an object with respect to the observation, but we can also include triples where the ground station is a subject. We can use <code>@id</code> to make the ground station’s URL a subject, then add another predicate and object. For example, maybe we want to add a triple that says “<span class="subject font-weight-bold">This ground station</span><span class="sr-only">Subject</span> <span class="predicate font-italic">has name</span><span class="sr-only">Object</span> <span class="object font-weight-bold font-italic">1378 - Wolbach Library</span><span class="sr-only">Predicate</span>.” The file would look like:</p>
 
 <pre><code>{
     "@context": {
@@ -130,7 +130,7 @@
     } 
 }</code></pre>
 
-                <p>Note that curly braces are used to denote a new JSON-LD object. The new triple, in machine-readable form, is “<span class="subject font-weight-bold">https://network.satnogs.org/stations/1378/</span> <span class="predicate font-italic">https://schema.org/name</span> <span class="object font-weight-bold font-italic">1378 - Wolbach Library</span>.”</p>
+                <p>Note that curly braces are used to denote a new JSON-LD object. The new triple, in machine-readable form, is “<span class="subject font-weight-bold">https://network.satnogs.org/stations/1378/</span><span class="sr-only">Subject</span> <span class="predicate font-italic">https://schema.org/name</span><span class="sr-only">Object</span> <span class="object font-weight-bold font-italic">1378 - Wolbach Library</span><span class="sr-only">Predicate</span>.”</p>
 
                 <p>If you are wondering how to get from the human-readable keys to machine-readable URLs and URIs, this happens after using JSON-LD’s transformation algorithms. For more information on the algorithms and what they do, check out our <a href="/resources/advanced#algorithms">JSON-LD primer</a>.</p>
 
