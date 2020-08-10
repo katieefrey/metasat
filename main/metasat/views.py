@@ -115,6 +115,69 @@ def element(request,element):
         return render(request, "metasat/element.html", context)
 
 
+
+
+
+def element2(request,element):
+
+    try:
+
+        el = Element.objects.get(identifier=element)
+
+        elid = el.id
+        crosswalks = ExternalElement.objects.filter(metasatelement_id=elid).select_related('source')
+
+        context = {
+                    "element": el,
+                    "crosswalks": crosswalks,
+                }
+
+    except Element.DoesNotExist:
+        context = {"element": element}
+        return render(request, "metasat/unknown.html",context)
+    
+    family = request.GET.get('family','')
+    segment = request.GET.get('segment','')
+    
+    if family != '':    
+
+        all_groups = ElementFamily.objects.order_by('family')
+        groups = {}
+        for x in all_groups:
+            groups[x] = Element.objects.filter(family=x,deprecated=False).order_by('identifier')
+
+        context["groups"] = groups
+        context["groupname"] = family
+        context["gtype"] = "family"
+
+        return render(request, "metasat/grouping2.html", context)
+
+    elif segment != '':    
+
+        all_groups = Segment.objects.order_by('segment')
+        groups = {}
+        for x in all_groups:
+            groups[x] = Element.objects.filter(segment=x,deprecated=False).order_by('identifier')
+
+        context["groups"] = groups
+        context["groupname"] = segment
+        context["gtype"] = "segment"
+
+        return render(request, "metasat/grouping2.html", context)
+
+    else:
+
+        alphabet = list(string.ascii_lowercase)
+        all_elements = Element.objects.filter(deprecated=False).order_by('identifier')
+        context["all_elements"] = all_elements
+        context["alphabet"] = alphabet
+
+        return render(request, "metasat/element2.html", context)
+
+
+
+
+
 def edit(request,element):
     print("on the edit page!")
     try:
