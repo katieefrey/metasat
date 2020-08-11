@@ -64,30 +64,31 @@
     </div>
 
     <div class="col-9 sidebar offset-3" id="content">
-      <h1 id="introduction">Advanced Topics</h1>
-      <br />
+      <div class="mainstuff">
+        <h1 id="introduction">Advanced Topics</h1>
+        <br />
 
-      <h2 id="using-JSON-LD">How to use JSON-LD</h2>
+        <h2 id="using-JSON-LD">How to use JSON-LD</h2>
 
-      <p>JSON-LD (JSON for Linked Data) is more than just a data exchange syntax. The JSON-LD specification also includes a set of transforming algorithms help you create linked data that is easy for machines to use and easy for humans to read and write.</p>
+        <p>JSON-LD (JSON for Linked Data) is more than just a data exchange syntax. The JSON-LD specification also includes a set of transforming algorithms help you create linked data that is easy for machines to use and easy for humans to read and write.</p>
 
-      <h3 id="linked-data">Linked Data</h3>
+        <h3 id="linked-data">Linked Data</h3>
 
-      <p>JSON-LD is one of several W3C-recommended implementations of the <a href="/resources/linked-data">Resource Description Framework (RDF)</a>, making it ideal to create <a href="https://www.w3.org/standards/semanticweb/data">linked data</a>. Linking data makes data and information more accessible to both machines and people. It can help simplify knowledge management, or even help search engines find information more efficiently. Google already uses JSON-LD and linked data: if you Google something like the name of a famous celebrity, the distance to the sun, or the capital of Nepal, you might see a box with information on the subject before you even get to any links. These are called "<a href="https://support.google.com/knowledgepanel/answer/9163198?hl=en">knowledge panels</a>," and they are created using the magic of JSON-LD and linked data.</p>
+        <p>JSON-LD is one of several W3C-recommended implementations of the <a href="/resources/linked-data">Resource Description Framework (RDF)</a>, making it ideal to create <a href="https://www.w3.org/standards/semanticweb/data">linked data</a>. Linking data makes data and information more accessible to both machines and people. It can help simplify knowledge management, or even help search engines find information more efficiently. Google already uses JSON-LD and linked data: if you Google something like the name of a famous celebrity, the distance to the sun, or the capital of Nepal, you might see a box with information on the subject before you even get to any links. These are called "<a href="https://support.google.com/knowledgepanel/answer/9163198?hl=en">knowledge panels</a>," and they are created using the magic of JSON-LD and linked data.</p>
 
-      <p>That being said, you don't need to know anything about W3C, RDF, or the semantic web to take advantage of JSON-LD and linked data! You can find examples of how you can use transforming algorithms to tap into the power of JSON-LD in the next few sections.</p>
+        <p>That being said, you don't need to know anything about W3C, RDF, or the semantic web to take advantage of JSON-LD and linked data! You can find examples of how you can use transforming algorithms to tap into the power of JSON-LD in the next few sections.</p>
 
-      <h3 id="algorithms">Transformation algorithms</h3>
+        <h3 id="algorithms">Transformation algorithms</h3>
 
-      <p>The magic of JSON-LD lies in the fact that human-readable keys can be transformed into machine-readable IRIs (<b>I</b>nternationalized <b>R</b>esource <b>I</b>dentifiers, a superset of <a href="/resources/basic-topics">URIs</a>). The human-readable form is called the "compacted" form, and the machine-readable is "expanded."</p>
+        <p>The magic of JSON-LD lies in the fact that human-readable keys can be transformed into machine-readable IRIs (<b>I</b>nternationalized <b>R</b>esource <b>I</b>dentifiers, a superset of <a href="/resources/basic-topics">URIs</a>). The human-readable form is called the "compacted" form, and the machine-readable is "expanded."</p>
 
-      <p>In addition, JSON-LD can be either "flattened" or "framed." A framed document includes nesting, looks more hierarchical, and is easier for humans to understand. Machines prefer the non-nested "flattened" form, which is faster for them to process. Luckily, there are algorithms to flatten and frame JSON-LD, too!</p>
+        <p>In addition, JSON-LD can be either "flattened" or "framed." A framed document includes nesting, looks more hierarchical, and is easier for humans to understand. Machines prefer the non-nested "flattened" form, which is faster for them to process. Luckily, there are algorithms to flatten and frame JSON-LD, too!</p>
 
-      <p>These algorithms all exist as part of the JSON-LD specification, and can be used in several programming environments. You can find them all on the <a href="https://json-ld.org/#developers">JSON-LD homepage</a>. You can also try out any of these transformations in the <a href="https://json-ld.org/playground/">JSON-LD playground</a>.</p>
+        <p>These algorithms all exist as part of the JSON-LD specification, and can be used in several programming environments. You can find them all on the <a href="https://json-ld.org/#developers">JSON-LD homepage</a>. You can also try out any of these transformations in the <a href="https://json-ld.org/playground/">JSON-LD playground</a>.</p>
 
-      <h4 id="expansion">Expansion</h4>
+        <h4 id="expansion">Expansion</h4>
 
-      <p>Expanding your JSON-LD relies on the <code>@context</code> section at the beginning of the document. Here's an example of a human-written JSON-LD document, which describes the song that spent the most weeks at number one on the Billboard Hot 100 music chart:</p>
+        <p>Expanding your JSON-LD relies on the <code>@context</code> section at the beginning of the document. Here's an example of a human-written JSON-LD document, which describes the song that spent the most weeks at number one on the Billboard Hot 100 music chart:</p>
 
 <pre><code>{
   "@context": {
@@ -218,13 +219,13 @@
   ]
 }</code></pre>
 
-      <p>Notice that there are square brackets after the <code>@graph</code>, instead of curly braces, since this is an array of JSON objects.</p>
+        <p>Notice that there are square brackets after the <code>@graph</code>, instead of curly braces, since this is an array of JSON objects.</p>
 
-      <h4 id="framing">Framing</h4>
+        <h4 id="framing">Framing</h4>
 
-      <p>The opposite of flattening is framing. A framing algorithm can take a flattened document and a "frame document" as an input, and output a framed document (be careful with the syntax here: a "frame document" is not the same as a "frame<b>d</b> document"—I'll explain more below).</p>
+        <p>The opposite of flattening is framing. A framing algorithm can take a flattened document and a "frame document" as an input, and output a framed document (be careful with the syntax here: a "frame document" is not the same as a "frame<b>d</b> document"—I'll explain more below).</p>
 
-      <p>Let's start by adding a little to our flattened document. We'll add the <code>@context</code> back, too:</p>
+        <p>Let's start by adding a little to our flattened document. We'll add the <code>@context</code> back, too:</p>
 
 <pre><code>{
   "@context": {
@@ -259,9 +260,9 @@
   ]
 }</code></pre>
 
-      <p>This time we added some information about the album the song is found in. Now we have three separate JSON objects: One for the song, one for the artist, and one for the album. For a machine, this makes perfect sense, since the song is linked with both the artist and album by IRIs. But for a human, it can be a little hard to link together.</p>
+        <p>This time we added some information about the album the song is found in. Now we have three separate JSON objects: One for the song, one for the artist, and one for the album. For a machine, this makes perfect sense, since the song is linked with both the artist and album by IRIs. But for a human, it can be a little hard to link together.</p>
 
-      <p>You can fix this easily by using a <strong>frame document</strong> and the <strong>framing algorithm</strong>. The frame document defines a structure that can be imposed on the original JSON-LD document. Here, since we want both artist and album nested under the song, our frame document might look like this:</p>
+        <p>You can fix this easily by using a <strong>frame document</strong> and the <strong>framing algorithm</strong>. The frame document defines a structure that can be imposed on the original JSON-LD document. Here, since we want both artist and album nested under the song, our frame document might look like this:</p>
 
 <pre><code>{
   "@context": {
@@ -279,13 +280,13 @@
   }
 }</code></pre>
 
-      <p>Notice that the frame document still has a <code>@context</code> section. The <code>@context</code> of the frame document can be the same as or different from the original document.</p>
+        <p>Notice that the frame document still has a <code>@context</code> section. The <code>@context</code> of the frame document can be the same as or different from the original document.</p>
 
-      <p>What the framing algorithm will do is link objects together by their <code>@id</code>. If the "song" object has an "inAlbum" key with an IRI for an value, the algorithm will look for an object with the same <code>@id</code> with a <code>@type</code> of "MusicAlbum." The algorithm will not work if the <code>@id</code>s don't match or if the object is of the incorrect <code>@type</code>.</p>
+        <p>What the framing algorithm will do is link objects together by their <code>@id</code>. If the "song" object has an "inAlbum" key with an IRI for an value, the algorithm will look for an object with the same <code>@id</code> with a <code>@type</code> of "MusicAlbum." The algorithm will not work if the <code>@id</code>s don't match or if the object is of the incorrect <code>@type</code>.</p>
 
-      <p>The framing algorithm can nest multiple objects of the same <code>@type</code>—for example, you can connect multiple albums or multiple artists in the resulting framed document.</p>
+        <p>The framing algorithm can nest multiple objects of the same <code>@type</code>—for example, you can connect multiple albums or multiple artists in the resulting framed document.</p>
 
-      <p>When we run the original document and the frame through the framing algorithm, we get the following output:</p>
+        <p>When we run the original document and the frame through the framing algorithm, we get the following output:</p>
 
 <pre><code>{
   "@context": {
@@ -314,11 +315,16 @@
   ]
 }</code></pre>
 
-      <p>This is our <strong>framed document</strong>. It's <em>framed</em> with a D because it has had a frame imposed on it.</p>
+        <p>This is our <strong>framed document</strong>. It's <em>framed</em> with a D because it has had a frame imposed on it.</p>
 
-      <p>Keep in mind that this document and the original document in this section are ontologically identical. The only difference is that the first one is easier for machines to read, and the final is easier for humans. They can be transformed into each other using the framing and flattening algorithms with no information loss.</p>
+        <p>Keep in mind that this document and the original document in this section are ontologically identical. The only difference is that the first one is easier for machines to read, and the final is easier for humans. They can be transformed into each other using the framing and flattening algorithms with no information loss.</p>
 
-      <p>In the future, we hope to provide example frames to make it easy to impose structure on your flat MetaSat documents.</p>
+        <p>In the future, we hope to provide example frames to make it easy to impose structure on your flat MetaSat documents.</p>
+
+      </div>
+      <!-- end mainstuff -->
+                    
+      {% include "website/footer.html" %}
 
     </div>
   </div>

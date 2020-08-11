@@ -35,7 +35,7 @@
                         <table class=table>
                             {% for walk in allcrosswalks %}
                             <tr>
-                                <td><a href="/crosswalk/{{walk.identifier}}">{{walk.name}}</a></td>
+                                <td><a href="/crosswalk/{{walk.identifier}}"><span lang="{{walk.lang}}">{{walk.name}}</span></a></td>
                             </tr>
                             {% endfor %}
                         </table>
@@ -49,24 +49,27 @@
 
             <div class="col-9 offset-3 sidebar">
 
-                {% if crosswalk %}
+                <div class="mainstuff">
 
-                    <div id="content">
-                        <h1>{{crosswalk}}</h1>
+                    {% if crosswalk %}
 
-                        <br/><br/>
-                        <table class=table>
-                            <tr>
-                                <th>MetaSat Element</th>
-                                <th>External Identifier</th>
-                            </tr>
-                            {% for term in terms %}
-                            <tr>
-                                <td><a href="/metasat/{{term.metasatelement}}">{{term.metasatelement}}</a></td>
-                                <td>{% if term.url != None %}<a href="{{term.url}}">{{term.identifier}}</a>{% else %}{{term.identifier}}{% endif %}</td>
-                            </tr>
-                            {% endfor %}
-                        </table>
+                        <div id="content">
+                            <h1><span lang="{{language}}">{{crosswalk}}</span></h1>
+
+                            <br/><br/>
+                            <table class=table>
+                                <tr>
+                                    <th>MetaSat Element</th>
+                                    <th>External Identifier</th>
+                                </tr>
+                                {% for term in terms %}
+                                <tr>
+                                    <td><a href="/metasat/{{term.metasatelement}}">{{term.metasatelement}}</a></td>
+                                    <td>{% if term.url != None %}<a href="{{term.url}}">{{term.identifier}}</a>{% else %}{{term.identifier}}{% endif %}</td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
 
                     {% else %}
 
@@ -78,9 +81,15 @@
                             A metadata crosswalk is a set of instructions for converting metadata of one schema or vocabulary into another.  We are working on making conversions between Metasat and different vocabularies even easier by building a full MetaSat Crosswalk.  The list of vocabularies we have developed crosswalks for is on the left, including schema.org, WikiData Items, and many more.
                         </div>
                         
-                    {% endif%}
-
+                    {% endif %}
                 </div>
+                <!-- end mainstuff -->
+                
+                
+                {% include "website/footer.html" %}
+                
+
+
             </div>
         </div>
     </div>

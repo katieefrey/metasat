@@ -62,12 +62,13 @@
             </div>
 
             <div class="col-9 sidebar offset-3">
+                <div class="mainstuff">
 
                 {% if element %}
 
                     <div id="content">
                         <h1>{% if element.deprecated == True %}Deprecated: {% endif %}{{element.identifier}}</h1>
-                        <h3>{% if element.deprecated == True %}Deprecated: {% endif %}{{element.term}}</h3>
+                        <p class="h3">{% if element.deprecated == True %}Deprecated: {% endif %}{{element.term}}</p>
                         <a href="https://schema.space/metasat/{{element.identifier}}">https://schema.space/metasat/{{element.identifier}}</a>
                     </div>
 
@@ -88,7 +89,7 @@
                             <br/>
                         {% endif %}
                     <br/><br/>
-                    <h3>Legacy information</h3>
+                    <p class="h3">Legacy information</p>
 
                     {% endif %}
 
@@ -105,7 +106,7 @@
 
                     {% if crosswalks %}
                         <br/><br/><br/><br/>
-                        <h3>Crosswalk Identifiers</h3>
+                        <p class="h3">Crosswalk Identifiers</p>
                         <table class=table>
                             {% for x in crosswalks %}
                             <tr>
@@ -129,7 +130,15 @@
                 {% endif%}
             
             </div>
+            <!-- end mainstuff -->
+                   
+            {% include "website/footer.html" %}
+            
+            </div>
+            
         </div>
+    
+
     </div>
 
 <script>
@@ -165,7 +174,7 @@ $(document).ready(function(){
     $(".totopimg").on("keyup", function(){
         if (event.keyCode === 13) {
             event.preventDefault();
-            document.getElementById("alpha-tab").scrollIntoView(true);
+            document.getElementById("alpha-tab").scrollIntoView(true); 
             $("#alpha-tab").focus();
         }
     });
@@ -174,6 +183,7 @@ $(document).ready(function(){
     $(".totopimg").on("click", function(){
         event.preventDefault();
         document.getElementById("alpha-tab").scrollIntoView(true);
+        $("#alpha-tab").focus();
     });
 
 

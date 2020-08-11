@@ -68,10 +68,20 @@ div.sidebar {
     padding-left: 40px;
     position:fixed;
     background-color: #fff;
-    max-height: calc(100vh - 210px);
+    max-height: calc(100vh - 130px);
     overflow-y: auto;
     overflow-x: hidden;
     z-index: 8;
+}
+
+div.mainstuff {
+    min-height: calc(100vh - 260px);
+}
+
+div.footer {
+
+    position: absolute;
+    bottom: 0;
 }
 
 div.sidebar2 {

@@ -5,6 +5,9 @@ class ExternalSchema(models.Model):
     identifier = models.CharField(max_length=255, null=True, blank=True)
     name = models.CharField(max_length=255)
     url = models.CharField(max_length=255, null=True, blank=True)
+    # language code for schema title to assit with screen readers
+    # NOT language of the vocab itself
+    lang = models.CharField(max_length=4, null=True, blank=True)
 
     def __str__(self):
         return f"{self.name}"
