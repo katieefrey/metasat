@@ -8,7 +8,6 @@ urlpatterns = [
     path('term/<element>', views.element, name='element'),
     path('edit/<element>', views.edit, name='edit'),
     path('<element>', views.element, name='element'),
-    path('2/<element>', views.element2, name='element2'),
 ]
 
 

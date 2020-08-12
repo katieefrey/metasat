@@ -60,31 +60,37 @@
             </div>
 
             <div class="col-9 sidebar offset-3" id="content">
+                <div class="mainstuff">
 
-                <h1 id="introduction">Introducing MetaSat</h1>
-                
-                <p>The MetaSat team is working to create a metadata vocabulary, example schemas, and crosswalks to describe satellite missions. MetaSat is specifically optimized for small satellite (SmallSat) missions. This work will help facilitate information sharing between missions and lower the barrier of entry into the field.</p>
+                    <h1 id="introduction">Introducing MetaSat</h1>
+                    
+                    <p>The MetaSat team is working to create a metadata vocabulary, example schemas, and crosswalks to describe satellite missions. MetaSat is specifically optimized for small satellite (SmallSat) missions. This work will help facilitate information sharing between missions and lower the barrier of entry into the field.</p>
 
-                <h2 id="metadata"><strong>Why metadata?</strong></h2>
-                <p>Metadata is most simply defined as data about data. For example, a book contains data: the words on the page. The metadata is information about the book, such as the title, author, page count, publisher, and more. Space missions also have data—for example, the information a satellite collects and sends back to earth. The metadata about a space mission might include information about the satellite’s components, people and organizations involved with the mission, the launch date, and information about ground stations that communicate with the spacecraft.</p>
-                <p>Right now, space mission metadata is recorded in many different ways, which makes it hard for different teams to talk to each other, collaborate, or share advice about what works or doesn’t work in SmallSat missions. Our goal with MetaSat is to create a tool kit that can be shared and expanded upon to respond to and anticipate this community’s needs.</p>
+                    <h2 id="metadata"><strong>Why metadata?</strong></h2>
+                    <p>Metadata is most simply defined as data about data. For example, a book contains data: the words on the page. The metadata is information about the book, such as the title, author, page count, publisher, and more. Space missions also have data—for example, the information a satellite collects and sends back to earth. The metadata about a space mission might include information about the satellite’s components, people and organizations involved with the mission, the launch date, and information about ground stations that communicate with the spacecraft.</p>
+                    <p>Right now, space mission metadata is recorded in many different ways, which makes it hard for different teams to talk to each other, collaborate, or share advice about what works or doesn’t work in SmallSat missions. Our goal with MetaSat is to create a tool kit that can be shared and expanded upon to respond to and anticipate this community’s needs.</p>
 
-                <h2 id="using-metasat"><strong>Using MetaSat</strong></h2>
-                <p>The MetaSat vocabulary is the core of the MetaSat project. The MetaSat vocabulary is a list of unique terms that can be used to describe spacecraft, missions, ground stations, and more, each with a unique, permanent URI. A URI, or Uniform Resource Identifier, acts as a machine-readable identifier for the concept. The MetaSat vocabulary and its URIs can be used to describe missions both in private databases and on the web; since each term uses its own URI, the vocabulary can be used for linked data applications and schemas that use any format  of the RDF data model, including RDF-XML, Turtle, N-Triples, and more. <em>Unfamiliar with RDF or linked data? Read <a href="/resources/linked-data">our RDF guide</a>, or visit&nbsp;<a href="https://www.w3.org/standards/semanticweb/data">the W3C page on linked data</a>&nbsp;or&nbsp;<a href="https://5stardata.info/en/">5-star Open Data</a>.</em></p>
+                    <h2 id="using-metasat"><strong>Using MetaSat</strong></h2>
+                    <p>The MetaSat vocabulary is the core of the MetaSat project. The MetaSat vocabulary is a list of unique terms that can be used to describe spacecraft, missions, ground stations, and more, each with a unique, permanent URI. A URI, or Uniform Resource Identifier, acts as a machine-readable identifier for the concept. The MetaSat vocabulary and its URIs can be used to describe missions both in private databases and on the web; since each term uses its own URI, the vocabulary can be used for linked data applications and schemas that use any format  of the RDF data model, including RDF-XML, Turtle, N-Triples, and more. <em>Unfamiliar with RDF or linked data? Read <a href="/resources/linked-data">our RDF guide</a>, or visit&nbsp;<a href="https://www.w3.org/standards/semanticweb/data">the W3C page on linked data</a>&nbsp;or&nbsp;<a href="https://5stardata.info/en/">5-star Open Data</a>.</em></p>
 
-                <p>We are also creating <a href="https://gitlab.com/metasat/metasat-schema"> example schemas</a> that can be used with our vocabulary. Our schemas use JSON-LD, a highly flexible form of RDF that is built to be easily human-writable and machine-readable. The schemas combine our vocabulary with structure, and give examples and recommendations for how terms relate to each other. For more information about how to use MetaSat, JSON-LD, and RDF, check out <a href="/resources/basic-topics">our metadata guide</a>. </p>
+                    <p>We are also creating <a href="https://gitlab.com/metasat/metasat-schema"> example schemas</a> that can be used with our vocabulary. Our schemas use JSON-LD, a highly flexible form of RDF that is built to be easily human-writable and machine-readable. The schemas combine our vocabulary with structure, and give examples and recommendations for how terms relate to each other. For more information about how to use MetaSat, JSON-LD, and RDF, check out <a href="/resources/basic-topics">our metadata guide</a>. </p>
 
-                <h2 id="work"><strong>Our work so far</strong></h2>
-                <p>The Wolbach library is working closely with the Libre Space Foundation (LSF) to create MetaSat. LSF has direct experience working on SmallSat missions and runs SatNOGS, a global network of ground stations that collects satellite observations and stores them in a database. The&nbsp;<a href="https://network.satnogs.org/">SatNOGS Network</a>&nbsp;stores information about both the ground stations in the network and their observations, and the SatNOGS database (<a href="https://db.satnogs.org/">SatNOGS DB</a>) stores information about active satellites. SatNOGS will be one of the earliest adopters of MetaSat.</p>
-                <p>Would you like to contribute to the future of MetaSat? Visit&nbsp;<a href="https://gitlab.com/metasat/metasat-schema">our GitLab repository</a>&nbsp;and submit an issue, or email us at metasat[at]schema.space.</p>
+                    <h2 id="work"><strong>Our work so far</strong></h2>
+                    <p>The Wolbach library is working closely with the Libre Space Foundation (LSF) to create MetaSat. LSF has direct experience working on SmallSat missions and runs SatNOGS, a global network of ground stations that collects satellite observations and stores them in a database. The&nbsp;<a href="https://network.satnogs.org/">SatNOGS Network</a>&nbsp;stores information about both the ground stations in the network and their observations, and the SatNOGS database (<a href="https://db.satnogs.org/">SatNOGS DB</a>) stores information about active satellites. SatNOGS will be one of the earliest adopters of MetaSat.</p>
+                    <p>Would you like to contribute to the future of MetaSat? Visit&nbsp;<a href="https://gitlab.com/metasat/metasat-schema">our GitLab repository</a>&nbsp;and submit an issue, or email us at metasat[at]schema.space.</p>
 
-                <h2 id="LSTN"><strong><a href="https://lstn.wolba.ch/">Library Space Technology Network (LSTN)</a></strong></h2>
-                <p>To engage novices with MetaSat, we are installing open satellite ground stations at five public libraries. Installing ground stations in different library settings will enable our team to get feedback from novices on Libre Space's implementation of MetaSat, and supplement feedback from people already participating in small satellite missions. Libraries participating in our pilot will also help us plan for educational programs and resources to go with the ground stations. We plan to expand LSTN pending the success of our pilot.</p>
+                    <h2 id="LSTN"><strong><a href="https://lstn.wolba.ch/">Library Space Technology Network (LSTN)</a></strong></h2>
+                    <p>To engage novices with MetaSat, we are installing open satellite ground stations at five public libraries. Installing ground stations in different library settings will enable our team to get feedback from novices on Libre Space's implementation of MetaSat, and supplement feedback from people already participating in small satellite missions. Libraries participating in our pilot will also help us plan for educational programs and resources to go with the ground stations. We plan to expand LSTN pending the success of our pilot.</p>
 
-                <br/><br/>
-                <img src="{% static 'website/img/sloan.png' %}" alt="Alfred P. Sloan Foundation" width="285" height="81" class="img-fluid" />
-                <p>Funding for MetaSat is provided by the Alfred P. Sloan Foundation through&nbsp;<a href="https://sloan.org/grant-detail/8955">a grant</a>&nbsp;awarded to the John G. Wolbach Library at the Center for Astrophysics and the Libre Space Foundation.</p>
-                <br/><br/>
+                    <br/><br/>
+                    <img src="{% static 'website/img/sloan.png' %}" alt="Alfred P. Sloan Foundation" width="285" height="81" class="img-fluid" />
+                    <p>Funding for MetaSat is provided by the Alfred P. Sloan Foundation through&nbsp;<a href="https://sloan.org/grant-detail/8955">a grant</a>&nbsp;awarded to the John G. Wolbach Library at the Center for Astrophysics and the Libre Space Foundation.</p>
+                    <br/><br/>
+
+                </div>
+                <!-- end mainstuff -->
+                        
+                {% include "website/footer.html" %}
 
             </div>
         </div>

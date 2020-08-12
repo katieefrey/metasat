@@ -1,34 +1,26 @@
-@media (min-width: 1190px){
+@media (min-width: 1057px){
 
-    div.sidebar {
-        margin-top: 130px;
-        padding-right: 40px;
-        padding-left: 40px;
-        position:fixed;
-        background-color: white;
-        max-height: calc(100vh - 210px);
-        overflow-y: auto;
-        overflow-x: hidden;
-        z-index: 8;
-    }
+
 
     div.smallscreen {
         display:none !important;
     }
 }
 
-@media (max-width: 1189px){
+@media (max-width: 1056px){
 
-    div.sidebar {
-        margin-top: 85px;
-        padding-right: 40px;
-        padding-left: 40px;
-        /*position:fixed;*/
-        background-color: orange;
-        max-height: calc(100vh - 210px);
-        overflow-y: auto;
-        overflow-x: hidden;
-        z-index: 8;
+    ul.alpha {
+        margin: 0;
+        padding: 0;/*
+        list-style-position: inside;*/
+
+    }
+    li.mobileletter {
+        width: 11.11%;
+        line-height: 2rem;
+        text-align: center;
+        list-style: none;
+        float: left;
     }
 
     div.largescreen {
@@ -37,10 +29,19 @@
 }
 
 
+
 body {
      background-color: #FFFFFFFF;
      text-align: left;
      overflow-x: hidden;
+}
+
+a:hover, a:active {
+    color: #24557F;
+}
+
+a {
+    color: #337AB7;
 }
 
 code { /*Right now this is taken from https://www.w3schools.com/tags/tag_code.asp*/
@@ -93,7 +94,39 @@ div .topmenu {
     visibility: hidden;
 }
 
+div.sidebar {
+    margin-top: 80px;
+    padding-right: 40px;
+    padding-left: 20px;
+    position:fixed;
+    background-color: #fff;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 8;
+}
 
+div.maincontent {
+    margin-top: 80px;
+    padding-right: 40px;
+    padding-left: 40px;
+    position:fixed;
+    background-color: #fff;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 8;
+}
+
+div.mainstuff {
+    min-height: calc(100vh - 210px);
+}
+
+div.footer {
+
+    position: absolute;
+    bottom: 0;
+}
 
 div.sidebar2 {
     margin-top: 130px;
@@ -101,7 +134,7 @@ div.sidebar2 {
 }
 
 .subject {
-    color: #EE442F;
+    color: #DE2A12;
     font: bold;
 }
 
@@ -111,7 +144,7 @@ div.sidebar2 {
 }
 
 .object {
-    color: #63ACBE;
+    color: #3C7F90;
     font: bold italic;
 }
 
@@ -126,3 +159,18 @@ table#basic-table, th.basic-header, td.basic-data {
 th.basic-header, td.basic-data {
     padding: 10px;
 }
+
+
+.nav-link {
+    display: block;
+    padding: .5rem .5rem;
+}
+
+.card-header {
+    padding: .6rem 0rem;
+}
+
+.card-body {
+    padding: 0rem .3rem ;
+}
+

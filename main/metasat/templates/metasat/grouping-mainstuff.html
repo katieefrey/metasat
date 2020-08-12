@@ -19,87 +19,8 @@
     <div class="container-fluid">
 
         <div class="row">
-
-
-
-
-                        <div class="smallscreen col-12">
-                <div class="col-12 sidebar">
-                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Alphabetical</a>
-                        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Family</a>
-                        <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Segments</a>
-                    </div>
-
-                </div>
-                <div class="col-12">
-                    <div class="tab-content" id="v-pills-tabContent">
-                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                            home content2...
-
-                            <br/>
-                            {% for x in alphabet %}<span tabindex=0 style="cursor:pointer;" class="text-primary letter">{{x}}</span>&nbsp; &nbsp;{% endfor %}
-                            <br/>&nbsp;
-
-
-
-
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-                                </li>
-                            </ul>
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
-                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-                                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
-                            </div>
-
-
-
-
-
-
-
-
-
-
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                            profile content2...
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                            mssg content2...
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             
-            <div class="largescreen">
-
-                <div class="col-lg-4 col-md-12 col-sm-12 sidebar">
+            <div id="familylist" class="col-3 sidebar">
 
                  <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item" role="presentation">
@@ -141,13 +62,12 @@
                              {% endfor %}
 
                         </div>
-                        <br/><br/>
                     </div>
                 </div>
 
             </div>
 
-            <div class="maincontent col-lg-8 col-md-12 col-sm-12 sidebar offset-lg-4 offset-md-6">
+            <div class="col-9 offset-3 sidebar">
                 <div class="mainstuff">
                     {% if element %}
 
@@ -230,14 +150,21 @@
                             </div>
 
                         {% endif%}
-                    
-                    </div>
-                    <!-- end mainstuff -->
 
-                    {% include "website/footer.html" %}
+                </div>
+
+                <!-- end mainstuff -->
+                       
+            
+                <div class="footer" id="footer">
+                    <div class="text-center">
+                        <br/><br/>
+                        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span style="color: #000000">This work is licensed under a <a rel="license" style="color: #000000" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</span>
+                    </div>
+                </div>
+
 
             </div>
-        </div>
         </div>
     </div>
 

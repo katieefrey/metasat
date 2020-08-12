@@ -34,7 +34,10 @@ DEBUG_PROPAGATE_EXCEPTIONS = True
 #ALLOWED_HOSTS = []
 
 #live
-ALLOWED_HOSTS = ['schema.space' , 'www.schema.space','127.0.0.1']
+#ALLOWED_HOSTS = ['schema.space' , 'www.schema.space','127.0.0.1']
+
+#test
+ALLOWED_HOSTS = ['test.schema.space' , 'www.test.schema.space','127.0.0.1']
 
 
 # Application definition
