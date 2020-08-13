@@ -98,6 +98,7 @@ div.sidebar {
     margin-top: 80px;
     padding-right: 40px;
     padding-left: 20px;
+    padding-bottom: 20px;
     position:fixed;
     background-color: #fff;
     max-height: calc(100vh - 80px);
@@ -127,14 +128,9 @@ div.maincontent {
 }
 
 div.mainstuff {
-    min-height: calc(100vh - 210px);
+    min-height: calc(100vh - 230px);
 }
 
-div.footer {
-
-    position: absolute;
-    bottom: 0;
-}
 
 div.sidebar2 {
     margin-top: 130px;
