@@ -1,13 +1,13 @@
-@media (min-width: 1057px){
-
-
+@media (min-width: 992px){
+/* @media (min-width: 1057px){*/
 
     div.smallscreen {
         display:none !important;
     }
 }
 
-@media (max-width: 1056px){
+@media (max-width: 991px){
+/*@media (max-width: 1056px){*/
 
     ul.alpha {
         margin: 0;
