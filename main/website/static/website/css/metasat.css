@@ -1,9 +1,9 @@
 @media (min-width: 992px){
 /* @media (min-width: 1057px){*/
 
-    div.smallscreen {
+/*    div.smallscreen {
         display:none !important;
-    }
+    }*/
 }
 
 @media (max-width: 991px){
@@ -23,9 +23,9 @@
         float: left;
     }
 
-    div.largescreen {
+/*    div.largescreen {
         display:none !important;
-    }
+    }*/
 }
 
 
@@ -101,6 +101,14 @@ div.sidebar {
     position:fixed;
     background-color: #fff;
     max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 8;
+}
+
+div.topspacing {
+    margin-top: 80px;
+    background-color: #fff;
     overflow-y: auto;
     overflow-x: hidden;
     z-index: 8;
