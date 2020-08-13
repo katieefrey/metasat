@@ -174,3 +174,6 @@ th.basic-header, td.basic-data {
     padding: 0rem .3rem ;
 }
 
+.bg-dark {
+    background-color: #292f33 !important;
+}
