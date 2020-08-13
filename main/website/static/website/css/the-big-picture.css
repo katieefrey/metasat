@@ -19,3 +19,7 @@ body {
 	display: relative !important;
 }
 
+
+.bg-dark {
+    background-color: #292f33 !important;
+}

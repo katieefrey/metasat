@@ -115,3 +115,8 @@ table#basic-table, th.basic-header, td.basic-data {
 th.basic-header, td.basic-data {
     padding: 10px;
 }
+
+
+.bg-dark {
+    background-color: #292f33 !important;
+}
