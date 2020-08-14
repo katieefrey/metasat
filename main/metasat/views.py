@@ -56,11 +56,6 @@ def element(request,element):
 
         elid = el.id
         crosswalks = ExternalElement.objects.filter(metasatelement_id=elid).select_related('source')
-
-        # context = {
-                    
-        #         }
-
         print("am i here?")
         print(el)
 
