@@ -17,9 +17,9 @@
     <script src="{% static 'website/js/metasat_autocomplete.js' %}"></script> 
 
 
-    <!-- non mobile -->
+    <span id="topm"></span>
     <div class="container-fluid">
-        <div class="topspacing">
+        <div class="topspacing">        
         </div>
             <div class="row">            
                 <div class="newsidebar col-lg-3 col-md-3 col-12">
@@ -28,13 +28,13 @@
                     <div class="d-none d-sm-none d-md-block">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link alpha tab-2 {%if gtype == 'none'%} active{% endif %}" id="alpha-tab" href="/metasat" tabindex=0 role="tab" aria-controls="alpha" aria-selected="true">Index</a>
+                                <a class="nav-link alpha-tab2 {%if gtype == 'alpha'%} active{% endif %}" id="alpha-tab" href="/metasat" tabindex=0 role="tab" aria-controls="alpha" aria-selected="true">Index</a>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link family-tab2 {%if gtype == 'family'%} active{% endif %}" id="family-tab" href="/metasat?view=family" role="tab" aria-controls="family" aria-selected="false">Families</a>
                             </li>
-                            <li class="nav-item segment-tab2" role="presentation">
-                                <a class="nav-link {%if gtype == 'segment'%} active{% endif %}" id="segment-tab" href="/metasat?view=segment" role="tab" aria-controls="segment" aria-selected="false">Segments</a>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link segment-tab2 {%if gtype == 'segment'%} active{% endif %}" id="segment-tab" href="/metasat?view=segment" role="tab" aria-controls="segment" aria-selected="false">Segments</a>
                             </li>
                         </ul>
                     </div>
@@ -42,12 +42,15 @@
 
                     <!-- mobile pills -->
                     <div class="d-sm-block d-md-none">
+                        
                         <p class="h4">Browse MetaSat Elements</p>
-                            Here is some general explanitory text about metasat.
+                            {% if element == "noelement" %}
+                                The full list of MetaSat Elements can be viewed alphabetically via the index view, or organized into two different types of groups: the element families (conceptually related elements) or the element segments (elements for a specific mission phase).
+                            {% endif %}
                         <hr/>
                         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 
-                            <a class="nav-link alpha-tab {%if gtype == 'none'%} active{% endif %}" id="alpha-tab" data-toggle="pill" href="#alpha" role="tab" aria-controls="v-pills-alpha" aria-selected="false">By Index</a>
+                            <a class="nav-link alpha-tab {%if gtype == 'alpha'%} active{% endif %}" id="alpha-tab" data-toggle="pill" href="#alpha" role="tab" aria-controls="v-pills-alpha" aria-selected="false">By Index</a>
                             <a class="nav-link family-tab {%if gtype == 'family'%} active{% endif %}" id="family-tab" data-toggle="pill" href="#family" role="tab" aria-controls="v-pills-family" aria-selected="false">By Family</a>
                             <a class="nav-link segment-tab {%if gtype == 'segment'%} active{% endif %}" id="segment-tab" data-toggle="pill" href="#segment" role="tab" aria-controls="v-pills-segment" aria-selected="false">By Segment</a>
 
@@ -59,7 +62,7 @@
                     <!-- content should be the same for tabs and pills -->
                     <div class="tab-content">
                         <!-- alpha -->
-                        <div class="tab-pane fade {%if gtype == 'none'%} show active{% endif %}" id="alpha" role="tabpanel" aria-labelledby="alpha-tab">
+                        <div class="tab-pane fade {%if gtype == 'alpha'%} show active{% endif %}" id="alpha" role="tabpanel" aria-labelledby="alpha-tab">
 
                             <div class="d-sm-block d-md-none">
                                 Browse by Index
@@ -75,7 +78,7 @@
                             
                             {% for x in alphabet %}
                                 <span id="{{x}}" class="anchor"></span>
-                                <span style="width:50%;float:left" id="letter{{x}}" tabindex=0>{{x|upper}}</span> <span class="text-right" style="width:50%;float:right"><img tabindex=0 class="totopimg" style="width:15px;cursor:pointer;" src="{% static 'website/img/totop1.png' %}"/>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                <span style="width:50%;float:left" id="letter{{x}}" tabindex=0>{{x|upper}}</span> <span class="text-right d-none d-sm-none d-md-block" style="width:50%;float:right"><img tabindex=0 class="totopimg" style="width:15px;cursor:pointer;" src="{% static 'website/img/totop1.png' %}"/>&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                 <table class=table>
                                         {% for el in all_elements %}
                                             {% if el|make_list|first|lower == x %}
@@ -103,7 +106,7 @@
                                     <div class="card">
                                         <div class="card-header" id="{{key|cut:' '}}">
                                             <h2 class="mb-0">
-                                                <button class="btn btn-link btn-block text-left{% if key|cut:' ' != groupname %} collapsed{% endif %}" type="button" data-toggle="collapse" data-target="#collapse{{key|cut:' '}}" aria-expanded="{% if key|cut:' ' != groupname %}false{%else%}true{% endif %}" aria-controls="collapse{{key|cut:' '}}">{{key}}1</button>
+                                                <button class="btn btn-link btn-block text-left{% if key|cut:' ' != groupname %} collapsed{% endif %}" type="button" data-toggle="collapse" data-target="#collapse{{key|cut:' '}}" aria-expanded="{% if key|cut:' ' != groupname %}false{%else%}true{% endif %}" aria-controls="collapse{{key|cut:' '}}">{{key}}</button>
                                             </h2>
                                         </div>
 
@@ -112,7 +115,7 @@
                                                 <table class=table>
                                                     {% for v in values %}
                                                         <tr>
-                                                            <td id="{{v.identifier}}{{key|cut:' '}}"><a href="/metasat/{{v.identifier}}?family={{key|cut:' '}}">{{v.identifier}}2</a></td>
+                                                            <td id="{{v.identifier}}{{key|cut:' '}}"><a href="/metasat/{{v.identifier}}?family={{key|cut:' '}}">{{v.identifier}}</a></td>
                                                         </tr>
                                                     {% endfor %}
                                                 </table>
@@ -139,7 +142,7 @@
                                     <div class="card">
                                         <div class="card-header" id="{{key|cut:' '}}">
                                             <h2 class="mb-0">
-                                                <button class="btn btn-link btn-block text-left{% if key|cut:' ' != groupname %} collapsed{% endif %}" type="button" data-toggle="collapse" data-target="#collapse{{key|cut:' '}}" aria-expanded="{% if key|cut:' ' != groupname %}false{%else%}true{% endif %}" aria-controls="collapse{{key|cut:' '}}">{{key}}1</button>
+                                                <button class="btn btn-link btn-block text-left{% if key|cut:' ' != groupname %} collapsed{% endif %}" type="button" data-toggle="collapse" data-target="#collapse{{key|cut:' '}}" aria-expanded="{% if key|cut:' ' != groupname %}false{%else%}true{% endif %}" aria-controls="collapse{{key|cut:' '}}">{{key}}</button>
                                             </h2>
                                         </div>
 
@@ -148,7 +151,7 @@
                                                 <table class=table>
                                                     {% for v in values %}
                                                         <tr>
-                                                            <td id="{{v.identifier}}{{key|cut:' '}}"><a href="/metasat/{{v.identifier}}?segment={{key|cut:' '}}">{{v.identifier}}2</a></td>
+                                                            <td id="{{v.identifier}}{{key|cut:' '}}"><a href="/metasat/{{v.identifier}}?segment={{key|cut:' '}}">{{v.identifier}}</a></td>
                                                         </tr>
                                                     {% endfor %}
                                                 </table>
@@ -162,6 +165,10 @@
 
                         </div>
 
+                        <div style="position:fixed;bottom:50px;right:50px;z-index: 30;" class="d-sm-block d-md-none">
+                            <span class="text-right" style="float:right"><img tabindex=0 class="totopimgm" style="width:40px;cursor:pointer;" src={% static 'website/img/totopm.png' %}></span>
+                        </div>
+
                     </div>
 
 
@@ -173,12 +180,32 @@
             <div class="col-lg-9 col-md-9 offset-lg-3 offset-md-3">
                 <div class="mainstuff">
 
-                    {% if element %}
+                    {% if element == "noelement" %}
+                        <div class="d-none d-sm-none d-md-block">
+                            <div id="content">
+                                <h1>MetaSat Elements</h1>
+                            </div>
+                            <div>
+                                <br/>
+                                The full list of MetaSat Elements can be viewed alphabetically via the Index view, or organized into two different types of groups: the element families or the element segments.
+                                <br/><br/>
+
+                                A family is a collection of conceptually related elements. These elements do not have any hierarchical structure, they are simply collected into groupings of related concepts.
+                                <br/><br/>
+
+                                A segment represents concepts related to a specific phase of a satellite mission. These elements do not have any hierarchical structure, they are simply collected into groupings of concepts based on when or where they are relevant to an overall mission.
+                            </div>
+                        </div>
+
+
+
+                    {% else %}
+
 
                         <div id="content">
-                            <h1>{% if element.deprecated == True %}Deprecated: {% endif %}{{element.identifier}}</h1>
-                            <h3>{% if element.deprecated == True %}Deprecated: {% endif %}{{element.term}}</h3>
-                            <a href="https://schema.space/metasat/{{element.identifier}}">https://schema.space/metasat/{{element.identifier}}</a>
+                            <h1 class="text-break">{% if element.deprecated == True %}Deprecated: {% endif %}{{element.identifier}}</h1>
+                            <h3 class="text-break">{% if element.deprecated == True %}Deprecated: {% endif %}{{element.term}}</h3>
+                            <a href="https://schema.space/metasat/{{element.identifier}}"><span class="text-break">https://schema.space/metasat/{{element.identifier}}</span></a>
                         </div>
 
                         {% if request.user.is_authenticated %}
@@ -216,25 +243,18 @@
                         {% if crosswalks %}
                             <br/><br/><br/><br/>
                             <h3>Crosswalk Identifiers</h3>
-                            <table class=table>
-                                {% for x in crosswalks %}
-                                <tr>
-                                    <td><a href="/crosswalk/{{x.source.identifier}}">{{x.source}}</a></td>
-                                    <td>{% if x.url != None %}<a href="{{x.url}}">{{x.identifier}}</a>{% else %}{{x.identifier}}{% endif %}</a></td></td>
-                                </tr>
-                                {% endfor %}
-                            </table>
+                            <div class="table-responsive">
+                                <table class=table>
+                                    {% for x in crosswalks %}
+                                    <tr>
+                                        <td><a href="/crosswalk/{{x.source.identifier}}">{{x.source}}</a></td>
+                                        <td>{% if x.url != None %}<a href="{{x.url}}"><span class="text-break">{{x.identifier}}</span></a>{% else %}{{x.identifier}}{% endif %}</a></td></td>
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+                            </div>
                         {% endif %}
 
-                    {% else %}
-
-                        <div id="content">
-                            <h1>MetaSat Elements, Alphabetically</h1>
-                        </div>
-                        <div>
-                            <br/><br/>
-                            The full alphabetical list of MetaSat elements is available on the left.  You can also navigate to view elements by "family" or by "segment."
-                        </div>
 
                     {% endif%}
         
@@ -247,141 +267,32 @@
             
         </div>
     </div>
-    
-    <!-- end non-mobile -->
-
-
-    <!-- mobile -->
-
-    <!-- <div class="container-fluid d-sm-block d-md-none">
-
-        <div class="row">
-            
-            <div class="col-12 topspacing">
-                <p class="h4">Browse MetaSat Elements</p>
-                Here is some general explanitory text about metasat.
-                <hr/>
-                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link" id="v-pills-alpha-tab" data-toggle="pill" href="#v-pills-alpha" role="tab" aria-controls="v-pills-alpha" aria-selected="false">Alphabetically</a>
-                    <a class="nav-link" id="v-pills-family-tab" data-toggle="pill" href="#v-pills-family" role="tab" aria-controls="v-pills-family" aria-selected="false">By Family</a>
-                    <a class="nav-link" id="v-pills-segment-tab" data-toggle="pill" href="#v-pills-segment" role="tab" aria-controls="v-pills-segment" aria-selected="false">By Segment</a>
-                </div>
-                <hr/>
-
-                <div class="tab-content" id="v-pills-tabContent">
-                    <div class="tab-pane fade" id="v-pills-alpha" role="tabpanel" aria-labelledby="v-pills-alpha-tab">
-                    <p class="h4">MetaSat Elements, Alphabetically</p>
-                        The full alphabetical list of MetaSat elements is available below.  You can also navigate to view elements by "family" or by "segment."
-                        <br/><br/>
-                        <ul class="alpha">
-                        {% for x in alphabet %}
-                            <li tabindex=0 style="cursor:pointer;" class="text-primary mobileletter">{{x}}</li>
-                        {% endfor %}
-                        </ul>
-
-                        <br/><br/><br/><br/> why 4 breaks? -->
-
-                        <!-- <br/>
-                        {% for x in alphabet %}
-                            <span id="m{{x}}" class="anchor"></span>
-                            <span style="width:50%;float:left" id="mletter{{x}}" tabindex=0>{{x|upper}}</span> <span class="text-right" style="width:50%;float:right"><img tabindex=0 class="totopimg" style="width:15px;cursor:pointer;" src="{% static 'website/img/totop1.png' %}"/>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                            <table class=table>
-                                    {% for el in all_elements %}
-                                        {% if el|make_list|first|lower == x %}
-                                        <tr>
-                                            <td id="{{el.identifier}}"><a id="{{el.identifier}}link" href="/metasat/{{el.identifier}}">{{el}}</a></td>
-                                        </tr>
-                                        {% endif %}
-                                    {% endfor %}
-                            </table>
-                        {% endfor %}
-
-                    </div>
-
-                    <div class="tab-pane fade" id="v-pills-family" role="tabpanel" aria-labelledby="v-pills-family-tab">
-                        family content
-                    </div>
-                    <div class="tab-pane fade" id="v-pills-segment" role="tabpanel" aria-labelledby="v-pills-segment-tab">
-                        segment content
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-
-            <div class="col-12">
-
-                {% if element %}
-
-                    <div id="content">
-                        <h1>{% if element.deprecated == True %}Deprecated: {% endif %}{{element.identifier}}</h1>
-                        <h3>{% if element.deprecated == True %}Deprecated: {% endif %}{{element.term}}</h3>
-                        <a href="https://schema.space/metasat/{{element.identifier}}">https://schema.space/metasat/{{element.identifier}}</a>
-                    </div>
-
-                    {% if request.user.is_authenticated %}
-                        <br/>
-                        <a href="edit/{{element.identifier}}">(admin edit)</a>
-                        <br/>
-                    {% endif %}
-
-
-                    {% if element.deprecated == True %}
-                        <br/>
-                        This element was deprecated on {{element.deprecatedon}}.
-                        <br/>
-                            {% if element.mapping.all %}
-                                <br/>Use Instead:
-                                {% for f in element.mapping.all %}<a href="/metasat/{{f.identifier}}">{{ f }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
-                                <br/>
-                            {% endif %}
-                        <br/><br/>
-                        <h3>Legacy information</h3>
-
-                    {% endif %}
-
-                    <br/>
-                    <strong>Description:</strong> {% if element.desc == ""%}None{% else %}{{element.desc}}{% endif %}{% if element.source != None %} (<a href="{{element.source}}">source</a>){% endif %}
-                    <br/><br/>
-                    <strong>Example:</strong> {% if element.example == ""%}None{% else %}{{element.example}}{% endif %}<br/><br/>
-                    <strong>Synonym(s):</strong> {% if element.synonym == ""%}None{% else %}{{element.synonym}}{% endif %}<br/><br/>
-                    <strong>Element Segments:</strong>  {% for f in element.segment.all %}<a href="/metasat/{{element.identifier}}?segment={{f|cut:' '}}">{{ f }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}<br/><br/>
-                    <strong>Element Families:</strong>  {% for f in element.family.all %}<a href="/metasat/{{element.identifier}}?family={{f|cut:' '}}">{{ f }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
-
-                    <br/><br/>
-                    <a href="mailto:metasat@schema.space?subject=suggestion: {{element.identifier}}">suggest an edit</a>
-
-                    {% if crosswalks %}
-                        <br/><br/><br/><br/>
-                        <h3>Crosswalk Identifiers</h3>
-                        <div class="table-responsive">
-                            <table class=table>
-                                {% for x in crosswalks %}
-                                <tr>
-                                    <td><a href="/crosswalk/{{x.source.identifier}}">{{x.source}}</a></td>
-                                    <td>{% if x.url != None %}<a href="{{x.url}}">{{x.identifier}}</a>{% else %}{{x.identifier}}{% endif %}</a></td></td>
-                                </tr>
-                                {% endfor %}
-                            </table>
-                        </div>
-                    {% endif %}
-
-                {% endif%}
-            
-               
-            {% include "website/footer.html" %}
-            
-            </div>
-        </div>
-    </div> --> 
-
-    <!-- end mobile -->
 
 
 <script>
 
 $(document).ready(function(){
+
+    localStorage.setItem('currentTab', '{{gtype}}');
+    var currentTab = localStorage.getItem('currentTab');
+    console.log("initial tab -->  "+currentTab);
+
+    localStorage.setItem('currentElement', '{{element}}');
+    var currentElement = localStorage.getItem('currentElement');
+    console.log("initial element -->  "+currentElement);
+
+    if (currentElement != "noelement") {
+        var windowSize = $(window).width(); // Could've done $(this).width()
+        console.log("its a real element");
+        if(windowSize < 768){
+            console.log("window small hide all!");
+            $("#family").removeClass('active');
+            $("#segment").removeClass('active');
+            $("#alpha").removeClass('active');
+            $('.'+currentTab+'-tab').removeClass("active");//
+            $('.'+currentTab+'-tab').attr("aria-selected", "false");
+        }
+    }
 
     $(".letter").on("keyup", function(){
         if (event.keyCode === 13) {
@@ -424,7 +335,7 @@ $(document).ready(function(){
 
         $("#{{element.identifier}}").css("background-color","lightgrey");
 
-        $("#{{element.identifier}}").append('<span class="text-right" style="float:right"><img tabindex=0 class="totopimg" style="width:15px;cursor:pointer;" src={% static "website/img/totop1.png" %}></span>');
+        $("#{{element.identifier}}").append('<span class="text-right d-none d-sm-none d-md-block" style="float:right"><img tabindex=0 class="totopimg" style="width:15px;cursor:pointer;" src={% static "website/img/totop1.png" %}></span>');
 
     {% endif %}
 
@@ -444,8 +355,17 @@ $(document).ready(function(){
     });
 
 
+    $(".totopimgm").on("click", function(){
+            event.preventDefault();
+            document.getElementById("topm").scrollIntoView(true); 
+            $("#alpha-tab").focus();
+    });
+
 
     $('.alpha-tab').click(function (e) {
+        localStorage.setItem('currentTab', 'alpha');
+        localStorage.setItem('inactive1', 'family');
+        localStorage.setItem('inactive2', 'segment');
         console.log("testing");
 
         if ($(this).hasClass("active")) {
@@ -456,15 +376,15 @@ $(document).ready(function(){
             e.stopPropagation();
             $('.alpha-tab').removeClass("active");//
             $('.alpha-tab').attr("aria-selected", "false");
-
-            var lastclosed = "alpha";
-
         } else {
             console.log("no class");
         }
     });
 
     $('.family-tab').click(function (e) {
+        localStorage.setItem('currentTab', 'family');
+        localStorage.setItem('inactive1', 'segment');
+        localStorage.setItem('inactive2', 'alpha');
 
         if ($(this).hasClass("active")) {
            
@@ -473,13 +393,13 @@ $(document).ready(function(){
             e.stopPropagation();
             $('.family-tab').removeClass("active");//
             $('.family-tab').attr("aria-selected", "false");
-
-            var lastclosed = "family";
-
         }
     });
 
     $('.segment-tab').click(function (e) {
+        localStorage.setItem('currentTab', 'segment');
+        localStorage.setItem('inactive1', 'family');
+        localStorage.setItem('inactive2', 'alpha');
 
         if ($(this).hasClass("active")) {
            
@@ -488,9 +408,6 @@ $(document).ready(function(){
             e.stopPropagation();
             $('.segment-tab').removeClass("active");//
             $('.segment-tab').attr("aria-selected", "false");
-
-            var lastclosed = "segment";
-
         }
     });
 
@@ -500,41 +417,24 @@ $(document).ready(function(){
         console.log("window size");
         var windowSize = $(window).width(); // Could've done $(this).width()
         if(windowSize > 768){
-            console.log("this?");
+            var currentTab = localStorage.getItem('currentTab');
+            var inactive1 = localStorage.getItem('inactive1');
+            var inactive2 = localStorage.getItem('inactive2');
 
-            if (lastclosed == "family"){
-                console.log("andddd this?");
-                 $("#family").addClass('active');
-                e.preventDefault();
-                e.stopPropagation();
-                $('.family-tab2').addClass("active");//
-                $('.family-tab2').attr("aria-selected", "true");
-                $('.family-tab').addClass("active");//
-                $('.family-tab').attr("aria-selected", "true");
-
-            } else if (lastclosed == "segment") {
-
-                console.log("andddd this?");
-                $("#segment").addClass('active');
-                e.preventDefault();
-                e.stopPropagation();
-                $('.segment-tab2').addClass("active");//
-                $('.segment-tab2').attr("aria-selected", "true");
-                $('.segment-tab').addClass("active");//
-                $('.segment-tab').attr("aria-selected", "true");
-
-            } else {
-        
-                console.log("andddd this?");
-                 $("#alpha").addClass('active');
-                e.preventDefault();
-                e.stopPropagation();
-                $('.alpha-tab2').addClass("active");//
-                $('.alpha-tab2').attr("aria-selected", "true");
-                $('.alpha-tab').addClass("active");//
-                $('.alpha-tab').attr("aria-selected", "true");
-            }
-
+            console.log("currentTab --> "+currentTab);
+            $("#"+currentTab).addClass('active');
+            e.preventDefault();
+            e.stopPropagation();
+            $('.'+inactive1+'-tab2').removeClass("active");
+            $('.'+inactive2+'-tab2').removeClass("active");
+            $('.'+currentTab+'-tab2').addClass("active");//
+            $('.'+currentTab+'-tab2').attr("aria-selected", "true");
+            $('.'+inactive1+'-tab').removeClass("active");
+            $('.'+inactive2+'-tab').removeClass("active");
+            $('.'+currentTab+'-tab').addClass("active");//
+            $('.'+currentTab+'-tab').attr("aria-selected", "true");
+            $('.'+currentTab).addClass("active");//
+            $('.'+currentTab).attr("aria-selected", "true");
         }
     });
 

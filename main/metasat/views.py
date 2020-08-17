@@ -8,12 +8,45 @@ from crosswalk.models import ExternalElement
 
 import string
 
+
+
+
+from django.db import connection, reset_queries
+import time
+import functools
+
+def query_debugger(func):
+
+    @functools.wraps(func)
+    def inner_func(*args, **kwargs):
+
+        reset_queries()
+
+        start_queries = len(connection.queries)
+
+        start = time.perf_counter()
+        result = func(*args, **kwargs)
+        end = time.perf_counter()
+
+        end_queries = len(connection.queries)
+
+        print(f"Function : {func.__name__}")
+        print(f"Number of Queries : {end_queries - start_queries}")
+        print(f"Finished in : {(end - start):.2f}s")
+        return result
+
+    return inner_func
+
+
+@query_debugger
 def index(request):
 
     view = request.GET.get('view', '')
 
     families = ElementFamily.objects.order_by('family')
     segments = Segment.objects.order_by('segment')
+
+    all_elements = Element.objects.filter(deprecated=False).order_by('identifier').only('identifier')#
 
     famgroups = {}
     for x in families:
@@ -23,16 +56,14 @@ def index(request):
     for x in segments:
         seggroups[x] = Element.objects.filter(segment=x,deprecated=False).order_by('identifier')
 
-
     alphabet = list(string.ascii_lowercase)
-    all_elements = Element.objects.filter(deprecated=False).order_by('identifier')
-
-
+    
     context = {
             "famgroups" : famgroups, # all elements by family
             "seggroups" : seggroups, # all elements by segment
             "all_elements" : all_elements, # all elements
             "alphabet" : alphabet,
+            "element" : "noelement"
             }
 
     if view == "family":
@@ -42,11 +73,45 @@ def index(request):
         context["gtype"] = "segment"
 
     else:
-        context["gtype"] = "none"
+        context["gtype"] = "alpha"
         
     return render(request, "metasat/elementindex.html", context)
 
 
+    
+    # list_of_families = ["observation", "communication", "electrical", "optics"]
+
+    # list_of_elements = [
+    #             {
+    #                 "element": "airDensity",
+    #                 "families": ["observation", "communication"]
+    #             },
+    #             {
+    #                 "element": "camera",
+    #                 "families": ["electrical", "optics"]
+    #             },
+    #             {
+    #                 "element": "coating",
+    #                 "families": ["communication", "optics"]
+    #             },
+    #             {
+    #                 "element": "amplitude",
+    #                 "families": ["observation", "electrical"]
+    #             }
+
+    #         ]
+
+    # famgroups = {
+    #                 "observation" : ["amplitude","airDensity"],
+    #                 "optics" : ["camera", "coating"],
+    #                 "communication" : ["airDensity", "coating"],
+    #                 "electrical" : ["camera","amplitude"],
+    #             }
+
+
+
+
+@query_debugger
 def element(request,element):
 
     print("how about this")
@@ -97,19 +162,16 @@ def element(request,element):
 
         context["gtype"] = "family"
 
-        return render(request, "metasat/element.html", context)
-
     elif segment != '':    
 
         context["gtype"] = "segment"
 
-        return render(request, "metasat/element.html", context)
-
     else:
 
-        context["gtype"] = "none"
+        context["gtype"] = "alpha"
 
-        return render(request, "metasat/element.html", context)
+    
+    return render(request, "metasat/elementindex.html", context)
 
 
 def edit(request,element):

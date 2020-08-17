@@ -4,13 +4,6 @@
 @media (min-width: 768px) {  
 
     /* top spacing gains these in larger screens */
-/*    div.topspacing {
-        padding-right: 20px;
-        padding-left: 20px;
-        padding-bottom: 20px;
-        position:fixed;
-        max-height: calc(100vh - 80px);
-    }*/
 
     div.newsidebar {
         padding-right: 20px;
@@ -79,7 +72,7 @@ pre {
     font-weight: bold;
     font-size: 20px;
     color: #fff !important; 
-/*    text-decoration: underline;*/
+    /* text-decoration: underline;*/
 text-decoration: none;
 }
 
@@ -87,7 +80,7 @@ text-decoration: none;
     font-weight: bold;
     font-size: 20px;
     color: #fff !important; 
-/*    text-decoration: underline;*/
+    /* text-decoration: underline;*/
     text-decoration: none;
 }
 
@@ -96,11 +89,13 @@ div .topmenu {
   background-color: white;
 }
 
+
 .anchor {
     display: block;
     position: relative;
     visibility: hidden;
 }
+
 
 div.sidebar {
     margin-top: 80px;
@@ -116,14 +111,14 @@ div.sidebar {
 }
 
 
-
-
 div.topspacing {
     margin-top: 80px;
     overflow-y: hidden;
     overflow-x: hidden;
     z-index: 8;
 }
+
+
 div.maincontent {
     margin-top: 80px;
     padding-right: 40px;

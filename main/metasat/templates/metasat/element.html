@@ -383,6 +383,10 @@
 
 $(document).ready(function(){
 
+    localStorage.setItem('currentTab', '{{gtype}}');
+    var currentTab = localStorage.getItem('currentTab');
+    console.log("initial tab -->  "+currentTab);
+
     $(".letter").on("keyup", function(){
         if (event.keyCode === 13) {
             thisletter = event.target.innerHTML;
@@ -445,6 +449,9 @@ $(document).ready(function(){
 
 
     $('.alpha-tab').click(function (e) {
+        localStorage.setItem('currentTab', 'alpha');
+        localStorage.setItem('inactive1', 'family');
+        localStorage.setItem('inactive2', 'segment');
         console.log("testing");
 
         if ($(this).hasClass("active")) {
@@ -455,13 +462,15 @@ $(document).ready(function(){
             e.stopPropagation();
             $('.alpha-tab').removeClass("active");//
             $('.alpha-tab').attr("aria-selected", "false");
-
         } else {
             console.log("no class");
         }
     });
 
     $('.family-tab').click(function (e) {
+        localStorage.setItem('currentTab', 'family');
+        localStorage.setItem('inactive1', 'segment');
+        localStorage.setItem('inactive2', 'alpha');
 
         if ($(this).hasClass("active")) {
            
@@ -470,11 +479,13 @@ $(document).ready(function(){
             e.stopPropagation();
             $('.family-tab').removeClass("active");//
             $('.family-tab').attr("aria-selected", "false");
-
         }
     });
 
     $('.segment-tab').click(function (e) {
+        localStorage.setItem('currentTab', 'segment');
+        localStorage.setItem('inactive1', 'family');
+        localStorage.setItem('inactive2', 'alpha');
 
         if ($(this).hasClass("active")) {
            
@@ -483,7 +494,33 @@ $(document).ready(function(){
             e.stopPropagation();
             $('.segment-tab').removeClass("active");//
             $('.segment-tab').attr("aria-selected", "false");
+        }
+    });
 
+    console.log("what up");
+
+    $(window).on('resize', function(e){
+        console.log("window size");
+        var windowSize = $(window).width(); // Could've done $(this).width()
+        if(windowSize > 768){
+            var currentTab = localStorage.getItem('currentTab');
+            var inactive1 = localStorage.getItem('inactive1');
+            var inactive2 = localStorage.getItem('inactive2');
+
+            console.log("currentTab --> "+currentTab);
+            $("#"+currentTab).addClass('active');
+            e.preventDefault();
+            e.stopPropagation();
+            $('.'+inactive1+'-tab2').removeClass("active");
+            $('.'+inactive2+'-tab2').removeClass("active");
+            $('.'+currentTab+'-tab2').addClass("active");//
+            $('.'+currentTab+'-tab2').attr("aria-selected", "true");
+            $('.'+inactive1+'-tab').removeClass("active");
+            $('.'+inactive2+'-tab').removeClass("active");
+            $('.'+currentTab+'-tab').addClass("active");//
+            $('.'+currentTab+'-tab').attr("aria-selected", "true");
+            $('.'+currentTab).addClass("active");//
+            $('.'+currentTab).attr("aria-selected", "true");
         }
     });
 
