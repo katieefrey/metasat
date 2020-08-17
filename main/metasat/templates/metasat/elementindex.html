@@ -22,13 +22,13 @@
         <div class="topspacing">
         </div>
             <div class="row">            
-                <div class="newsidebar col-lg-4 col-md-4 col-12">
+                <div class="newsidebar col-lg-3 col-md-3 col-12">
 
                     <!-- non-mobile tabs -->
                     <div class="d-none d-sm-none d-md-block">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link {%if gtype == 'none'%} active{% endif %}" id="alpha-tab" href="/metasat" tabindex=0 role="tab" aria-controls="alpha" aria-selected="true">Alphabetical</a>
+                                <a class="nav-link {%if gtype == 'none'%} active{% endif %}" id="alpha-tab" href="/metasat" tabindex=0 role="tab" aria-controls="alpha" aria-selected="true">Index</a>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link {%if gtype == 'family'%} active{% endif %}" id="family-tab" href="/metasat?view=family" role="tab" aria-controls="family" aria-selected="false">Families</a>
@@ -47,7 +47,7 @@
                         <hr/>
                         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 
-                            <a class="nav-link alpha-tab {%if gtype == 'none'%} active{% endif %}" id="alpha-tab" data-toggle="pill" href="#alpha" role="tab" aria-controls="v-pills-alpha" aria-selected="false">Alphabetically</a>
+                            <a class="nav-link alpha-tab {%if gtype == 'none'%} active{% endif %}" id="alpha-tab" data-toggle="pill" href="#alpha" role="tab" aria-controls="v-pills-alpha" aria-selected="false">By Index</a>
                             <a class="nav-link family-tab {%if gtype == 'family'%} active{% endif %}" id="family-tab" data-toggle="pill" href="#family" role="tab" aria-controls="v-pills-family" aria-selected="false">By Family</a>
                             <a class="nav-link segment-tab {%if gtype == 'segment'%} active{% endif %}" id="segment-tab" data-toggle="pill" href="#segment" role="tab" aria-controls="v-pills-segment" aria-selected="false">By Segment</a>
 
@@ -62,7 +62,7 @@
                         <div class="tab-pane fade {%if gtype == 'none'%} show active{% endif %}" id="alpha" role="tabpanel" aria-labelledby="alpha-tab">
 
                             <div class="d-sm-block d-md-none">
-                                Browse Alphabetically
+                                Browse by Index
                             </div>
 
                             <ul class="alpha">
@@ -170,7 +170,7 @@
 
 
 
-            <div class="col-lg-8 col-md-8 offset-lg-4 offset-md-4">
+            <div class="col-lg-9 col-md-9 offset-lg-3 offset-md-3">
                 <div class="mainstuff">
 
                     {% if element %}
