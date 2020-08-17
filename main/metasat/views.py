@@ -16,7 +16,7 @@ def index(request):
     families = ElementFamily.objects.order_by('family')
     segments = Segment.objects.order_by('segment')
 
-    all_elements = Element.objects.filter(deprecated=False).order_by('identifier').only('identifier')#
+    all_elements = Element.objects.filter(deprecated=False).order_by('identifier').only('identifier')
 
     famgroups = {}
     for x in families:
@@ -50,22 +50,15 @@ def index(request):
 
 def element(request,element):
 
-    print("how about this")
     try:
-
         el = Element.objects.get(identifier=element)
-
-        elid = el.id
-        crosswalks = ExternalElement.objects.filter(metasatelement_id=elid).select_related('source')
-        print("am i here?")
-        print(el)
-
     except Element.DoesNotExist:
         context = {"element": element}
         return render(request, "metasat/unknown.html",context)
 
+    elid = el.id
+    crosswalks = ExternalElement.objects.filter(metasatelement_id=elid).select_related('source')
 
-    
     family = request.GET.get('family','')
     segment = request.GET.get('segment','')
 
@@ -80,10 +73,8 @@ def element(request,element):
     for x in segments:
         seggroups[x] = Element.objects.filter(segment=x,deprecated=False).order_by('identifier')
 
-
     alphabet = list(string.ascii_lowercase)
     all_elements = Element.objects.filter(deprecated=False).order_by('identifier')
-
 
     context = {
             "element": el,
@@ -95,52 +86,45 @@ def element(request,element):
             }
     
     if family != '':    
-
         context["gtype"] = "family"
 
     elif segment != '':    
-
         context["gtype"] = "segment"
 
     else:
-
         context["gtype"] = "alpha"
-
-    
+   
     return render(request, "metasat/index.html", context)
 
 
 def edit(request,element):
-    print("on the edit page!")
     try:
-
         el = Element.objects.get(identifier=element)
-
-        elid = el.id
-        print(el.family)
-
-        crosswalks = ExternalElement.objects.filter(metasatelement_id=elid)
-        
-        famcomp = FamComp(instance=Element.objects.get(identifier=element))
-        segcomp = SegComp(instance=Element.objects.get(identifier=element))
-        elform = ElementForm(instance=Element.objects.get(identifier=element))
-
-        exelform = ExternalElementForm()
-
-        exelformset = ExElFormSet(queryset=ExternalElement.objects.filter(metasatelement_id=elid))
-
-        context = {"element": el,
-                   "crosswalks": crosswalks,
-                   "elform" : elform,
-                   "famcomp" : famcomp,
-                   "segcomp" : segcomp,
-                   "exelform" : exelform,
-                   "exelformset": exelformset,
-                    }
-
     except Element.DoesNotExist:
         context = {"element": element}
         return render(request, "metasat/unknown.html",context)
+
+    elid = el.id
+
+    crosswalks = ExternalElement.objects.filter(metasatelement_id=elid)
+    
+    famcomp = FamComp(instance=Element.objects.get(identifier=element))
+    segcomp = SegComp(instance=Element.objects.get(identifier=element))
+    elform = ElementForm(instance=Element.objects.get(identifier=element))
+
+    exelform = ExternalElementForm()
+
+    exelformset = ExElFormSet(queryset=ExternalElement.objects.filter(metasatelement_id=elid))
+
+    context = {
+                "element": el,
+                "crosswalks": crosswalks,
+                "elform" : elform,
+                "famcomp" : famcomp,
+                "segcomp" : segcomp,
+                "exelform" : exelform,
+                "exelformset": exelformset,
+                }
 
     return render(request, "metasat/edit.html", context)
 
