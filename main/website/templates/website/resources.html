@@ -18,139 +18,140 @@
 
 
 <div class="container-fluid">
-  <div class="row">
-
-    <div class="col-3 sidebar">
-      <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item" role="presentation">
-          <a class="nav-link active" id="resources-tab"  href="/resources" tabindex=0 role="tab" aria-controls="resources" aria-selected="true">Resources</a>
-        </li>
-      </ul>
-
-      <div class="tab-content">
-        <div class="tab-pane fade show active" id="resources" role="tabpanel" aria-labelledby="resources-tab">
-          <br/>
-          <table class="table">
-              <tr>
-                  <td><a href="#introduction">Introduction</a></td>
-              </tr>
-              <tr>
-                  <td><a href="#primer">MetaSat Primer</a></td>
-              </tr>
-              <tr>
-                  <td><a href="#linked-data">Linked Data Resources</a></td>
-              </tr>
-              <tr>
-                  <td><a href="#tools">Tools</a></td>
-              </tr>
-
-          </table>
-        </div>
-
-      </div>
-
+    <div class="topspacing">        
     </div>
 
-    <div class="col-9 sidebar offset-3" id="content">
-      <div class="mainstuff">
-        <h1 id="introduction">Resources</h1>
-        <br />
+    <div class="row">
 
-        <div> <!--div for cards and footer-->
-            <p>On this page, you will find a number of resources to help make implementing MetaSat easier. These resources include guides written by the MetaSat team and external sites that we think are helpful. For feedback, clarification, and requests, please submit an issue to <a href="https://gitlab.com/metasat/metasat-schema">our GitLab repository</a>.</p>
-            <br />
+        <div class="newsidebar d-none d-sm-none d-md-block col-lg-3 col-md-3 col-12">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="resources-tab"  href="/resources" tabindex=0 role="tab" aria-controls="resources" aria-selected="true">Resources</a>
+                </li>
+            </ul>
 
-            <h2 id="primer">MetaSat Primer</h2>
-            <div class="card-deck"> <!--MetaSat Primer cards-->
-                <div class="card"> <!--card 1, Getting Started-->
-                    <!--this is where an image would go-->
-                    <div class="card-body">
-                      <h3 class="card-title"><a href="/resources/basic-topics">Getting Started With MetaSat</a></h3>
-                      <p class="card-text">MetaSat has three main components: a vocabulary, a crosswalk, and a set of example schemas. Find out more about each here.</p>
-                    </div>
-                </div>
-
-                <div class="card"> <!--card 2, advanced topics-->
-                    <div class="card-body">
-                      <h3 class="card-title"><a href="/resources/advanced">Beyond the Basics</a></h3>
-                      <p class="card-text">Here, you will find advanced information on JSON-LD<!--, ontologies, and how to use our tools-->.</p>
-                    </div>
-                </div>
-
-                <div class="card"><!--card 3, examples-->
-                    <div class="card-body">
-                      <h3 class="card-title"><a href="https://gitlab.com/metasat/metasat-schema/-/tree/master/Examples">Example files</a></h3>
-                      <p class="card-text">This folder of our GitLab repository contains several example files that use MetaSat to describe various parts of a space mission. Right now, most of the examples concern either <a href="https://satnogs.org/">SatNOGS</a> or <a href="https://lstn.wolba.ch/">LSTN</a>.</p>
-                    </div>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="resources" role="tabpanel" aria-labelledby="resources-tab">
+                    <br/>
+                    <table class="table">
+                        <tr>
+                            <td><a href="#introduction">Introduction</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="#primer">MetaSat Primer</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="#linked-data">Linked Data Resources</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="#tools">Tools</a></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
+        </div>
 
+    <div class="col-sm-12 col-md-9 offset-md-3" id="content">
+        <div class="mainstuff">
+            <h1 id="introduction">Resources</h1>
             <br />
 
-            <h2 id="linked-data">Linked Data Resources</h2>
-            <div class="card-deck"> <!--LD resources cards-->
-                <div class="card">
-                    <!--this is where an image would go-->
-                    <div class="card-body">
-                      <h3 class="card-title"><a href="resources/linked-data">Linked Data Resources</a></h3> <!--card 1, linked data-->
-                      <p class="card-text">If you are unfamiliar with Linked Data or the Resource Description Framework (RDF) and you want to know how you can use them to improve your data's value and discoverability, start here.</p>
+            <div> <!--div for cards and footer-->
+                <p>On this page, you will find a number of resources to help make implementing MetaSat easier. These resources include guides written by the MetaSat team and external sites that we think are helpful. For feedback, clarification, and requests, please submit an issue to <a href="https://gitlab.com/metasat/metasat-schema">our GitLab repository</a>.</p>
+                <br />
+
+                <h2 id="primer">MetaSat Primer</h2>
+                <div class="card-deck"> <!--MetaSat Primer cards-->
+                    <div class="card"> <!--card 1, Getting Started-->
+                        <!--this is where an image would go-->
+                        <div class="card-body">
+                          <h3 class="card-title"><a href="/resources/basic-topics">Getting Started With MetaSat</a></h3>
+                          <p class="card-text">MetaSat has three main components: a vocabulary, a crosswalk, and a set of example schemas. Find out more about each here.</p>
+                        </div>
+                    </div>
+
+                    <div class="card"> <!--card 2, advanced topics-->
+                        <div class="card-body">
+                          <h3 class="card-title"><a href="/resources/advanced">Beyond the Basics</a></h3>
+                          <p class="card-text">Here, you will find advanced information on JSON-LD<!--, ontologies, and how to use our tools-->.</p>
+                        </div>
+                    </div>
+
+                    <div class="card"><!--card 3, examples-->
+                        <div class="card-body">
+                          <h3 class="card-title"><a href="https://gitlab.com/metasat/metasat-schema/-/tree/master/Examples">Example files</a></h3>
+                          <p class="card-text">This folder of our GitLab repository contains several example files that use MetaSat to describe various parts of a space mission. Right now, most of the examples concern either <a href="https://satnogs.org/">SatNOGS</a> or <a href="https://lstn.wolba.ch/">LSTN</a>.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="card">
-                    <div class="card-body">
-                      <h3 class="card-title"><a href="https://www.w3.org/standards/semanticweb/data">W3C resources</a></h3>
-                      <p class="card-text">This link will take you to the World Wide Web Consortium's page on linked data and the semantic web.</p>
-                    </div>
-                </div>
+                <br />
 
-                <div class="card">
-                  <div class="card-body">
-                    <h3 class="card-title"><a href="https://5stardata.info/en/">5 Star Open Data</a></h3>
-                    <p class="card-text">High quality linked open data allows your data to be more valuable and discoverable. This site provides more information about how to make sure your data is open and discoverable on the web.</p>
+                <h2 id="linked-data">Linked Data Resources</h2>
+                <div class="card-deck"> <!--LD resources cards-->
+                    <div class="card">
+                        <!--this is where an image would go-->
+                        <div class="card-body">
+                          <h3 class="card-title"><a href="resources/linked-data">Linked Data Resources</a></h3> <!--card 1, linked data-->
+                          <p class="card-text">If you are unfamiliar with Linked Data or the Resource Description Framework (RDF) and you want to know how you can use them to improve your data's value and discoverability, start here.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                          <h3 class="card-title"><a href="https://www.w3.org/standards/semanticweb/data">W3C resources</a></h3>
+                          <p class="card-text">This link will take you to the World Wide Web Consortium's page on linked data and the semantic web.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                      <div class="card-body">
+                        <h3 class="card-title"><a href="https://5stardata.info/en/">5 Star Open Data</a></h3>
+                        <p class="card-text">High quality linked open data allows your data to be more valuable and discoverable. This site provides more information about how to make sure your data is open and discoverable on the web.</p>
+                      </div>
                   </div>
-              </div>
+                </div>
+
+                <br />
+
+                <h2 id="tools">Tools</h2>
+                <div class="card-deck"> <!--Tools cards-->
+                    <div class="card">
+                        <!--this is where an image would go-->
+                        <div class="card-body">
+                          <h3 class="card-title"><a href="http://metasat.schema.space/">Sorting Tool</a></h3>
+                          <p class="card-text">Our sorting tool can be used to visualize relationships between MetaSat terms.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                          <h3 class="card-title"><a href="https://json-ld.org/playground/">JSON-LD Playground</a></h3>
+                          <p class="card-text">Built and maintained by the W3C JSON-LD group, the JSON-LD playground can act as a JSON-LD validator. The playground can confirm that the links between topics in your file are correct, and can run the <a href="/resources/advanced#algorithms">four transformation algorithms</a>.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                          <h3 class="card-title"><a href="https://jsonlint.com/">JSONLint</a></h3>
+                          <p class="card-text">JSONLint is a JSON validator. You can start here to make sure your syntax is correct, then put your code into the JSON-LD playground to make sure your connections are working as you intend.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+                
+                <p><em>For more, see <a href="https://gitlab.com/metasat/metasat-schema">our GitLab repository</a>, FAQ page (coming soon!), or contact us at <a href="mailto:metasat@schema.space?subject=MetaSat question">metasat[at]schema.space</a>.</em></p>
             </div>
 
-            <br />
+            {% include "website/footer.html" %}
 
-            <h2 id="tools">Tools</h2>
-            <div class="card-deck"> <!--Tools cards-->
-                <div class="card">
-                    <!--this is where an image would go-->
-                    <div class="card-body">
-                      <h3 class="card-title"><a href="http://metasat.schema.space/">Sorting Tool</a></h3>
-                      <p class="card-text">Our sorting tool can be used to visualize relationships between MetaSat terms.</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-body">
-                      <h3 class="card-title"><a href="https://json-ld.org/playground/">JSON-LD Playground</a></h3>
-                      <p class="card-text">Built and maintained by the W3C JSON-LD group, the JSON-LD playground can act as a JSON-LD validator. The playground can confirm that the links between topics in your file are correct, and can run the <a href="/resources/advanced#algorithms">four transformation algorithms</a>.</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-body">
-                      <h3 class="card-title"><a href="https://jsonlint.com/">JSONLint</a></h3>
-                      <p class="card-text">JSONLint is a JSON validator. You can start here to make sure your syntax is correct, then put your code into the JSON-LD playground to make sure your connections are working as you intend.</p>
-                    </div>
-                </div>
-            </div>
-
-            <br />
-            
-            <p><em>For more, see <a href="https://gitlab.com/metasat/metasat-schema">our GitLab repository</a>, FAQ page (coming soon!), or contact us at <a href="mailto:metasat@schema.space?subject=MetaSat question">metasat[at]schema.space</a>.</em></p>
+        </div>
+          
+        
         </div>
 
       </div>
       <!-- end mainstuff -->
-
-      {% include "website/footer.html" %}
-    
-    </div>
-  </div>
-</div>
 
 {% endblock %}

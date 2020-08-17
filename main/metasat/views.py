@@ -8,111 +8,106 @@ from crosswalk.models import ExternalElement
 
 import string
 
+
 def index(request):
 
     view = request.GET.get('view', '')
 
+    families = ElementFamily.objects.order_by('family')
+    segments = Segment.objects.order_by('segment')
+
+    all_elements = Element.objects.filter(deprecated=False).order_by('identifier').only('identifier')#
+
+    famgroups = {}
+    for x in families:
+        famgroups[x] = Element.objects.filter(family=x,deprecated=False).order_by('identifier')
+
+    seggroups = {}
+    for x in segments:
+        seggroups[x] = Element.objects.filter(segment=x,deprecated=False).order_by('identifier')
+
+    alphabet = list(string.ascii_lowercase)
+    
+    context = {
+            "famgroups" : famgroups, # all elements by family
+            "seggroups" : seggroups, # all elements by segment
+            "all_elements" : all_elements, # all elements
+            "alphabet" : alphabet,
+            "element" : "noelement"
+            }
+
     if view == "family":
-
-        all_groups = ElementFamily.objects.order_by('family')
-
-        groups = {}
-        for x in all_groups:
-            groups[x] = Element.objects.filter(family=x,deprecated=False).order_by('identifier')
-        
-
-        context = {
-            "groups" : groups, # all elements organized by family
-            "gtype" : "family",
-                }
-
-        # even if the groups are renamed,
-        #this template should be able to handle it
-        return render(request, "metasat/grouping.html", context)
+        context["gtype"] = "family"
 
     elif view == "segment":
-
-        all_groups = Segment.objects.order_by('segment')
-
-        groups = {}
-        for x in all_groups:
-            groups[x] = Element.objects.filter(segment=x,deprecated=False).order_by('identifier')
-
-        context = {
-            "groups" : groups, # all elements organized by segment
-            "gtype" : "segment",
-                }
-
-        return render(request, "metasat/grouping.html", context)
+        context["gtype"] = "segment"
 
     else:
-
-        alphabet = list(string.ascii_lowercase)
-        all_elements = Element.objects.filter(deprecated=False).order_by('identifier')
-
-        context = {
-                    "all_elements" : all_elements,
-                    "alphabet" : alphabet,
-                }
+        context["gtype"] = "alpha"
         
-        return render(request, "metasat/element.html", context)
+    return render(request, "metasat/index.html", context)
 
 
 def element(request,element):
 
+    print("how about this")
     try:
 
         el = Element.objects.get(identifier=element)
 
         elid = el.id
         crosswalks = ExternalElement.objects.filter(metasatelement_id=elid).select_related('source')
-
-        context = {
-                    "element": el,
-                    "crosswalks": crosswalks,
-                }
+        print("am i here?")
+        print(el)
 
     except Element.DoesNotExist:
         context = {"element": element}
         return render(request, "metasat/unknown.html",context)
+
+
     
     family = request.GET.get('family','')
     segment = request.GET.get('segment','')
+
+    families = ElementFamily.objects.order_by('family')
+    segments = Segment.objects.order_by('segment')
+
+    famgroups = {}
+    for x in families:
+        famgroups[x] = Element.objects.filter(family=x,deprecated=False).order_by('identifier')
+
+    seggroups = {}
+    for x in segments:
+        seggroups[x] = Element.objects.filter(segment=x,deprecated=False).order_by('identifier')
+
+
+    alphabet = list(string.ascii_lowercase)
+    all_elements = Element.objects.filter(deprecated=False).order_by('identifier')
+
+
+    context = {
+            "element": el,
+            "crosswalks": crosswalks,
+            "famgroups" : famgroups, # all elements by family
+            "seggroups" : seggroups, # all elements by segment
+            "all_elements" : all_elements, # all elements
+            "alphabet" : alphabet,
+            }
     
     if family != '':    
 
-        all_groups = ElementFamily.objects.order_by('family')
-        groups = {}
-        for x in all_groups:
-            groups[x] = Element.objects.filter(family=x,deprecated=False).order_by('identifier')
-
-        context["groups"] = groups
-        context["groupname"] = family
         context["gtype"] = "family"
-
-        return render(request, "metasat/grouping.html", context)
 
     elif segment != '':    
 
-        all_groups = Segment.objects.order_by('segment')
-        groups = {}
-        for x in all_groups:
-            groups[x] = Element.objects.filter(segment=x,deprecated=False).order_by('identifier')
-
-        context["groups"] = groups
-        context["groupname"] = segment
         context["gtype"] = "segment"
-
-        return render(request, "metasat/grouping.html", context)
 
     else:
 
-        alphabet = list(string.ascii_lowercase)
-        all_elements = Element.objects.filter(deprecated=False).order_by('identifier')
-        context["all_elements"] = all_elements
-        context["alphabet"] = alphabet
+        context["gtype"] = "alpha"
 
-        return render(request, "metasat/element.html", context)
+    
+    return render(request, "metasat/index.html", context)
 
 
 def edit(request,element):

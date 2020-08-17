@@ -1,3 +1,36 @@
+
+/* all CSS for small screens, but if larger screen then....*/
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {  
+
+    /* top spacing gains these in larger screens */
+
+    div.newsidebar {
+        padding-right: 20px;
+        padding-left: 20px;
+        padding-bottom: 20px;
+        position:fixed;
+        overflow-y: auto;
+        overflow-x: hidden;
+        max-height: calc(100vh - 80px);
+    }
+ 
+}
+
+ul.alpha {
+    margin: 0;
+    padding: 0;/*
+    list-style-position: inside;*/
+
+}
+li.mobileletter, li.letter {
+    width: 11.11%;
+    line-height: 2rem;
+    text-align: center;
+    list-style: none;
+    float: left;
+}
+
 body {
      background-color: #FFFFFFFF;
      text-align: left;
@@ -39,7 +72,7 @@ pre {
     font-weight: bold;
     font-size: 20px;
     color: #fff !important; 
-/*    text-decoration: underline;*/
+    /* text-decoration: underline;*/
 text-decoration: none;
 }
 
@@ -47,7 +80,7 @@ text-decoration: none;
     font-weight: bold;
     font-size: 20px;
     color: #fff !important; 
-/*    text-decoration: underline;*/
+    /* text-decoration: underline;*/
     text-decoration: none;
 }
 
@@ -56,14 +89,41 @@ div .topmenu {
   background-color: white;
 }
 
+
 .anchor {
     display: block;
     position: relative;
     visibility: hidden;
 }
 
+
 div.sidebar {
     margin-top: 80px;
+<<<<<<< HEAD
+=======
+    padding-right: 40px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    position:fixed;
+    background-color: #fff;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 8;
+}
+
+
+div.topspacing {
+    margin-top: 80px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    z-index: 8;
+}
+
+
+div.maincontent {
+    margin-top: 80px;
+>>>>>>> mobile
     padding-right: 40px;
     padding-left: 40px;
     position:fixed;
@@ -74,6 +134,7 @@ div.sidebar {
     z-index: 8;
 }
 
+<<<<<<< HEAD
 div.mainstuff {
     min-height: calc(100vh - 190px);
 }
@@ -83,6 +144,13 @@ div.footer {
     position: absolute;
     bottom: 0;
 }
+=======
+
+div.mainstuff {
+    min-height: calc(100vh - 230px);
+}
+
+>>>>>>> mobile
 
 div.sidebar2 {
     margin-top: 130px;
@@ -117,6 +185,22 @@ th.basic-header, td.basic-data {
 }
 
 
+<<<<<<< HEAD
+=======
+.nav-link {
+    display: block;
+    padding: .5rem .5rem;
+}
+
+.card-header {
+    padding: .6rem 0rem;
+}
+
+.card-body {
+    padding: 0rem .3rem ;
+}
+
+>>>>>>> mobile
 .bg-dark {
     background-color: #292f33 !important;
 }

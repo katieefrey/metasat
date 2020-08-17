@@ -20,10 +20,12 @@
 
 
     <div class="container-fluid">
+        <div class="topspacing">        
+        </div>
 
         <div class="row">
             
-            <div class="col-3 sidebar">
+            <div class="newsidebar d-none d-sm-none d-md-block col-lg-3 col-md-3 col-12">
                 <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item" role="presentation">
                             <a class="nav-link active" id="about-tab"  href="/about" tabindex=0 role="tab" aria-controls="about" aria-selected="true">About</a>
@@ -59,7 +61,7 @@
 
             </div>
 
-            <div class="col-9 sidebar offset-3" id="content">
+            <div class="col-sm-12 col-md-9 offset-md-3" id="content">
                 <div class="mainstuff">
 
                     <h1 id="introduction">Introducing MetaSat</h1>
@@ -87,11 +89,11 @@
                     <p>Funding for MetaSat is provided by the Alfred P. Sloan Foundation through&nbsp;<a href="https://sloan.org/grant-detail/8955">a grant</a>&nbsp;awarded to the John G. Wolbach Library at the Center for Astrophysics and the Libre Space Foundation.</p>
                     <br/><br/>
 
+                {% include "website/footer.html" %}
+                
                 </div>
                 <!-- end mainstuff -->
                         
-                {% include "website/footer.html" %}
-
             </div>
         </div>
     </div>

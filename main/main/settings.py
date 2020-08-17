@@ -28,13 +28,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-DEBUG_PROPAGATE_EXCEPTIONS = False
+DEBUG_PROPAGATE_EXCEPTIONS = True
 
 #local
 #ALLOWED_HOSTS = []
 
 #live
-ALLOWED_HOSTS = ['schema.space' , 'www.schema.space','127.0.0.1']
+#ALLOWED_HOSTS = ['schema.space' , 'www.schema.space','127.0.0.1']
+
+#test
+ALLOWED_HOSTS = ['test.schema.space' , 'www.test.schema.space','127.0.0.1']
 
 
 # Application definition
