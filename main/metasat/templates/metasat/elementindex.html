@@ -28,12 +28,12 @@
                     <div class="d-none d-sm-none d-md-block">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link {%if gtype == 'none'%} active{% endif %}" id="alpha-tab" href="/metasat" tabindex=0 role="tab" aria-controls="alpha" aria-selected="true">Alphabetical</a>
+                                <a class="nav-link alpha tab-2 {%if gtype == 'none'%} active{% endif %}" id="alpha-tab" href="/metasat" tabindex=0 role="tab" aria-controls="alpha" aria-selected="true">Alphabetical</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link {%if gtype == 'family'%} active{% endif %}" id="family-tab" href="/metasat?view=family" role="tab" aria-controls="family" aria-selected="false">Families</a>
+                                <a class="nav-link family-tab2 {%if gtype == 'family'%} active{% endif %}" id="family-tab" href="/metasat?view=family" role="tab" aria-controls="family" aria-selected="false">Families</a>
                             </li>
-                            <li class="nav-item" role="presentation">
+                            <li class="nav-item segment-tab2" role="presentation">
                                 <a class="nav-link {%if gtype == 'segment'%} active{% endif %}" id="segment-tab" href="/metasat?view=segment" role="tab" aria-controls="segment" aria-selected="false">Segments</a>
                             </li>
                         </ul>
@@ -444,6 +444,7 @@ $(document).ready(function(){
     });
 
 
+
     $('.alpha-tab').click(function (e) {
         console.log("testing");
 
@@ -455,6 +456,8 @@ $(document).ready(function(){
             e.stopPropagation();
             $('.alpha-tab').removeClass("active");//
             $('.alpha-tab').attr("aria-selected", "false");
+
+            var lastclosed = "alpha";
 
         } else {
             console.log("no class");
@@ -471,6 +474,8 @@ $(document).ready(function(){
             $('.family-tab').removeClass("active");//
             $('.family-tab').attr("aria-selected", "false");
 
+            var lastclosed = "family";
+
         }
     });
 
@@ -483,6 +488,52 @@ $(document).ready(function(){
             e.stopPropagation();
             $('.segment-tab').removeClass("active");//
             $('.segment-tab').attr("aria-selected", "false");
+
+            var lastclosed = "segment";
+
+        }
+    });
+
+    console.log("what up");
+
+    $(window).on('resize', function(e){
+        console.log("window size");
+        var windowSize = $(window).width(); // Could've done $(this).width()
+        if(windowSize > 768){
+            console.log("this?");
+
+            if (lastclosed == "family"){
+                console.log("andddd this?");
+                 $("#family").addClass('active');
+                e.preventDefault();
+                e.stopPropagation();
+                $('.family-tab2').addClass("active");//
+                $('.family-tab2').attr("aria-selected", "true");
+                $('.family-tab').addClass("active");//
+                $('.family-tab').attr("aria-selected", "true");
+
+            } else if (lastclosed == "segment") {
+
+                console.log("andddd this?");
+                $("#segment").addClass('active');
+                e.preventDefault();
+                e.stopPropagation();
+                $('.segment-tab2').addClass("active");//
+                $('.segment-tab2').attr("aria-selected", "true");
+                $('.segment-tab').addClass("active");//
+                $('.segment-tab').attr("aria-selected", "true");
+
+            } else {
+        
+                console.log("andddd this?");
+                 $("#alpha").addClass('active');
+                e.preventDefault();
+                e.stopPropagation();
+                $('.alpha-tab2').addClass("active");//
+                $('.alpha-tab2').attr("aria-selected", "true");
+                $('.alpha-tab').addClass("active");//
+                $('.alpha-tab').attr("aria-selected", "true");
+            }
 
         }
     });
