@@ -1,9 +1,8 @@
+/**** full site ****/
 
 /* all CSS for small screens, but if larger screen then....*/
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 @media (min-width: 768px) {  
-
-    /* top spacing gains these in larger screens */
 
     div.newsidebar {
         padding-right: 20px;
@@ -14,29 +13,20 @@
         overflow-x: hidden;
         max-height: calc(100vh - 80px);
     }
- 
 }
 
-ul.alpha {
-    margin: 0;
-    padding: 0;/*
-    list-style-position: inside;*/
-
-}
-li.mobileletter, li.letter {
-    width: 11.11%;
-    line-height: 2rem;
-    text-align: center;
-    list-style: none;
-    float: left;
+div.topspacing {
+    margin-top: 80px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    z-index: 8;
 }
 
-body {
-     background-color: #FFFFFFFF;
-     text-align: left;
-     overflow-x: hidden;
+div.mainstuff {
+    min-height: calc(100vh - 230px);
 }
 
+/* default bootstrap constrast isn't good enough */
 a:hover, a:active {
     color: #24557F;
 }
@@ -45,7 +35,35 @@ a {
     color: #337AB7;
 }
 
-code { /*Right now this is taken from https://www.w3schools.com/tags/tag_code.asp*/
+.bg-dark {
+    background-color: #292f33 !important;
+}
+
+.btncolor {
+    background-color: #4e687e !important;
+}
+
+
+/*** metasat elements pages ***/
+
+ul.alpha {
+    margin: 0;
+    padding: 0;
+}
+
+li.letter {
+    width: 11.11%;
+    line-height: 2rem;
+    text-align: center;
+    list-style: none;
+    float: left;
+}
+
+
+/**** resource pages ****/
+
+/* source: https://www.w3schools.com/tags/tag_code.asp */
+code { 
     font-family: Consolas,"courier new";
     color: crimson;
     /*background-color: #f1f1f1;*/
@@ -58,6 +76,39 @@ pre {
     color: #cccccc;
     width: 80%;
     overflow-x: scroll;
+}
+
+.subject {
+    color: #DE2A12;
+    font-weight: bold;
+}
+
+.predicate {
+    color: #601A4A;
+    font-style: italic;
+}
+
+.object {
+    color: #3C7F90;
+    font-weight: bold;
+    font-style: italic;
+}
+
+
+
+/**** not sure what pgs these relate to ****/
+
+.nav-link {
+    display: block;
+    padding: .5rem .5rem;
+}
+
+.card-header {
+    padding: .6rem 0rem;
+}
+
+.card-body {
+    padding: 0rem .3rem ;
 }
 
 .panel-heading {
@@ -84,79 +135,6 @@ text-decoration: none;
     text-decoration: none;
 }
 
-
-div .topmenu {
-  background-color: white;
-}
-
-
-.anchor {
-    display: block;
-    position: relative;
-    visibility: hidden;
-}
-
-
-div.sidebar {
-    margin-top: 80px;
-    padding-right: 40px;
-    padding-left: 20px;
-    padding-bottom: 20px;
-    position:fixed;
-    background-color: #fff;
-    max-height: calc(100vh - 80px);
-    overflow-y: auto;
-    overflow-x: hidden;
-    z-index: 8;
-}
-
-
-div.topspacing {
-    margin-top: 80px;
-    overflow-y: hidden;
-    overflow-x: hidden;
-    z-index: 8;
-}
-
-
-div.maincontent {
-    margin-top: 80px;
-    padding-right: 40px;
-    padding-left: 40px;
-    position:fixed;
-    background-color: #fff;
-    max-height: calc(100vh - 80px);
-    overflow-y: auto;
-    overflow-x: hidden;
-    z-index: 8;
-}
-
-
-div.mainstuff {
-    min-height: calc(100vh - 230px);
-}
-
-div.sidebar2 {
-    margin-top: 130px;
-    z-index: 6;
-}
-
-.subject {
-    color: #DE2A12;
-    font-weight: bold;
-}
-
-.predicate {
-    color: #601A4A;
-    font-style: italic;
-}
-
-.object {
-    color: #3C7F90;
-    font-weight: bold;
-    font-style: italic;
-}
-
 table#basic-table {
     border-collapse: collapse;
 }
@@ -167,26 +145,4 @@ table#basic-table, th.basic-header, td.basic-data {
 
 th.basic-header, td.basic-data {
     padding: 10px;
-}
-
-
-.nav-link {
-    display: block;
-    padding: .5rem .5rem;
-}
-
-.card-header {
-    padding: .6rem 0rem;
-}
-
-.card-body {
-    padding: 0rem .3rem ;
-}
-
-.bg-dark {
-    background-color: #292f33 !important;
-}
-
-.btncolor {
-    background-color: #4e687e !important;
 }

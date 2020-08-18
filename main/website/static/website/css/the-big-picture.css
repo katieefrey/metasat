@@ -26,3 +26,7 @@ body {
     padding: 50px 20px 30px 20px;
     background-color: #292f339e;
 }
+
+div.mainfooter {
+    background-color:rgb(88, 85, 84, 0.8);
+}

@@ -19,17 +19,16 @@
 <!-- non mobile -->
 
     <div class="container-fluid d-none d-sm-none d-md-block">
-
-        
+        <div class="topspacing"></div>        
         <div class="row">
             
-            <div class="col-3 sidebar">
+            <div class="col-3 newsidebar">
 
-                     <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="cwalk-tab"  href="/crosswalk" tabindex=0 role="tab" aria-controls="cwalk" aria-selected="true">Crosswalk</a>
-                        </li>
-                    </ul>
+                 <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="cwalk-tab"  href="/crosswalk" tabindex=0 role="tab" aria-controls="cwalk" aria-selected="true">Crosswalk</a>
+                    </li>
+                </ul>
                 <div class="tab-content">
 
                     <div class="tab-pane fade show active" id="cwalk" role="tabpanel" aria-labelledby="cwalk-tab">
@@ -43,14 +42,11 @@
                         </table>
 
 
+                    </div>
                 </div>
-                </div>
-
-
             </div>
 
-            <div class="col-9 offset-3 sidebar">
-
+            <div class="col-9 offset-3">
                 <div class="mainstuff">
 
                     {% if crosswalk %}
@@ -78,7 +74,7 @@
                         <div id="content">
                             <h1>MetaSat Crosswalks</h1>
                         </div>
-                        <div style="width:80%">
+                        <div>
                             <br/><br/>
                             A metadata crosswalk is a set of instructions for converting metadata of one schema or vocabulary into another.  We are working on making conversions between Metasat and different vocabularies even easier by building a full MetaSat Crosswalk.  The list of vocabularies we have developed crosswalks for is on the left, including schema.org, WikiData Items, and many more.
                         </div>
@@ -86,12 +82,7 @@
                     {% endif %}
                 </div>
                 <!-- end mainstuff -->
-                
-                
                 {% include "website/footer.html" %}
-                
-
-
             </div>
         </div>
 
@@ -100,8 +91,9 @@
 
     <!--  mobile -->
     <div class="container d-sm-block d-md-none">
+        <div class="topspacing"></div>
         <div class="row">
-            <div class="col-12 topspacing content">
+            <div class="col-12 content">
 
                 {% if crosswalk %}
 
@@ -147,67 +139,8 @@
             </div>
 
             {% include "website/footer.html" %}
-
         </div>
-
     </div>
     <!-- end mobile -->
 
-<script>
-
-$(document).ready(function(){
-
-/* when document load, getElement byID (conceptname) scrollintoview true */
-
-    $(".letter").on("keyup", function(){
-        if (event.keyCode === 13) {
-            thisletter = event.target.innerHTML;
-            event.preventDefault();
-            document.getElementById(thisletter).scrollIntoView(true);
-            $("#letter"+thisletter).focus();
-        }
-    });
-
-
-    $(".letter").on("click", function(){
-        thisletter = event.target.innerHTML;
-        event.preventDefault();
-        document.getElementById(thisletter).scrollIntoView(true);
-    });
-
-
-    $(".totopimg").on("keyup", function(){
-        if (event.keyCode === 13) {
-            event.preventDefault();
-            document.getElementById("alpha-tab").scrollIntoView(true);
-            console.log("this working?");
-            $("#alpha-tab").focus();
-        }
-    });
-
-
-    $(".totopimg").on("click", function(){
-        event.preventDefault();
-        document.getElementById("alpha-tab").scrollIntoView(true);
-    });
-
-
-});
-
-</script>
-
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
