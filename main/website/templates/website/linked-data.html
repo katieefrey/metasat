@@ -3,144 +3,134 @@
 
 {% block nav-resources %}active{% endblock %}
 
-{% block customcss %}<link href="{% static 'website/css/metasat.css' %}" rel="stylesheet">{% endblock %}
-
 {% block title %}
     Linked Data Resources | MetaSat
 {% endblock %}
 
 {% block body %}
 
+<div class="container-fluid">
+    <div class="topspacing"></div>
+    <div class="row">
+    
+        <div class="col-md-3 newsidebar d-none d-sm-none d-md-block">
+            <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="ld-tab"  href="/resources/linked-data" tabindex=0 role="tab" aria-controls="linked-data-primer" aria-selected="true">Linked Data Resources</a>
+                    </li>
+            </ul>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" id="rel">
-    <script src="{% static 'website/js/metasat_autocomplete.js' %}"></script> 
+            <div class="tab-content">
 
+                <div class="tab-pane fade show active" id="linked-data-primer" role="tabpanel" aria-labelledby="ld-tab">
+                    <br/>
+                    <table class="table">
+                        <tr>
+                            <td><a href="#content">Linked Data Resources</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="#rdf">Resource Description Framework (RDF)</a></td>
+                        </tr>
 
-
-    <div class="container-fluid">
-
-        <div class="row">
-            
-            <div class="col-3 sidebar d-sm-none d-md-block">
-                <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="ld-tab"  href="/resources/linked-data" tabindex=0 role="tab" aria-controls="linked-data-primer" aria-selected="true">Linked Data Resources</a>
-                        </li>
-                </ul>
-
-                <div class="tab-content">
-
-                    <div class="tab-pane fade show active" id="linked-data-primer" role="tabpanel" aria-labelledby="ld-tab">
-                        <br/>
-                        <table class="table">
-                            <tr>
-                                <td><a href="#content">Linked Data Resources</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#rdf">Resource Description Framework (RDF)</a></td>
-                            </tr>
-
-                        </table>
+                    </table>
 
 
-                    </div>
                 </div>
-
             </div>
 
-            <div class="col-sm-12 col-md-9 sidebar offset-md-3" id="content">
-                <div class="mainstuff">
-                    <h1 id="rdf">Resource Description Framework (RDF)</h1>
-                    <br />
+        </div>
 
-                    <p>The <a href="https://www.w3.org/TR/rdf11-primer/"><b>R</b>esource <b>D</b>escription <b>F</b>ramework</a>, or RDF, is a data model that is used to describe metadata on the web. RDF stores metadata in machine-readable “semantic triples” that are each made up of a subject, a predicate, and an object, much like a natural language sentence. However, RDF triples work a little bit differently than natural languages. For example, in the sentence “My car is silver,” the subject is “my car,” the predicate is “is,” and the object is “silver.” As a human reading that sentence, you know that I am telling you the color of my car, but this isn’t obvious to a machine&mdash;the word “is” can mean a lot of things! An RDF triple that holds the same information might look like: “<span class="subject font-weight-bold">My car (subject)</span> <span class="predicate font-italic">has color (predicate)</span> <span class="object font-weight-bold font-italic">silver (object)</span>.” This combination of subject, predicate, and object holds more meaning to a machine because you are explicitly telling it that you are talking about color.</p>
+        <div class="col-sm-12 col-md-9 offset-md-3" id="content">
+            <div class="mainstuff">
+                <h1 id="rdf">Resource Description Framework (RDF)</h1>
+                <br />
 
-                    <p>RDF can be written in several different syntaxes, many of which clearly store information in triples. You can also store semantic triples in JSON-LD, which is very similar to <a href="https://www.json.org/json-en.html">JSON</a> syntax (in fact, <em>all valid JSON-LD is also valid JSON</em>). It is convenient to store information in JSON syntax because it is easy for computers to read and understand data that is structured. Both JSON and JSON-LD store information in key-value pairs. For example, storing information about color in JSON syntax would look like this:</p>
+                <p>The <a href="https://www.w3.org/TR/rdf11-primer/"><b>R</b>esource <b>D</b>escription <b>F</b>ramework</a>, or RDF, is a data model that is used to describe metadata on the web. RDF stores metadata in machine-readable "semantic triples" that are each made up of a subject, a predicate, and an object, much like a natural language sentence. However, RDF triples work a little bit differently than natural languages. For example, in the sentence "My car is silver," the subject is "my car," the predicate is "is," and the object is "silver." As a human reading that sentence, you know that I am telling you the color of my car, but this isn't obvious to a machine&mdash;the word "is" can mean a lot of things! An RDF triple that holds the same information might look like: "<span class="subject font-weight-bold">My car (subject)</span> <span class="predicate font-italic">has color (predicate)</span> <span class="object font-weight-bold font-italic">silver (object)</span>." This combination of subject, predicate, and object holds more meaning to a machine because you are explicitly telling it that you are talking about color.</p>
+
+                <p>RDF can be written in several different syntaxes, many of which clearly store information in triples. You can also store semantic triples in JSON-LD, which is very similar to <a href="https://www.json.org/json-en.html">JSON</a> syntax (in fact, <em>all valid JSON-LD is also valid JSON</em>). It is convenient to store information in JSON syntax because it is easy for computers to read and understand data that is structured. Both JSON and JSON-LD store information in key-value pairs. For example, storing information about color in JSON syntax would look like this:</p>
 
 <pre><code>{
+"color": "silver"
+}</code></pre>
+
+                <p>In JSON syntax, the first term ("color") is called the key, and the second term ("silver") is the value. But how do we get from semantic <i>triples</i> to key-value <i>pairs</i>? An easy way is to use JSON's nesting capabilities:</p>
+
+<pre><code>{
+"myCar": {
     "color": "silver"
+}
 }</code></pre>
 
-                    <p>In JSON syntax, the first term (“color”) is called the key, and the second term (“silver”) is the value. But how do we get from semantic <i>triples</i> to key-value <i>pairs</i>? An easy way is to use JSON’s nesting capabilities:</p>
+                <p>Now, even though "myCar" and "color" are both keys, "myCar" acts as the subject and "color" as the predicate. (There is another way to create triples using JSON-LD, which is mentioned a few paragraphs down.)</p>
+
+                <p>JSON-LD helps us make this syntax even more machine-friendly by using Internationalized Resource Identifiers (IRIs) and Uniform Resource Identifiers (URIs, a type of IRI). An IRI or URI can act as a unique, machine-readable and web-friendly identifier for an item or resource. To make proper machine-readable linked data, at least the predicate keys should use URIs. In this case, a good URI to use for the idea "has color" is https://schema.org/color. This is a good URI because it provides the program with both a unique, permanent identifier for the idea and a definition of the term ("The color of the product.").</p>
+
+                <p>JSON-LD uses a special section called the <code>@context</code> section to define how human-readable keys can be <a href="/resources/advanced#expansion">expanded</a> into machine-readable URIs. One especially useful term that can be used in the <code>@context</code> is <code>@vocab</code>. This term defines the base vocabulary of the file. Most keys will expand so that they are concatenated to the end of the URI specified by <code>@vocab</code>. In the following example, the <code>@context</code> section contains the line <code>"@vocab": "https://schema.org/"</code>, so the key "color" is expanded to "https://schema.org/color." (note that the slash after "https://schema.org" is necessary; otherwise the key will concatenate to "https://schema.orgcolor." Make sure to always have a delimiter at the end when using this strategy!)</p>
+
+                <p>After using these techniques, our new semantic triple will be "<span class="subject font-weight-bold">My car</span><span class="sr-only">Subject</span> <span class="predicate font-italic">https://schema.org/color</span><span class="sr-only">Object</span> <span class="object font-weight-bold font-italic">silver</span><span class="sr-only">Predicate</span>." A JSON-LD file holding this triple might look like:</p>
 
 <pre><code>{
-    "myCar": {
-        "color": "silver"
-    }
+"@context": {
+    "@vocab": "https://schema.org/"
+},
+"color": "silver"
 }</code></pre>
 
-                    <p>Now, even though “myCar” and “color” are both keys, “myCar” acts as the subject and “color” as the predicate. (There is another way to create triples using JSON-LD, which is mentioned a few paragraphs down.)</p>
+                <p>In this case, you would have to know that this is metadata describing my car&mdash;maybe the file is named "myCar.jsonld."</p>
 
-                    <p>JSON-LD helps us make this syntax even more machine-friendly by using Internationalized Resource Identifiers (IRIs) and Uniform Resource Identifiers (URIs, a type of IRI). An IRI or URI can act as a unique, machine-readable and web-friendly identifier for an item or resource. To make proper machine-readable linked data, at least the predicate keys should use URIs. In this case, a good URI to use for the idea “has color” is https://schema.org/color. This is a good URI because it provides the program with both a unique, permanent identifier for the idea and a definition of the term (“The color of the product.”).</p>
+                <p>We can also define a URI or URL for the subject of the triple. Since there isn't a URI for my personal car, we're going to look at <a href="https://network.satnogs.org/observations/2243157/">a SatNOGS observation</a> for the rest of the examples. We want to make a JSON-LD file to store the triple "<span class="subject font-weight-bold">This specific observation</span><span class="sr-only">Subject</span> <span class="predicate font-italic">has ground station</span><span class="sr-only"> Object</span> <span class="object font-weight-bold font-italic">1378 - Wolbach Library</span><span class="sr-only">Predicate</span>." MetaSat has a URI for the concept "has ground station": https://schema.space/metasat/groundStation. In addition, the observation has a unique URL: https://network.satnogs.org/observations/2243157/. How do we store the URL for the subject using JSON-LD?</p>
 
-                    <p>JSON-LD uses a special section called the <code>@context</code> section to define how human-readable keys can be <a href="/resources/advanced#expansion">expanded</a> into machine-readable URIs. One especially useful term that can be used in the <code>@context</code> is <code>@vocab</code>. This term defines the base vocabulary of the file. Most keys will expand so that they are concatenated to the end of the URI specified by <code>@vocab</code>. In the following example, the <code>@context</code> section contains the line <code>"@vocab": "https://schema.org/"</code>, so the key “color” is expanded to “https://schema.org/color.” (note that the slash after “https://schema.org” is necessary; otherwise the key will concatenate to “https://schema.orgcolor.” Make sure to always have a delimiter at the end when using this strategy!)</p>
-
-                    <p>After using these techniques, our new semantic triple will be “<span class="subject font-weight-bold">My car</span><span class="sr-only">Subject</span> <span class="predicate font-italic">https://schema.org/color</span><span class="sr-only">Object</span> <span class="object font-weight-bold font-italic">silver</span><span class="sr-only">Predicate</span>.” A JSON-LD file holding this triple might look like:</p>
+                <p>There is a special term that can be used with JSON-LD to store the identifier for the subject: <code>@id</code>. <code>@id</code> can ONLY store IRIs, including URIs and URLs, for its value. If anything else is stored in the value of <code>@id</code>, it will be expanded using the base vocabulary. Using <code>@id</code> to store the URL, our JSON-LD file for the observation will look like this (notice that the base vocabulary was changed to "https://schema.space/metasat/"):</p>
 
 <pre><code>{
-    "@context": {
-        "@vocab": "https://schema.org/"
-    },
-    "color": "silver"
+"@context": {
+    "@vocab": "https://schema.space/metasat/"
+},
+"@id": "https://network.satnogs.org/observations/2243157/",
+"groundStation": "1378 - Wolbach Library"
 }</code></pre>
 
-                    <p>In this case, you would have to know that this is metadata describing my car&mdash;maybe the file is named “myCar.jsonld.”</p>
+                <p>Now the machine-readable RDF triple is "<span class="subject font-weight-bold">https://network.satnogs.org/observations/2243157/</span><span class="sr-only">Subject</span> <span class="predicate font-italic">https://schema.space/metasat/groundStation</span><span class="sr-only">Object</span> <span class="object font-weight-bold font-italic">1378 - Wolbach Library</span><span class="sr-only">Predicate</span>."</p>
 
-                    <p>We can also define a URI or URL for the subject of the triple. Since there isn’t a URI for my personal car, we’re going to look at <a href="https://network.satnogs.org/observations/2243157/">a SatNOGS observation</a> for the rest of the examples. We want to make a JSON-LD file to store the triple “<span class="subject font-weight-bold">This specific observation</span><span class="sr-only">Subject</span> <span class="predicate font-italic">has ground station</span><span class="sr-only"> Object</span> <span class="object font-weight-bold font-italic">1378 - Wolbach Library</span><span class="sr-only">Predicate</span>.” MetaSat has a URI for the concept “has ground station”: https://schema.space/metasat/groundStation. In addition, the observation has a unique URL: https://network.satnogs.org/observations/2243157/. How do we store the URL for the subject using JSON-LD?</p>
+                <p>What if we want to use terms that are not in the MetaSat vocabulary? You can also include other vocabularies by creating aliases for their main URLs and using <a href="https://en.wikipedia.org/wiki/CURIE">CURIEs</a>. For example, the context could include the line <code>"schema": "https://schema.org/"</code>; then, a key such as "schema:Person" would expand to "https://schema.org/Person."</p>
 
-                    <p>There is a special term that can be used with JSON-LD to store the identifier for the subject: <code>@id</code>. <code>@id</code> can ONLY store IRIs, including URIs and URLs, for its value. If anything else is stored in the value of <code>@id</code>, it will be expanded using the base vocabulary. Using <code>@id</code> to store the URL, our JSON-LD file for the observation will look like this (notice that the base vocabulary was changed to “https://schema.space/metasat/”):</p>
+                <p>Now we can easily add another triple using schema.org's "Identifier" predicate. This JSON-LD file will look like:</p>
 
 <pre><code>{
-    "@context": {
-        "@vocab": "https://schema.space/metasat/"
-    },
-    "@id": "https://network.satnogs.org/observations/2243157/",
-    "groundStation": "1378 - Wolbach Library"
+"@context": {
+    "@vocab": "https://schema.space/metasat/",
+    "schema": "https://schema.org/"
+},
+"@id": "https://network.satnogs.org/observations/2243157/",
+"schema:identifier": "2243157",
+"groundStation": "1378 - Wolbach Library"
 }</code></pre>
 
-                    <p>Now the machine-readable RDF triple is “<span class="subject font-weight-bold">https://network.satnogs.org/observations/2243157/</span><span class="sr-only">Subject</span> <span class="predicate font-italic">https://schema.space/metasat/groundStation</span><span class="sr-only">Object</span> <span class="object font-weight-bold font-italic">1378 - Wolbach Library</span><span class="sr-only">Predicate</span>.”</p>
-
-                    <p>What if we want to use terms that are not in the MetaSat vocabulary? You can also include other vocabularies by creating aliases for their main URLs and using <a href="https://en.wikipedia.org/wiki/CURIE">CURIEs</a>. For example, the context could include the line <code>"schema": "https://schema.org/"</code>; then, a key such as “schema:Person” would expand to “https://schema.org/Person.”</p>
-
-                    <p>Now we can easily add another triple using schema.org’s “Identifier” predicate. This JSON-LD file will look like:</p>
+                <p>Just like plain JSON, JSON-LD can be used to nest information to make it look more hierarchical. JSON-LD isn't inherently hierarchical, but nesting can help make files more human-readable. Right now, the ground station is an object with respect to the observation, but we can also include triples where the ground station is a subject. We can use <code>@id</code> to make the ground station's URL a subject, then add another predicate and object. For example, maybe we want to add a triple that says "<span class="subject font-weight-bold">This ground station</span><span class="sr-only">Subject</span> <span class="predicate font-italic">has name</span><span class="sr-only">Object</span> <span class="object font-weight-bold font-italic">1378 - Wolbach Library</span><span class="sr-only">Predicate</span>." The file would look like:</p>
 
 <pre><code>{
-    "@context": {
-        "@vocab": "https://schema.space/metasat/",
-        "schema": "https://schema.org/"
-    },
-    "@id": "https://network.satnogs.org/observations/2243157/",
-    "schema:identifier": "2243157",
-    "groundStation": "1378 - Wolbach Library"
+"@context": {
+    "@vocab": "https://schema.space/metasat/",
+    "schema": "https://schema.org/"
+},
+"@id": "https://network.satnogs.org/observations/2243157/",
+"schema:identifier": "2243157",
+"groundStation": {
+    "@id": "https://network.satnogs.org/stations/1378/",
+    "schema:name": "1378 - Wolbach Library"
+} 
 }</code></pre>
 
-                    <p>Just like plain JSON, JSON-LD can be used to nest information to make it look more hierarchical. JSON-LD isn’t inherently hierarchical, but nesting can help make files more human-readable. Right now, the ground station is an object with respect to the observation, but we can also include triples where the ground station is a subject. We can use <code>@id</code> to make the ground station’s URL a subject, then add another predicate and object. For example, maybe we want to add a triple that says “<span class="subject font-weight-bold">This ground station</span><span class="sr-only">Subject</span> <span class="predicate font-italic">has name</span><span class="sr-only">Object</span> <span class="object font-weight-bold font-italic">1378 - Wolbach Library</span><span class="sr-only">Predicate</span>.” The file would look like:</p>
+                <p>Note that curly braces are used to denote a new JSON-LD object. The new triple, in machine-readable form, is "<span class="subject font-weight-bold">https://network.satnogs.org/stations/1378/</span><span class="sr-only">Subject</span> <span class="predicate font-italic">https://schema.org/name</span><span class="sr-only">Object</span> <span class="object font-weight-bold font-italic">1378 - Wolbach Library</span><span class="sr-only">Predicate</span>."</p>
 
-<pre><code>{
-    "@context": {
-        "@vocab": "https://schema.space/metasat/",
-        "schema": "https://schema.org/"
-    },
-    "@id": "https://network.satnogs.org/observations/2243157/",
-    "schema:identifier": "2243157",
-    "groundStation": {
-        "@id": "https://network.satnogs.org/stations/1378/",
-        "schema:name": "1378 - Wolbach Library"
-    } 
-}</code></pre>
-
-                    <p>Note that curly braces are used to denote a new JSON-LD object. The new triple, in machine-readable form, is “<span class="subject font-weight-bold">https://network.satnogs.org/stations/1378/</span><span class="sr-only">Subject</span> <span class="predicate font-italic">https://schema.org/name</span><span class="sr-only">Object</span> <span class="object font-weight-bold font-italic">1378 - Wolbach Library</span><span class="sr-only">Predicate</span>.”</p>
-
-                    <p>If you are wondering how to get from the human-readable keys to machine-readable URLs and URIs, this happens after using JSON-LD’s transformation algorithms. For more information on the algorithms and what they do, check out our <a href="/resources/advanced#algorithms">JSON-LD primer</a>.</p>
-                </div>
-                <!-- end mainstuff -->
-                    
-                {% include "website/footer.html" %}
-            
+                <p>If you are wondering how to get from the human-readable keys to machine-readable URLs and URIs, this happens after using JSON-LD's transformation algorithms. For more information on the algorithms and what they do, check out our <a href="/resources/advanced#algorithms">JSON-LD primer</a>.</p>
             </div>
+            <!-- end mainstuff -->
+                
+            {% include "website/footer.html" %}
+        
         </div>
     </div>
+</div>
 
 {% endblock %}

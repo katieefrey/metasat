@@ -1,0 +1,23 @@
+#metasattermform {
+    margin-left: 0px;
+}
+
+#metasat-autocomplete {
+    width: 150px;
+}
+
+.ui-autocomplete {
+/*    z-index: 20000000;*/
+}
+
+#ui-id-1 {
+    z-index: 9999;
+}
+
+.ui-menu .ui-menu-item a{
+    /*color: #96f226;
+    border-radius: 0px;
+    border: 1px solid #454545;*/
+    width: 200px;
+    /*z-index: 20000000;*/
+}

@@ -99,8 +99,6 @@ div .topmenu {
 
 div.sidebar {
     margin-top: 80px;
-<<<<<<< HEAD
-=======
     padding-right: 40px;
     padding-left: 20px;
     padding-bottom: 20px;
@@ -123,7 +121,6 @@ div.topspacing {
 
 div.maincontent {
     margin-top: 80px;
->>>>>>> mobile
     padding-right: 40px;
     padding-left: 40px;
     position:fixed;
@@ -134,23 +131,10 @@ div.maincontent {
     z-index: 8;
 }
 
-<<<<<<< HEAD
-div.mainstuff {
-    min-height: calc(100vh - 190px);
-}
-
-div.footer {
-
-    position: absolute;
-    bottom: 0;
-}
-=======
 
 div.mainstuff {
     min-height: calc(100vh - 230px);
 }
-
->>>>>>> mobile
 
 div.sidebar2 {
     margin-top: 130px;
@@ -159,17 +143,18 @@ div.sidebar2 {
 
 .subject {
     color: #DE2A12;
-    font: bold;
+    font-weight: bold;
 }
 
 .predicate {
     color: #601A4A;
-    font: italic;
+    font-style: italic;
 }
 
 .object {
     color: #3C7F90;
-    font: bold italic;
+    font-weight: bold;
+    font-style: italic;
 }
 
 table#basic-table {
@@ -185,8 +170,6 @@ th.basic-header, td.basic-data {
 }
 
 
-<<<<<<< HEAD
-=======
 .nav-link {
     display: block;
     padding: .5rem .5rem;
@@ -200,7 +183,10 @@ th.basic-header, td.basic-data {
     padding: 0rem .3rem ;
 }
 
->>>>>>> mobile
 .bg-dark {
     background-color: #292f33 !important;
+}
+
+.btncolor {
+    background-color: #4e687e !important;
 }

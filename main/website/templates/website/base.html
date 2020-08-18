@@ -4,55 +4,37 @@
 <html lang="en">
 
 <head>
+    <!-- pg metadata -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="{% block description %}{% endblock %}">
     {% block metadata %}{% endblock %}
 
-    <script src="{% static 'website/vendor/jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'website/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 
+    <!-- jquery ui -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" id="rel">
-    <script src="{% static 'website/js/metasat_autocomplete.js' %}"></script> 
+    <!-- bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
+    <!-- autocomplete -->
+    <script src="{% static 'website/js/metasat_autocomplete.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'website/css/metasat_autocomplete.css' %}">
+
+    <!-- favicon -->
     <link rel="icon" type="image/png" href="{% static 'website/img/flavicon.png' %}">
 
-    <meta name="description" content="{% block description %}{% endblock %}">
-
-    <title>{% block title %}{% endblock %}</title>
-
-    <link href="{% static 'website/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- additional css -->
+    <link href="{% static 'website/css/metasat.css' %}" rel="stylesheet">
     {% block customcss %}{% endblock %}
-
-    <style>
-        #metasattermform {
-            margin-left: 0px;
-        }
-
-        #metasat-autocomplete {
-            width: 150px;
-        }
-
-/*        .ui-autocomplete {
-            z-index: 20000000;
-        }*/
-
-        #ui-id-1 {
-            z-index: 9999;
-        }
-
-        .ui-menu .ui-menu-item a{
-            /*color: #96f226;
-            border-radius: 0px;
-            border: 1px solid #454545;*/
-            width: 200px;
-         /*   z-index: 20000000;*/
-        }
-
-
-    </style>
+    
+    <!-- pg title -->
+    <title>{% block title %}{% endblock %}</title>
 
 </head>
 
@@ -60,24 +42,13 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-            <!--<div class="col-lg-1 col-md-1 col-sm-2 d-none d-sm-block">-->
-                <img class="img-fluid" style="height:58px" src="{% static 'website/img/MetaSat_Big.png' %}" alt="MetaSat logo"/>
-            <!--</div>-->
+            <img class="img-fluid" style="height:58px" src="{% static 'website/img/MetaSat_Big.png' %}" alt="MetaSat logo"/>
             <a class="navbar-brand" href="/"><span class="h1">&nbsp;&nbsp;MetaSat</span></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-
             <div class="collapse navbar-collapse" id="navbarResponsive">
-
-<!--                 <form id="metasattermform" class="form-inline">
-                    <div class="form-group mx-sm-3 mb-2">
-                        <label for="inputPassword2" class="sr-only">Password</label>
-                        <input type="text" class="form-control-sm" id="metasat-autocomplete" placeholder="MetaSat Element">
-                    </div>
-                    <button type="submit" id="autocompletebutton" class="btn btn-outline-light btn-secondary btn-sm mb-2">Find</button>
-                </form> -->
 
                 <ul class="navbar-nav ml-auto">
 
@@ -116,41 +87,27 @@
                             </div>
                         </li>
                     {% endif %}
+
                 </ul>          
 
+                <form id="metasattermform" class="form-inline" role="search">
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="search-input" class="sr-only">MetaSat terms</label>
+                            <input type="text" class="form-control-sm" id="metasat-autocomplete" placeholder="MetaSat Element">
+                        </div>
+                        <button type="submit" id="autocompletebutton" class="btn btn-outline-light btn-secondary btn-sm mb-2" style="background-color: #4e687e">Find</button>
+                </form>
 
-            <form id="metasattermform" class="form-inline" role="search">
-                    <div class="form-group mx-sm-3 mb-2">
-                        <label for="search-input" class="sr-only">MetaSat terms</label>
-                        <input type="text" class="form-control-sm" id="metasat-autocomplete" placeholder="MetaSat Element">
-                    </div>
-                    <button type="submit" id="autocompletebutton" class="btn btn-outline-light btn-secondary btn-sm mb-2">Find</button>
-            </form>
-
-            </div>
-
-
-
-
+             </div>
         </div>
     </nav>
 
     {% block body %}
     {% endblock %}    
-<!--     <br/>
-    <div style="background-color: #726E6D;" class="row fixed-bottom ">
-        <div class="col-12">
-            <div id="footer">
-              <div class="container text-center">
-                <br/>
-                <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span style="color: #000000">This work is licensed under a <a rel="license" style="color: #000000" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</span>
-              </div>
-            </div>
-        </div>
-    </div> -->
 
+
+<!-- autocomplete javascript, move to new file -->
 <script>
-
 $(document).ready(function(){
 
     $("#metasat-autocomplete").uatAutocomplete()
@@ -169,9 +126,7 @@ $(document).ready(function(){
         parent.location='../metasat/' + thisword;
     });
 });
-
 </script>
-
 
 </body>
 </html>

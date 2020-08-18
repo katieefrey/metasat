@@ -3,88 +3,69 @@
 
 {% block nav-contact %}active{% endblock %}
 
-{% block customcss %}<link href="{% static 'website/css/metasat.css' %}" rel="stylesheet">{% endblock %}
-
 {% block title %}
     Contact | MetaSat
 {% endblock %}
 
 {% block body %}
 
+<div class="container-fluid">
+    <div class="topspacing"></div>  
+    <div class="mainstuff">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" id="rel">
-    <script src="{% static 'website/js/metasat_autocomplete.js' %}"></script> 
+        <div class="row">    
 
+            <div class="col-sm-12 col-md-9 offset-md-3">
 
-
-    <div class="container-fluid">
-        <div class="topspacing"> 
-        </div>  
-
-        <div class="mainstuff">
-
-            <div class="row">    
-
-                <div class="col-sm-12 col-md-9 offset-md-3">
-
-                    <div id="content">
-                        <h1>Have a question?</h1>
-                        <p style="padding-top:20px; margin:10px">Please reach out to:
-                            <br>Daniel Chivvis
-                            <br>MetaSat Research Fellow
-                            <br>John G. Wolbach Library
-                            <br>
-                            <a href="mailto:metasat@schema.space?subject=MetaSat question">metasat[at]schema.space</a>
-                        </p>
-                    </div>
-
+                <div id="content">
+                    <h1>Have a question?</h1>
+                    <p style="padding-top:20px; margin:10px">Please reach out to:
+                        <br>Daniel Chivvis
+                        <br>MetaSat Research Fellow
+                        <br>John G. Wolbach Library
+                        <br>
+                        <a href="mailto:metasat@schema.space?subject=MetaSat question">metasat[at]schema.space</a>
+                    </p>
                 </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-12 col-md-4 offset-md-3">
+                <p style="padding-top:20px; margin:10px">
+                    <a href="https://library.cfa.harvard.edu">John G. Wolbach Library</a>
+                    <br>Daina Bouquin
+                    <br>Daniel Chivvis
+                    <br>Katie Frey
+                    <br>Allie Williams
+                </p>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <p style="padding-top:20px; margin:10px">
+                    <a href="https://libre.space">Libre Space Foundation</a>
+                    <br>Pierros Papadeas
+                    <br>Manthos Papamatthaiou
+                    <br>Eleftherios Kosmas
+                    <br>Vasilis Tsiligiannis
+                    <br>Alfredos Damkalis
+                    <br/><br/><br/>&nbsp;
+                </p>
             </div>
 
-            <div class="row">
 
-                <div class="col-sm-12 col-md-4 offset-md-3">
-                    <p style="padding-top:20px; margin:10px">
-                        <a href="https://library.cfa.harvard.edu">John G. Wolbach Library</a>
-                        <br>Daina Bouquin
-                        <br>Daniel Chivvis
-                        <br>Katie Frey
-                        <br>Allie Williams
-                    </p>
-                </div>
-                <div class="col-sm-12 col-md-4">
-                    <p style="padding-top:20px; margin:10px">
-                        <a href="https://libre.space">Libre Space Foundation</a>
-                        <br>Pierros Papadeas
-                        <br>Manthos Papamatthaiou
-                        <br>Eleftherios Kosmas
-                        <br>Vasilis Tsiligiannis
-                        <br>Alfredos Damkalis
-                        <br/><br/><br/>&nbsp;
-                    </p>
-                </div>
-
-
-    <!--         <div class="col-xs-12 col-md-4">
-                <p style="padding-top:20px; margin:10px">
-                    <a href="https://www.nasa.gov/smallsat-institute">NASA, Small Spacecraft Systems Virtual Institute (S3VI)</a>
-                    <br>Craig Burkhard
-                    <br>Bruce Yost
-                </p>
-            </div> -->
+<!--         <div class="col-xs-12 col-md-4">
+            <p style="padding-top:20px; margin:10px">
+                <a href="https://www.nasa.gov/smallsat-institute">NASA, Small Spacecraft Systems Virtual Institute (S3VI)</a>
+                <br>Craig Burkhard
+                <br>Bruce Yost
+            </p>
+        </div> -->
 
         </div>
     </div>
-            <!-- end mainstuff -->
-        
-
-            <br/><br/><br/>
-                    
-            {% include "website/footer.html" %}
-    
-    </div>
-
-
+    <!-- end mainstuff -->
+    {% include "website/footer.html" %}
+</div>
 {% endblock %}
