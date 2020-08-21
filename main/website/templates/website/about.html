@@ -3,8 +3,6 @@
 
 {% block nav-about %}active{% endblock %}
 
-{% block customcss %}<link href="{% static 'website/css/metasat.css' %}" rel="stylesheet">{% endblock %}
-
 {% block title %}
     About | MetaSat
 {% endblock %}
@@ -12,54 +10,48 @@
 {% block body %}
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" id="rel">
-    <script src="{% static 'website/js/metasat_autocomplete.js' %}"></script> 
+<div class="container-fluid">
+    <div class="topspacing"></div>
+    <div class="row">
+        
+        <div class="newsidebar d-none d-sm-none d-md-block col-lg-3 col-md-3 col-12">
+            <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="about-tab"  href="/about" tabindex=0 role="tab" aria-controls="about" aria-selected="true">About</a>
+                    </li>
+            </ul>
+
+            <div class="tab-content">
+
+                <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
+                    <br/>
+                    <table class="table">
+                        <tr>
+                            <td><a href="#introduction">Introduction</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="#metadata">Why Metadata</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="#using-metasat">Using MetaSat</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="#work">Our Work So Far</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="#LSTN">Library Space Technology Network</a></td>
+                        </tr>
+
+                    </table>
 
 
-
-    <div class="container-fluid">
-
-        <div class="row">
-            
-            <div class="col-3 sidebar">
-                <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="about-tab"  href="/about" tabindex=0 role="tab" aria-controls="about" aria-selected="true">About</a>
-                        </li>
-                </ul>
-
-                <div class="tab-content">
-
-                    <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
-                        <br/>
-                        <table class="table">
-                            <tr>
-                                <td><a href="#introduction">Introduction</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#metadata">Why Metadata</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#using-metasat">Using MetaSat</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#work">Our Work So Far</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#LSTN">Library Space Technology Network</a></td>
-                            </tr>
-
-                        </table>
-
-
-                    </div>
                 </div>
-
             </div>
 
-            <div class="col-9 sidebar offset-3" id="content">
+        </div>
+
+        <div class="col-sm-12 col-md-9 offset-md-3" id="content">
+            <div class="mainstuff">
 
                 <h1 id="introduction">Introducing MetaSat</h1>
                 
@@ -86,8 +78,13 @@
                 <p>Funding for MetaSat is provided by the Alfred P. Sloan Foundation through&nbsp;<a href="https://sloan.org/grant-detail/8955">a grant</a>&nbsp;awarded to the John G. Wolbach Library at the Center for Astrophysics and the Libre Space Foundation.</p>
                 <br/><br/>
 
+            {% include "website/footer.html" %}
+            
             </div>
+            <!-- end mainstuff -->
+                    
         </div>
     </div>
+</div>
 
 {% endblock %}

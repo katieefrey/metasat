@@ -1,4 +1,8 @@
 main/main/secrets.py
+main/autocomplete_stuff/*
+main/old_files/*
+
+metasat-backup*.sql
 
 main/*.xlsx
 main/*.csv

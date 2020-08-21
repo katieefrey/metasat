@@ -23,7 +23,8 @@ def crosswalk(request,crosswalk):
     context = {
                 "allcrosswalks": allcrosswalks,
                 "terms": terms,
-                "crosswalk": cw.name
+                "crosswalk": cw.name,
+                "language" : cw.lang,
             }
 
     return render(request, "crosswalk/index.html", context)

@@ -3,19 +3,30 @@
  * Copyright 2013-2019 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-the-big-picture/blob/master/LICENSE)
  */
+
+@media (max-width: 767px){
+
+    div.logo {
+        display:none !important;
+    }
+}
+
 body {
-  background: url('../img/background.jpg') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
-  text-align: left;
-  color: white;
-  margin-right: 10%;
-  margin-top: 10%;
+    background: url('../img/background.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    text-align: left;
+    color: white;
 }
 
-.row {
-	display: relative !important;
+.contrast {
+    margin-top: 70px;
+    padding: 50px 20px 30px 20px;
+    background-color: #292f339e;
 }
 
+div.mainfooter {
+    background-color:rgb(88, 85, 84, 0.8);
+}

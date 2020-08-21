@@ -16,18 +16,19 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" id="rel">
     <script src="{% static 'website/js/metasat_autocomplete.js' %}"></script> 
 
+<!-- non mobile -->
 
-    <div class="container-fluid">
-
+    <div class="container-fluid d-none d-sm-none d-md-block">
+        <div class="topspacing"></div>        
         <div class="row">
             
-            <div class="col-3 sidebar">
+            <div class="col-3 newsidebar">
 
-                     <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="cwalk-tab"  href="/crosswalk" tabindex=0 role="tab" aria-controls="cwalk" aria-selected="true">Crosswalk</a>
-                        </li>
-                    </ul>
+                 <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="cwalk-tab"  href="/crosswalk" tabindex=0 role="tab" aria-controls="cwalk" aria-selected="true">Crosswalk</a>
+                    </li>
+                </ul>
                 <div class="tab-content">
 
                     <div class="tab-pane fade show active" id="cwalk" role="tabpanel" aria-labelledby="cwalk-tab">
@@ -35,27 +36,74 @@
                         <table class=table>
                             {% for walk in allcrosswalks %}
                             <tr>
-                                <td><a href="/crosswalk/{{walk.identifier}}">{{walk.name}}</a></td>
+                                <td><a href="/crosswalk/{{walk.identifier}}"><span lang="{{walk.lang}}">{{walk.name}}</span></a></td>
                             </tr>
                             {% endfor %}
                         </table>
 
 
+                    </div>
                 </div>
-                </div>
-
-
             </div>
 
-            <div class="col-9 offset-3 sidebar">
+            <div class="col-9 offset-3">
+                <div class="mainstuff">
+
+                    {% if crosswalk %}
+
+                        <div id="content">
+                            <h1><span lang="{{language}}">{{crosswalk}}</span></h1>
+
+                            <br/><br/>
+                            <table class=table>
+                                <tr>
+                                    <th>MetaSat Element</th>
+                                    <th>External Identifier</th>
+                                </tr>
+                                {% for term in terms %}
+                                <tr>
+                                    <td><a href="/metasat/{{term.metasatelement}}">{{term.metasatelement}}</a></td>
+                                    <td>{% if term.url != None %}<a href="{{term.url}}">{{term.identifier}}</a>{% else %}{{term.identifier}}{% endif %}</td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+
+                    {% else %}
+
+                        <div id="content">
+                            <h1>MetaSat Crosswalks</h1>
+                        </div>
+                        <div>
+                            <br/><br/>
+                            A metadata crosswalk is a set of instructions for converting metadata of one schema or vocabulary into another.  We are working on making conversions between Metasat and different vocabularies even easier by building a full MetaSat Crosswalk.  The list of vocabularies we have developed crosswalks for is on the left, including schema.org, WikiData Items, and many more.
+                        </div>
+                        
+                    {% endif %}
+                </div>
+                <!-- end mainstuff -->
+                {% include "website/footer.html" %}
+            </div>
+        </div>
+
+    </div>
+    <!-- end non-mobile -->
+
+    <!--  mobile -->
+    <div class="container d-sm-block d-md-none">
+        <div class="topspacing"></div>
+        <div class="row">
+            <div class="col-12 content">
 
                 {% if crosswalk %}
 
-                    <div id="content">
-                        <h1>{{crosswalk}}</h1>
+                    <h1><span lang="{{language}}">{{crosswalk}} Crosswalk</span></h1>
 
-                        <br/><br/>
-                        <table class=table>
+                    <br/>
+                    <a href="/crosswalk">Back to All Crosswalks</a>
+                    <br/><br/>
+                    <div class="table-responsive">
+                        <table class="table">
                             <tr>
                                 <th>MetaSat Element</th>
                                 <th>External Identifier</th>
@@ -67,78 +115,32 @@
                             </tr>
                             {% endfor %}
                         </table>
+                    </div>
 
-                    {% else %}
+                {% else %}
 
-                        <div id="content">
-                            <h1>MetaSat Crosswalks</h1>
-                        </div>
-                        <div style="width:80%">
-                            <br/><br/>
-                            A metadata crosswalk is a set of instructions for converting metadata of one schema or vocabulary into another.  We are working on making conversions between Metasat and different vocabularies even easier by building a full MetaSat Crosswalk.  The list of vocabularies we have developed crosswalks for is on the left, including schema.org, WikiData Items, and many more.
-                        </div>
-                        
-                    {% endif%}
+                    <h1>MetaSat Crosswalks</h1>
+                    <br/>
+                    A metadata crosswalk is a set of instructions for converting metadata of one schema or vocabulary into another.  We are working on making conversions between Metasat and different vocabularies even easier by building a full MetaSat Crosswalk.  The list of vocabularies we have developed crosswalks for is on the left, including schema.org, WikiData Items, and many more.
+                    <br/><br/>
 
-                </div>
+                    All Crosswalks <br/><br/>
+                    <div class="table-responsive">
+                        <table class="table">
+                            {% for walk in allcrosswalks %}
+                            <tr>
+                                <td><a href="/crosswalk/{{walk.identifier}}"><span lang="{{walk.lang}}">{{walk.name}}</span></a></td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    {% endif %}
+
             </div>
+
+            {% include "website/footer.html" %}
         </div>
     </div>
-<script>
-
-$(document).ready(function(){
-
-/* when document load, getElement byID (conceptname) scrollintoview true */
-
-    $(".letter").on("keyup", function(){
-        if (event.keyCode === 13) {
-            thisletter = event.target.innerHTML;
-            event.preventDefault();
-            document.getElementById(thisletter).scrollIntoView(true);
-            $("#letter"+thisletter).focus();
-        }
-    });
-
-
-    $(".letter").on("click", function(){
-        thisletter = event.target.innerHTML;
-        event.preventDefault();
-        document.getElementById(thisletter).scrollIntoView(true);
-    });
-
-
-    $(".totopimg").on("keyup", function(){
-        if (event.keyCode === 13) {
-            event.preventDefault();
-            document.getElementById("alpha-tab").scrollIntoView(true);
-            console.log("this working?");
-            $("#alpha-tab").focus();
-        }
-    });
-
-
-    $(".totopimg").on("click", function(){
-        event.preventDefault();
-        document.getElementById("alpha-tab").scrollIntoView(true);
-    });
-
-
-});
-
-</script>
+    <!-- end mobile -->
 
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
