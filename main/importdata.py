@@ -13,10 +13,17 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE','main.settings')
 import django
 django.setup()
 
+from django.conf import settings
+
 from crosswalk.models import ExternalSchema, ExternalElement
 from metasat.models import Element, Segment, ElementFamily
 
-runwhat = input("What do you want to import?\n\n  1) Elements Only\n  2) Crosswalks Only\n  3) Elements AND Crosswalks\n\n  4) Remind me about the file format requirements\n\nPlease enter 1, 2, 3, or 4: ")
+print("====")
+print("You are working with the "+str(settings.DBLOC)+" database!")
+print("====")
+print("")
+
+runwhat = input("What do you want to import?\n\n  1) Elements Only\n  2) Crosswalks Only\n  3) Elements AND Crosswalks\n\n  4) Remind me about the file format requirements\n\n     Any other key to exit\n\nPlease enter 1, 2, 3, or 4: ")
 
 ## add item functions
 
