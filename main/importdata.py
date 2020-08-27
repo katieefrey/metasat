@@ -249,6 +249,9 @@ elif runwhat == str(4):
     print("Include http in all eternal element URIs, if no http included, the identifier will not be treated as a URI.")
     print("")
     print("")
+    print("See the Example Files in the metasat github directory if needed")
+    print("")
+    print("")
    
 
 else:
