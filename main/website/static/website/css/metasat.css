@@ -26,6 +26,11 @@ div.mainstuff {
     min-height: calc(100vh - 230px);
 }
 
+.nav-link {
+    display: block;
+    padding: .5rem .5rem;
+}
+
 /* default bootstrap constrast isn't good enough */
 a:hover, a:active {
     color: #24557F;
@@ -94,22 +99,25 @@ pre {
     font-style: italic;
 }
 
-
-
-/**** not sure what pgs these relate to ****/
-
-.nav-link {
-    display: block;
-    padding: .5rem .5rem;
-}
-
-.card-header {
-    padding: .6rem 0rem;
-}
-
 .card-body {
     padding: 0rem .3rem ;
 }
+
+/**basic-table is on the basic topics page**/
+
+table#basic-table {
+    border-collapse: collapse;
+}
+
+table#basic-table, th.basic-header, td.basic-data {
+    border: 1px solid black;
+}
+
+th.basic-header, td.basic-data {
+    padding: 10px;
+}
+
+/**** not sure what pgs these relate to ****/
 
 .panel-heading {
   background-color: #014e6d!important;
@@ -124,7 +132,7 @@ pre {
     font-size: 20px;
     color: #fff !important; 
     /* text-decoration: underline;*/
-text-decoration: none;
+    text-decoration: none;
 }
 
 .panel-button:hover {
@@ -135,14 +143,3 @@ text-decoration: none;
     text-decoration: none;
 }
 
-table#basic-table {
-    border-collapse: collapse;
-}
-
-table#basic-table, th.basic-header, td.basic-data {
-    border: 1px solid black;
-}
-
-th.basic-header, td.basic-data {
-    padding: 10px;
-}
