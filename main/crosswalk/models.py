@@ -2,9 +2,16 @@ from django.db import models
 from metasat.models import Element
 
 class ExternalSchema(models.Model):
+
+    # url safe identifier
     identifier = models.CharField(max_length=255, null=True, blank=True)
+
+    # name can include accent marks and diacritics
     name = models.CharField(max_length=255)
+
+    # url of the overall schema, not being used
     url = models.CharField(max_length=255, null=True, blank=True)
+
     # language code for schema title to assit with screen readers
     # NOT language of the vocab itself
     lang = models.CharField(max_length=4, null=True, blank=True)

@@ -28,8 +28,8 @@ def add_Family(data1):
     d, created = ElementFamily.objects.get_or_create(family=data1)
     return d
 
-def add_ExternalSchema(data1):
-    d, created = ExternalSchema.objects.get_or_create(name=data1)
+def add_ExternalSchema(data1, data2, data3):
+    d, created = ExternalSchema.objects.get_or_create(identifier=data1, name=data2, lang=data3)
     return d
 
 def add_ExternalElement(data1, data3, data4, data5):
@@ -80,31 +80,8 @@ def importelements(elfile):
     from openpyxl import load_workbook
 
     wb = load_workbook(filename = elfile)
-
-
-    #wb_obj = openpyxl.load_workbook(path) 
-      
-    # Get workbook active sheet object 
-    # from the active attribute 
     sheet_obj = wb.active 
-      
-    # Cell objects also have row, column,  
-    # and coordinate attributes that provide 
-    # location information for the cell. 
-      
-    # Note: The first row or  
-    # column integer is 1, not 0. 
-      
-    # Cell object is created by using  
-    # sheet object's cell() method. 
     cell_obj = sheet_obj.cell(row = 2, column = 5) 
-      
-    # Print value of cell object  
-    # using the value attribute 
-    #print(cell_obj.value) 
-
-    # sheet_ranges = wb['Term','Identifier']
-    # print(sheet_ranges['D18'].value)
 
     num = sheet_obj.max_row
 
@@ -148,69 +125,64 @@ def importcrosswalks(cwfile):
     with open(cwfile) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         header = 0
-        col_list = []
+        id_list = []
         name_list = []
         lang_list = []
 
         for row in csv_reader:
             if header == 0:
-
+                # entries in the first row should be the url safe identifiers
                 for title in row:
-                    #print (title)
-                    col_list.append(title)
+                    id_list.append(title)
                 header = 1
-            elif header == 1:
 
+            elif header == 1:
+                # entries in the second row should be schema names with diacritics
                 for name in row:
                     name_list.append(name)
                 header = 2
-            elif header == 2:
 
+            elif header == 2:
+                # entries in the third row should be schema languages
                 for lang in row:
                     lang_list.append(lang)
                 header = 3
+
             else:
                 pass
 
 
+        elementid = id_list[0]
 
-        elementid = col_list[0]       
+        # skip first item of each list
+        id_use = id_list[1:]
+        name_use = name_list[1:]
+        lang_use = lang_list[1:]
 
-        new_list = col_list[1:]
-
-        nameread = name_list[1:]
-        langread = lang_list[1:]
-
-        print (new_list)
-
-        df = pandas.read_csv("crosswalk3.csv", encoding = "ISO-8859-1", usecols=col_list, skiprows=[1,3])
+        df = pandas.read_csv(cwfile, encoding = "ISO-8859-1", usecols=id_list, skiprows=[1,2,3])
 
         num = 0
-        for y in new_list:
-            #add_ExternalSchema(y)
+        for y in id_use:
+            add_ExternalSchema(y.replace(' ','-'), name_use[num], lang_use[num])
+            schema = ExternalSchema.objects.get(identifier=y.replace(' ','-'))
             print (y)
             count = 0
             for x in df[y]:
                 if pandas.isnull(x):
                     pass
                 else:
-                    schema = ExternalSchema.objects.get(name=y)
-                    #schema.identifier = (nameread[num]).replace(' ','-')
-                    schema.lang = (langread[num])
-                    schema.save()
-                    #print(x) # vocab id & url
-                    #print(df[elementid][count]) # elementid
+                    print(x)
+                    print(df[elementid][count]) # elementid
 
-                    # if str(x).startswith("http"):
-                    #     uri = x
-                    # else:
-                    #     uri = None
-                    # elid = Element.objects.get(identifier=df[elementid][count])
-                    # add_ExternalElement(str(x), uri, schema.id, elid.id)
+                    if str(x).startswith("http"):
+                        uri = x
+                    else:
+                        uri = None
+
+                    elid = Element.objects.get(identifier=df[elementid][count])
+                    add_ExternalElement(str(x), uri, schema.id, elid.id)
                 count+=1
             num+=1
-
-
 
 
 if runwhat == str(1):
@@ -231,9 +203,46 @@ elif runwhat == str(3):
     print ("finished!")
 
 elif runwhat == str(4):
+    print("")
+    print("")
+    print("===Elements File===")
+    print("")
+    print("Must be a Microsoft Excel .xlsx file.")
+    print("Must have NOT have a header row")
+    print("Must have columns in this order:")
+    print("")
+    print("    A) Identifier")
+    print("        - must be URL safe: no spaces, no accent marks, no diacritics, no punctuation")
+    print("    B) Term")
+    print("    C) Synonyms")
+    print("        - must be comma separated")
+    print("    D) Families")
+    print("        - must be comma separated")
+    print("    E) Segments")
+    print("    F) Description")
+    print("    G) Examples")
+    print("")
+    print("")
 
-    print("the element files must be .xlsx")
-    print("the crosswalk file must be .csv")
+    print("===Crosswalks File===")
+    print("")
+    print("Must be a comma separated .csv file.")
+    print("Must have THREE have a header rows")
+    print("the header rows must be in this order:")
+    print("")
+    print("    1) URL safe schema name")
+    print("        - no accent marks, no diacritics, no punctuation")
+    print("    2) Proper schema name")
+    print("        - accent marks, diacritics, punctuation are fine")
+    print("    3) Schema name language")
+    print("        - the language the schema name is written in, to improve assistive technologies")
+    print("")
+    print("After these three header rows, the first column must contain the identifier of the Element being crosswalked to.")
+    print("All other colunmns should have the URI or other identifier of the terms in the crosswalked scheme or be left BLANK if no match exists.")
+    print("Include http in all eternal element URIs, if no http included, the identifier will not be treated as a URI.")
+    print("")
+    print("")
+   
 
 else:
     print("invalid entry rerun script")
