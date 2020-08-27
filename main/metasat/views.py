@@ -50,14 +50,7 @@ def index(request):
 
 def element(request,element):
 
-    try:
-        el = Element.objects.get(identifier=element)
-    except Element.DoesNotExist:
-        context = {"element": element}
-        return render(request, "metasat/unknown.html",context)
 
-    elid = el.id
-    crosswalks = ExternalElement.objects.filter(metasatelement_id=elid).select_related('source')
 
     family = request.GET.get('family','')
     segment = request.GET.get('segment','')
@@ -77,8 +70,9 @@ def element(request,element):
     all_elements = Element.objects.filter(deprecated=False).order_by('identifier')
 
     context = {
-            "element": el,
-            "crosswalks": crosswalks,
+            # "known" : "yes",
+            # "element": el,
+            # "crosswalks": crosswalks,
             "famgroups" : famgroups, # all elements by family
             "seggroups" : seggroups, # all elements by segment
             "all_elements" : all_elements, # all elements
@@ -93,6 +87,21 @@ def element(request,element):
 
     else:
         context["gtype"] = "alpha"
+
+    try:
+        el = Element.objects.get(identifier=element)
+        #elid = el.id
+        crosswalks = ExternalElement.objects.filter(metasatelement_id=el.id).select_related('source')
+        context["known"] = "yes"
+        context["element"] = el
+        context["crosswalks"] = crosswalks
+    except Element.DoesNotExist:
+        context["element"] = element
+        context["known"] = "no"
+        # return render(request, "metasat/index.html",context)
+
+    
+    
    
     return render(request, "metasat/index.html", context)
 
