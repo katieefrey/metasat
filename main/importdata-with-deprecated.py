@@ -57,22 +57,22 @@ def add_Element(data1, data2, data3, data4, data5, data6, segments, families):
     e1.save()
 
 
-# def update_Element(data1, data2, data3, data4, data5, data6, segments, families):
-#     d = Element.objects.get(identifier=data1)
-#     d.term = data2 
-#     d.desc = data3
-#     d.synonym = data4
-#     d.example = data5
-#     d.source = data6
+def update_Element(data1, data2, data3, data4, data5, data6, segments, families):
+    d = Element.objects.get(identifier=data1)
+    d.term = data2 
+    d.desc = data3
+    d.synonym = data4
+    d.example = data5
+    d.source = data6
 
-#     d.segment.clear()
-#     for x in segments:
-#         d.segment.add(x)
+    d.segment.clear()
+    for x in segments:
+        d.segment.add(x)
 
-#     d.family.clear()
-#     for x in families:
-#         d.family.add(x)
-#     d.save()
+    d.family.clear()
+    for x in families:
+        d.family.add(x)
+    d.save()
 
 
 
@@ -92,22 +92,20 @@ def importelements(elfile):
 
     num = sheet_obj.max_row
 
-    print (num)
-
     for x in range(1,num+1):
 
-        term = sheet_obj.cell(row = x, column = 2)
         identifier = sheet_obj.cell(row = x, column = 1)
-        families = sheet_obj.cell(row = x, column = 4) 
-        segments = sheet_obj.cell(row = x, column = 5) 
-        desc = sheet_obj.cell(row = x, column = 6) 
-        example = sheet_obj.cell(row = x, column = 7)
-        synonyms = sheet_obj.cell(row = x, column = 3)
-        source = sheet_obj.cell(row = x, column = 8)
+        term = sheet_obj.cell(row = x, column = 2)
+        deprecated = sheet_obj.cell(row = x, column = 3)
+        synonyms = sheet_obj.cell(row = x, column = 4)
+        families = sheet_obj.cell(row = x, column = 5) 
+        segments = sheet_obj.cell(row = x, column = 6) 
+        desc = sheet_obj.cell(row = x, column = 7) 
+        example = sheet_obj.cell(row = x, column = 8)
+        source = sheet_obj.cell(row = x, column = 9)
 
-        print(term)
 
-        familys = (families.value).split(", ") 
+        familys = (families.value).split(", ")
         fam = []
         for x in familys:
            z = add_Family(x.strip())
@@ -224,19 +222,15 @@ elif runwhat == str(4):
     print("    A) Identifier")
     print("        - must be URL safe: no spaces, no accent marks, no diacritics, no punctuation")
     print("    B) Term")
-    print("    C) Synonyms")
+    print("    C) Deprecated status")
+    print("        - if deprecated write 'deprecated' otherwise leave blank")
+    print("    D) Synonyms")
     print("        - must be comma separated")
-    print("    D) Families")
+    print("    E) Families")
     print("        - must be comma separated")
-    print("    E) Segments")
-    print("    F) Description")
-    print("    G) Examples")
-    print("    H) Conditions (not used)")
-    print("    I) Source")
-    print("        - source of defintion")
-    print("    J) Deprecated")
-    print("        - 'yes' or blank")
-    print("    K) Wiki source (not used")
+    print("    F) Segments")
+    print("    G) Description")
+    print("    H) Examples")
     print("")
     print("")
 

@@ -6,7 +6,7 @@
 {% block customcss %}<link href="{% static 'website/css/metasat.css' %}" rel="stylesheet">{% endblock %}
 
 {% block title %}
-    Elements | MetaSat
+    {% if element == "noelement" %}Elements{% else %}{{element.identifier}}{% endif %} | MetaSat
 {% endblock %}
 
 {% block body %}
