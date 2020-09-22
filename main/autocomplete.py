@@ -104,4 +104,4 @@ def make_autocomplete(elfile):
 make_autocomplete(elfile)
 print ("finished!")
 
-print("copy 'metasat_autocomplete.js' to main/website/static/js/")
+print("copy 'metasat_autocomplete.js' to main/website/static/website/js/")
