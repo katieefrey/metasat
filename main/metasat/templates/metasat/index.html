@@ -3,10 +3,8 @@
 
 {% block nav-elements %}active{% endblock %}
 
-{% block customcss %}<link href="{% static 'website/css/metasat.css' %}" rel="stylesheet">{% endblock %}
-
 {% block title %}
-    {% if element == "noelement" %}Elements{% else %}{{element.identifier}}{% endif %} | MetaSat
+    {% if element %}{{element.identifier}}{% else %}Elements{% endif %} | MetaSat
 {% endblock %}
 
 {% block body %}
@@ -17,7 +15,7 @@
     <div class="row">
 
         <!-- left side bar -->
-        <div class="newsidebar col-lg-3 col-md-3 col-12">
+        <div class="newsidebar col-xl-3 col-lg-4 col-md-4 col-12">
 
             <!-- non-mobile tabs -->
             <div class="d-none d-sm-none d-md-block">
@@ -30,6 +28,9 @@
                     </li>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link segment-tab2 {%if gtype == 'segment'%} active{% endif %}" id="segment-tab" href="/metasat?view=segment" role="tab" aria-controls="segment" aria-selected="{%if gtype == 'segment'%}true{% else %}false{% endif %}">Segments</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link search-tab2 {%if gtype == 'search'%} active{% endif %}" id="search-tab" href="/metasat?view=search" role="tab" aria-controls="search" aria-selected="{%if gtype == 'search'%}true{% else %}false{% endif %}">Search</a>
                     </li>
                 </ul>
             </div>
@@ -48,6 +49,7 @@
                     <a class="nav-link alpha-tab {%if gtype == 'alpha'%} active{% endif %}" id="alpha-tab" data-toggle="pill" href="#alpha" role="tab" aria-controls="v-pills-alpha" aria-selected="false">By Index</a>
                     <a class="nav-link family-tab {%if gtype == 'family'%} active{% endif %}" id="family-tab" data-toggle="pill" href="#family" role="tab" aria-controls="v-pills-family" aria-selected="false">By Family</a>
                     <a class="nav-link segment-tab {%if gtype == 'segment'%} active{% endif %}" id="segment-tab" data-toggle="pill" href="#segment" role="tab" aria-controls="v-pills-segment" aria-selected="false">By Segment</a>
+                    <a class="nav-link search-tab {%if gtype == 'search'%} active{% endif %}" id="search-tab" data-toggle="pill" href="#search" role="tab" aria-controls="v-pills-search" aria-selected="false">By Search</a>
 
                 </div>
                 <hr/>
@@ -154,6 +156,29 @@
 
                 </div>
 
+
+                <!-- search -->
+                <div class="tab-pane fade{%if gtype == 'search'%} show active{% endif %}" id="search" role="tabpanel" aria-labelledby="search-tab">                    
+                    <div>
+                        <br/>
+                        <p>Search for MetaSat Elements</p>
+
+                        <form action="/metasat" class="form-inline" role="search">
+                            <div class="form-group mx-sm-3 mb-2">
+                                <input type="hidden" name="view" value="search">
+                                <label for="search-input" class="sr-only">MetaSat terms</label>
+                                <input type="text" class="form-control-sm" name="lookup" placeholder="MetaSat Element">
+                            </div>
+                            <button type="submit" class="btn btn-outline-light btn-secondary mb-2" style="background-color: #4e687e">Find</button>
+                        </form>
+                        <br/><br/>
+
+                        
+                    </div>
+
+                </div>
+
+
                 <!-- mobile up to top arrow -->
                 <div style="position:fixed;bottom:50px;right:50px;z-index: 30;" class="d-sm-block d-md-none">
                     <span class="text-right" style="float:right"><img tabindex=0 class="totopimgm" style="width:40px;cursor:pointer;" src={% static 'website/img/totopm.png' %}></span>
@@ -165,111 +190,110 @@
         <!-- end sidebar -->
 
         <!-- website main content -->
-        <div class="col-lg-9 col-md-9 offset-lg-3 offset-md-3">
+        <div class="col-xl-9 col-lg-8 col-md-8 offset-xl-3 offset-lg-4 offset-md-4">
             <div class="mainstuff">
+                <div id="content">
 
-                {% if known == "no" %}
+                <!-- if looking at a specific element.. -->
+                {% if element %}
 
-                    <div class="d-none d-sm-none d-md-block">
-                        <div id="content">
-                            <p class="h1">Unknown MetaSat Element</p>
-                            <p class="h3">Element "{{element}}" does not exist</p>
+                    <p class="h1 text-break">{% if element.deprecated == True %}Deprecated: {% endif %}{{element.identifier}}</p>
+                    <p class="h3 text-break">{% if element.deprecated == True %}Deprecated: {% endif %}{{element.term}}</p>
+                    <p><a href="https://schema.space/metasat/{{element.identifier}}"><span class="text-break">https://schema.space/metasat/{{element.identifier}}</span></a></p>
+
+                    {% if request.user.is_authenticated %}
+                        <p><a href="edit/{{element.identifier}}">(admin edit)</a></p>
+                    {% endif %}
+
+                    {% if element.deprecated == True %}
+                        <p>This element was deprecated on {{element.deprecatedon}}.</p>
+                            {% if element.mapping.all %}
+                                <p>Use Instead:
+                                {% for f in element.mapping.all %}<a href="/metasat/{{f.identifier}}">{{ f }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
+                                </p>
+                            {% endif %}
+                        <br/>
+                        <p class="h3">Legacy information</p>
+
+                    {% endif %}
+
+                    <p><strong>Description:</strong> {% if element.desc == ""%}None{% else %}{{element.desc}}{% endif %}{% if element.source != None %} (<a href="{{element.source}}">source</a>){% endif %}</p>
+                    <p><strong>Example:</strong> {% if element.example == ""%}None{% else %}{{element.example}}{% endif %}</p>
+                    <p><strong>Synonym(s):</strong> {% if element.synonym == ""%}None{% else %}{{element.synonym}}{% endif %}</p>
+                    <p><strong>Element Segments:</strong>  {% for f in element.segment.all %}<a href="/metasat/{{element.identifier}}?segment={{f|cut:' '}}">{{ f }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+                    <p><strong>Element Families:</strong>  {% for f in element.family.all %}<a href="/metasat/{{element.identifier}}?family={{f|cut:' '}}">{{ f }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+
+                    <p><a href="mailto:metasat@schema.space?subject=suggestion: {{element.identifier}}">suggest an edit</a></p>
+
+                    {% if crosswalks %}
+                        <br/><br/>
+                        <p class="h3">Crosswalk Identifiers</p>
+                        <div class="table-responsive">
+                            <table class=table>
+                                {% for x in crosswalks %}
+                                <tr>
+                                    <td><a href="/crosswalk/{{x.source.identifier}}">{{x.source}}</a></td>
+                                    <td>{% if x.url != None %}<a href="{{x.url}}"><span class="text-break">{{x.identifier}}</span></a>{% else %}{{x.identifier}}{% endif %}</a></td></td>
+                                </tr>
+                                {% endfor %}
+                            </table>
                         </div>
-                        <div>
-                            <br/>
-                            The full list of MetaSat Elements can be viewed alphabetically via the Index view, or organized into two different types of groups: the element families or the element segments.
-                            <br/><br/>
+                    {% endif %}
 
-                            A family is a collection of conceptually related elements. These elements do not have any hierarchical structure, they are simply collected into groupings of related concepts.
-                            <br/><br/>
+                <!-- if looking up an element -->
+                {% elif lookup %}
+                    <p class="h1">MetaSat Search Results</p>
+                    <div>
+                        
+                        <br/>
+                        <p><strong>Search Query: {{lookup}}</strong></p>
 
-                            A segment represents concepts related to a specific phase of a satellite mission. These elements do not have any hierarchical structure, they are simply collected into groupings of concepts based on when or where they are relevant to an overall mission.
-                        </div>
+                        {% if results %}
+                            <p><strong>Search Results:</strong></p>
+                            {% for x in results %}
+                                <p>
+                                    <strong><a href="/metasat/{{x.identifier}}">{{x.term|safe}}</a></strong>
+                                    {% if x.synonym %}
+                                        <br/><i>Synonyms</i>: {{x.synonym|safe}}
+                                    {% endif %}
+                                </p>
+                            {% endfor %}
+                        
+                        {% else %}
+                            <p><strong>No search results found</strong></p>
+                        {% endif %}
+
                     </div>
 
+                <!-- otherwise, default main content -->
                 {% else %}
 
-                    {% if element == "noelement" %}
-                        <div class="d-none d-sm-none d-md-block">
-                            <div id="content">
-                                <p class="h1">MetaSat Elements</p>
-                            </div>
-                            <div>
-                                <br/>
-                                The full list of MetaSat Elements can be viewed alphabetically via the Index view, or organized into two different types of groups: the element families or the element segments.
-                                <br/><br/>
+                    {% if known == "no" %}
+                        <p class="h1">Unknown MetaSat Element</p>
+                        <p class="h3">Element "{{element}}" does not exist</p>
 
-                                A family is a collection of conceptually related elements. These elements do not have any hierarchical structure, they are simply collected into groupings of related concepts.
-                                <br/><br/>
+                    {% elif element == "noelement" %}
+                        <p class="h1">MetaSat Elements</p>
+                    {%else %}
 
-                                A segment represents concepts related to a specific phase of a satellite mission. These elements do not have any hierarchical structure, they are simply collected into groupings of concepts based on when or where they are relevant to an overall mission.
-                            </div>
-                        </div>
+                    {% endif %}
+                    
+                    <p class="h1">MetaSat Elements</p>
+                    <p>The full list of MetaSat Elements can be viewed alphabetically via the Index view, or organized into two different types of groups: the element families or the element segments.</p>
 
-                    {% else %}
+                    <p>A family is a collection of conceptually related elements. These elements do not have any hierarchical structure, they are simply collected into groupings of related concepts.</p>
 
+                    <p>A segment represents concepts related to a specific phase of a satellite mission. These elements do not have any hierarchical structure, they are simply collected into groupings of concepts based on when or where they are relevant to an overall mission.</p>
 
-                        <div id="content">
-                            <p class="h1 text-break">{% if element.deprecated == True %}Deprecated: {% endif %}{{element.identifier}}</p>
-                            <p class="h3 text-break">{% if element.deprecated == True %}Deprecated: {% endif %}{{element.term}}</p>
-                            <a href="https://schema.space/metasat/{{element.identifier}}"><span class="text-break">https://schema.space/metasat/{{element.identifier}}</span></a>
-                        </div>
+                    <p>The search tab allows for searching across all elements and synonyms.</p>
 
-                        {% if request.user.is_authenticated %}
-                            <br/>
-                            <a href="edit/{{element.identifier}}">(admin edit)</a>
-                            <br/>
-                        {% endif %}
-
-
-                        {% if element.deprecated == True %}
-                            <br/>
-                            This element was deprecated on {{element.deprecatedon}}.
-                            <br/>
-                                {% if element.mapping.all %}
-                                    <br/>Use Instead:
-                                    {% for f in element.mapping.all %}<a href="/metasat/{{f.identifier}}">{{ f }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
-                                    <br/>
-                                {% endif %}
-                            <br/><br/>
-                            <p class="h3">Legacy information</p>
-
-                        {% endif %}
-
-                        <br/>
-                        <strong>Description:</strong> {% if element.desc == ""%}None{% else %}{{element.desc}}{% endif %}{% if element.source != None %} (<a href="{{element.source}}">source</a>){% endif %}
-                        <br/><br/>
-                        <strong>Example:</strong> {% if element.example == ""%}None{% else %}{{element.example}}{% endif %}<br/><br/>
-                        <strong>Synonym(s):</strong> {% if element.synonym == ""%}None{% else %}{{element.synonym}}{% endif %}<br/><br/>
-                        <strong>Element Segments:</strong>  {% for f in element.segment.all %}<a href="/metasat/{{element.identifier}}?segment={{f|cut:' '}}">{{ f }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}<br/><br/>
-                        <strong>Element Families:</strong>  {% for f in element.family.all %}<a href="/metasat/{{element.identifier}}?family={{f|cut:' '}}">{{ f }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
-
-                        <br/><br/>
-                        <a href="mailto:metasat@schema.space?subject=suggestion: {{element.identifier}}">suggest an edit</a>
-
-                        {% if crosswalks %}
-                            <br/><br/><br/><br/>
-                            <p class="h3">Crosswalk Identifiers</p>
-                            <div class="table-responsive">
-                                <table class=table>
-                                    {% for x in crosswalks %}
-                                    <tr>
-                                        <td><a href="/crosswalk/{{x.source.identifier}}">{{x.source}}</a></td>
-                                        <td>{% if x.url != None %}<a href="{{x.url}}"><span class="text-break">{{x.identifier}}</span></a>{% else %}{{x.identifier}}{% endif %}</a></td></td>
-                                    </tr>
-                                    {% endfor %}
-                                </table>
-                            </div>
-                        {% endif %}
-
-
-                    {% endif%}
                 {% endif %}
+                </div>
             </div>
             <!-- end mainstuff -->
-               
+
             {% include "website/footer.html" %}
-        
+
         </div>
     </div>
 </div>

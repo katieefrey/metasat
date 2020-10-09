@@ -2,6 +2,7 @@
 $(document).ready(function(){
     
     var currentTab = localStorage.getItem('currentTab');
+    console.log(currentTab);
     var currentElement = localStorage.getItem('currentElement');
 
     if (currentElement != "noelement") {
@@ -10,6 +11,7 @@ $(document).ready(function(){
             $("#family").removeClass('active');
             $("#segment").removeClass('active');
             $("#alpha").removeClass('active');
+            $("#search").removeClass('active');
             $('.'+currentTab+'-tab').removeClass("active");//
             $('.'+currentTab+'-tab').attr("aria-selected", "false");
         }
@@ -92,6 +94,7 @@ $(document).ready(function(){
         localStorage.setItem('currentTab', 'family');
         localStorage.setItem('inactive1', 'segment');
         localStorage.setItem('inactive2', 'alpha');
+        localStorage.setItem('inactive3', 'search');
 
         if ($(this).hasClass("active")) {
            
@@ -107,6 +110,7 @@ $(document).ready(function(){
         localStorage.setItem('currentTab', 'segment');
         localStorage.setItem('inactive1', 'family');
         localStorage.setItem('inactive2', 'alpha');
+        localStorage.setItem('inactive3', 'search');
 
         if ($(this).hasClass("active")) {
            
@@ -118,6 +122,22 @@ $(document).ready(function(){
         }
     });
 
+    $('.search-tab').click(function (e) {
+        localStorage.setItem('currentTab', 'search');
+        localStorage.setItem('inactive1', 'family');
+        localStorage.setItem('inactive2', 'alpha');
+        localStorage.setItem('inactive3', 'segment');
+
+        if ($(this).hasClass("active")) {
+           
+            $("#search").removeClass('active');
+            e.preventDefault();
+            e.stopPropagation();
+            $('.search-tab').removeClass("active");//
+            $('.search-tab').attr("aria-selected", "false");
+        }
+    });
+
     $(window).on('resize', function(e){
         var windowSize = $(window).width(); // Could've done $(this).width()
 
@@ -125,16 +145,19 @@ $(document).ready(function(){
             var currentTab = localStorage.getItem('currentTab');
             var inactive1 = localStorage.getItem('inactive1');
             var inactive2 = localStorage.getItem('inactive2');
+            var inactive3 = localStorage.getItem('inactive3');
 
             $("#"+currentTab).addClass('active');
             e.preventDefault();
             e.stopPropagation();
             $('.'+inactive1+'-tab2').removeClass("active");
             $('.'+inactive2+'-tab2').removeClass("active");
+            $('.'+inactive3+'-tab2').removeClass("active");
             $('.'+currentTab+'-tab2').addClass("active");//
             $('.'+currentTab+'-tab2').attr("aria-selected", "true");
             $('.'+inactive1+'-tab').removeClass("active");
             $('.'+inactive2+'-tab').removeClass("active");
+            $('.'+inactive3+'-tab').removeClass("active");
             $('.'+currentTab+'-tab').addClass("active");//
             $('.'+currentTab+'-tab').attr("aria-selected", "true");
             $('.'+currentTab).addClass("active");//

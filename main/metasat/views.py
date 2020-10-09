@@ -6,6 +6,8 @@ from .forms import ElementForm, FamComp, SegComp
 from crosswalk.forms import ExternalElementForm, ExElFormSet
 from crosswalk.models import ExternalElement
 
+from django.db.models import Q
+
 import string
 
 
@@ -33,7 +35,7 @@ def index(request):
             "seggroups" : seggroups, # all elements by segment
             "all_elements" : all_elements, # all elements
             "alphabet" : alphabet,
-            "element" : "noelement"
+            # "element" : "noelement"
             }
 
     if view == "family":
@@ -42,6 +44,54 @@ def index(request):
     elif view == "segment":
         context["gtype"] = "segment"
 
+    elif view == "search":
+        lookup = (request.GET.get('lookup', '')).lower()
+
+        context["gtype"] = "search"
+        context["lookup"] = lookup
+
+        if lookup != "":
+            tlookup = lookup.title()
+            clookup = lookup.capitalize() 
+            ulookup = lookup.upper()
+
+            res = Element.objects.filter( Q(term__icontains=lookup) | Q(synonym__icontains=lookup))
+
+            for x in res:
+
+                ident = x.identifier
+                term = x.term
+                syn = x.synonym
+
+                if lookup in term:
+                    x.term = term.replace(lookup,"<mark>"+lookup+"</mark>")
+                    x.synonym = None
+                elif tlookup in term:
+                    x.term = term.replace(tlookup,"<mark>"+tlookup+"</mark>")
+                    x.synonym = None
+                elif clookup in term:
+                    x.term = term.replace(clookup,"<mark>"+clookup+"</mark>")
+                    x.synonym = None
+                elif ulookup in term:
+                    x.term = term.replace(ulookup,"<mark>"+ulookup+"</mark>")
+                    x.synonym = None
+                else:
+                    if lookup in syn:
+                        x.synonym = syn.replace(lookup,"<mark>"+lookup+"</mark>")
+                    elif tlookup in syn:
+                        x.synonym = syn.replace(tlookup,"<mark>"+tlookup+"</mark>")
+                    elif clookup in syn:
+                        x.synonym = syn.replace(clookup,"<mark>"+clookup+"</mark>")
+                    elif ulookup in syn:
+                        x.synonym = term.replace(ulookup,"<mark>"+ulookup+"</mark>")
+                    else:
+                        pass
+
+            context["results"] = res            
+            context["clookup"] = clookup
+            context["ulookup"] = ulookup
+            context["tlookup"] = tlookup
+
     else:
         context["gtype"] = "alpha"
         
@@ -49,8 +99,6 @@ def index(request):
 
 
 def element(request,element):
-
-
 
     family = request.GET.get('family','')
     segment = request.GET.get('segment','')
@@ -70,9 +118,6 @@ def element(request,element):
     all_elements = Element.objects.filter(deprecated=False).order_by('identifier')
 
     context = {
-            # "known" : "yes",
-            # "element": el,
-            # "crosswalks": crosswalks,
             "famgroups" : famgroups, # all elements by family
             "seggroups" : seggroups, # all elements by segment
             "all_elements" : all_elements, # all elements
@@ -90,7 +135,6 @@ def element(request,element):
 
     try:
         el = Element.objects.get(identifier=element)
-        #elid = el.id
         crosswalks = ExternalElement.objects.filter(metasatelement_id=el.id).select_related('source')
         context["known"] = "yes"
         context["element"] = el
@@ -98,12 +142,9 @@ def element(request,element):
     except Element.DoesNotExist:
         context["element"] = element
         context["known"] = "no"
-        # return render(request, "metasat/index.html",context)
 
-    
-    
-   
     return render(request, "metasat/index.html", context)
+
 
 
 def edit(request,element):
