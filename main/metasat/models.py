@@ -3,7 +3,6 @@ from django.db import models
 
 class ElementFamily(models.Model):
     family = models.CharField(max_length=255, unique=True)
-    desc = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.family}"
@@ -11,7 +10,6 @@ class ElementFamily(models.Model):
 
 class Segment(models.Model):
     segment = models.CharField(max_length=255, unique=True)
-    desc = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.segment}"
