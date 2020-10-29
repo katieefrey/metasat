@@ -35,8 +35,8 @@ def add_Family(data1):
     d, created = ElementFamily.objects.get_or_create(family=data1)
     return d
 
-def add_ExternalSchema(data1, data2, data3):
-    d, created = ExternalSchema.objects.get_or_create(identifier=data1, name=data2, lang=data3)
+def add_ExternalSchema(data1, data2, data3, data4):
+    d, created = ExternalSchema.objects.get_or_create(identifier=data1, name=data2, lang=data3, desc=data4)
     return d
 
 def add_ExternalElement(data1, data3, data4, data5):
@@ -138,6 +138,7 @@ def importcrosswalks(cwfile):
         id_list = []
         name_list = []
         lang_list = []
+        desc_list = []
 
         for row in csv_reader:
             if header == 0:
@@ -158,6 +159,12 @@ def importcrosswalks(cwfile):
                     lang_list.append(lang)
                 header = 3
 
+            elif header == 3:
+                #entries in the fourth row should be crosswalk descriptions
+                for desc in row:
+                    desc_list.append(desc)
+                header = 4
+
             else:
                 pass
 
@@ -168,12 +175,13 @@ def importcrosswalks(cwfile):
         id_use = id_list[1:]
         name_use = name_list[1:]
         lang_use = lang_list[1:]
+        desc_use = desc_list[1:]
 
-        df = pandas.read_csv(cwfile, encoding = "ISO-8859-1", usecols=id_list, skiprows=[1,2,3])
+        df = pandas.read_csv(cwfile, encoding = "ISO-8859-1", usecols=id_list, skiprows=[1,2,3,4])
 
         num = 0
         for y in id_use:
-            add_ExternalSchema(y.replace(' ','-'), name_use[num], lang_use[num])
+            add_ExternalSchema(y.replace(' ','-'), name_use[num], lang_use[num], desc_use[num])
             schema = ExternalSchema.objects.get(identifier=y.replace(' ','-'))
             print (y)
             count = 0

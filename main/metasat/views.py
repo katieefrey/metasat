@@ -83,7 +83,7 @@ def index(request):
                     elif clookup in syn:
                         x.synonym = syn.replace(clookup,"<mark>"+clookup+"</mark>")
                     elif ulookup in syn:
-                        x.synonym = term.replace(ulookup,"<mark>"+ulookup+"</mark>")
+                        x.synonym = syn.replace(ulookup,"<mark>"+ulookup+"</mark>")
                     else:
                         pass
 

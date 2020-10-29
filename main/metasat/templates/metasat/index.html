@@ -39,9 +39,9 @@
             <!-- mobile pills -->
             <div class="d-sm-block d-md-none">
                 
-                <p class="h4">Browse MetaSat Elements</p>
+                <p class="h4">Browse MetaSat Concepts</p>
                     {% if element == "noelement" %}
-                        The full list of MetaSat Elements can be viewed alphabetically via the index view, or organized into two different types of groups: the element families (conceptually related elements) or the element segments (elements for a specific mission phase).
+                        The full list of MetaSat Concepts can be viewed alphabetically via the index view, or organized into two different types of groups: the concept families (conceptually related concepts) or the concept segments (concepts for a specific mission phase).
                     {% endif %}
                 <hr/>
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -161,13 +161,13 @@
                 <div class="tab-pane fade{%if gtype == 'search'%} show active{% endif %}" id="search" role="tabpanel" aria-labelledby="search-tab">                    
                     <div>
                         <br/>
-                        <p>Search for MetaSat Elements</p>
+                        <p>Search for MetaSat Concepts</p>
 
                         <form action="/metasat" class="form-inline" role="search">
                             <div class="form-group mx-sm-3 mb-2">
                                 <input type="hidden" name="view" value="search">
                                 <label for="search-input" class="sr-only">MetaSat terms</label>
-                                <input type="text" class="form-control-sm" name="lookup" placeholder="MetaSat Element">
+                                <input type="text" class="form-control-sm" name="lookup" placeholder="MetaSat Concept">
                             </div>
                             <button type="submit" class="btn btn-outline-light btn-secondary mb-2" style="background-color: #4e687e">Find</button>
                         </form>
@@ -220,8 +220,8 @@
                     <p><strong>Description:</strong> {% if element.desc == ""%}None{% else %}{{element.desc}}{% endif %}{% if element.source != None %} (<a href="{{element.source}}">source</a>){% endif %}</p>
                     <p><strong>Example:</strong> {% if element.example == ""%}None{% else %}{{element.example}}{% endif %}</p>
                     <p><strong>Synonym(s):</strong> {% if element.synonym == ""%}None{% else %}{{element.synonym}}{% endif %}</p>
-                    <p><strong>Element Segments:</strong>  {% for f in element.segment.all %}<a href="/metasat/{{element.identifier}}?segment={{f|cut:' '}}">{{ f }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</p>
-                    <p><strong>Element Families:</strong>  {% for f in element.family.all %}<a href="/metasat/{{element.identifier}}?family={{f|cut:' '}}">{{ f }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+                    <p><strong>Concept Segments:</strong>  {% for f in element.segment.all %}<a href="/metasat/{{element.identifier}}?segment={{f|cut:' '}}">{{ f }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+                    <p><strong>Concept Families:</strong>  {% for f in element.family.all %}<a href="/metasat/{{element.identifier}}?family={{f|cut:' '}}">{{ f }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</p>
 
                     <p><a href="mailto:metasat@schema.space?subject=suggestion: {{element.identifier}}">suggest an edit</a></p>
 
@@ -269,23 +269,31 @@
                 {% else %}
 
                     {% if known == "no" %}
-                        <p class="h1">Unknown MetaSat Element</p>
-                        <p class="h3">Element "{{element}}" does not exist</p>
+                        <p class="h1">Unknown MetaSat Concept</p>
+                        <p class="h3">Concept "{{element}}" does not exist</p>
 
                     {% elif element == "noelement" %}
-                        <p class="h1">MetaSat Elements</p>
+                        <p class="h1">MetaSat Concepts</p>
                     {%else %}
 
                     {% endif %}
                     
-                    <p class="h1">MetaSat Elements</p>
-                    <p>The full list of MetaSat Elements can be viewed alphabetically via the Index view, or organized into two different types of groups: the element families or the element segments.</p>
+                    <p class="h1">MetaSat Concepts</p>
 
-                    <p>A family is a collection of conceptually related elements. These elements do not have any hierarchical structure, they are simply collected into groupings of related concepts.</p>
+                    <br/><p class="h4">Alphabetical Index</p>
 
-                    <p>A segment represents concepts related to a specific phase of a satellite mission. These elements do not have any hierarchical structure, they are simply collected into groupings of concepts based on when or where they are relevant to an overall mission.</p>
+                    <p>The full list of MetaSat concepts (i.e., "terms") can be viewed alphabetically via the Index view, or organized into two different types of groups: the concept families or the concept mission segments.</p>
 
-                    <p>The search option allows for searching across all elements and synonyms.</p>
+                    <br/><p class="h4">Families View</p>
+
+                    <p>A concept family is a collection of conceptually related MetaSat concepts (i.e., "terms"). These concepts do not have any hierarchical structure and are instead collections or groupings of related concepts.</p>
+
+                    <br/><p class="h4">Segments View</p>
+
+                    <p>A mission segment represents concepts related to a specific phase of a space mission. MetaSat concepts in these segments do not have any hierarchical structure, they are simply collected into groupings of concepts based on when or where they are relevant to an overall mission.</p>
+
+                    <br/><p class="h4">Search MetaSat Concepts</p>
+                    <p>The search option allows for searching across all concepts and synonyms.</p>
 
                 {% endif %}
                 </div>

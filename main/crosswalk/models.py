@@ -16,6 +16,7 @@ class ExternalSchema(models.Model):
     # NOT language of the vocab itself
     lang = models.CharField(max_length=4, null=True, blank=True)
 
+    desc = models.TextField(null=True, blank=True)
     def __str__(self):
         return f"{self.name}"
 

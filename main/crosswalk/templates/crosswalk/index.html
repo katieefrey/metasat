@@ -54,10 +54,10 @@
                         <div id="content">
                             <h1><span lang="{{language}}">{{crosswalk}}</span></h1>
 
-                            <br/><br/>
+                            <br/><p>{{desc|safe}}</p><br/>
                             <table class=table>
                                 <tr>
-                                    <th>MetaSat Element</th>
+                                    <th>MetaSat Concept</th>
                                     <th>External Identifier</th>
                                 </tr>
                                 {% for term in terms %}
@@ -76,7 +76,7 @@
                         </div>
                         <div>
                             <br/><br/>
-                            A metadata crosswalk is a set of instructions for converting metadata of one schema or vocabulary into another.  We are working on making conversions between Metasat and different vocabularies even easier by building a full MetaSat Crosswalk.  The list of vocabularies we have developed crosswalks for is on the left, including schema.org, WikiData Items, and many more.
+                            A metadata crosswalk is a set of instructions for converting metadata of one schema or vocabulary into another. We are working on making conversions between MetaSat and different vocabularies even easier by building a full MetaSat Crosswalk. The list of vocabularies we have developed crosswalks for is on the left, including schema.org, WikiData Items, and many more.
                         </div>
                         
                     {% endif %}
@@ -98,14 +98,14 @@
                 {% if crosswalk %}
 
                     <h1><span lang="{{language}}">{{crosswalk}} Crosswalk</span></h1>
-
                     <br/>
-                    <a href="/crosswalk">Back to All Crosswalks</a>
-                    <br/><br/>
+                    <p>{{desc|safe}}</p>
+                    <p><a href="/crosswalk">Back to All Crosswalks</a></p>
+
                     <div class="table-responsive">
                         <table class="table">
                             <tr>
-                                <th>MetaSat Element</th>
+                                <th>MetaSat Concept</th>
                                 <th>External Identifier</th>
                             </tr>
                             {% for term in terms %}
@@ -121,7 +121,7 @@
 
                     <h1>MetaSat Crosswalks</h1>
                     <br/>
-                    A metadata crosswalk is a set of instructions for converting metadata of one schema or vocabulary into another.  We are working on making conversions between Metasat and different vocabularies even easier by building a full MetaSat Crosswalk.  The list of vocabularies we have developed crosswalks for is on the left, including schema.org, WikiData Items, and many more.
+                    A metadata crosswalk is a set of instructions for converting metadata of one schema or vocabulary into another. We are working on making conversions between MetaSat and different vocabularies even easier by building a full MetaSat Crosswalk. The list of vocabularies we have developed crosswalks for is on the left, including schema.org, WikiData Items, and many more
                     <br/><br/>
 
                     All Crosswalks <br/><br/>
