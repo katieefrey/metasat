@@ -17,6 +17,7 @@ class ExternalSchema(models.Model):
     lang = models.CharField(max_length=4, null=True, blank=True)
 
     desc = models.TextField(null=True, blank=True)
+
     def __str__(self):
         return f"{self.name}"
 
@@ -34,22 +35,3 @@ class ExternalElement(models.Model):
 
     class Meta:
        ordering = ('metasatelement',)
-
-
-
-
-
-# class ExternalRelationshipSchema(models.Model):
-#     name = models.CharField(max_length=50)
-#     url = models.TextField(null=True, blank=True)
-
-#     def __str__(self):
-#         return f"{self.name}"
-
-
-# class Relationship(models.Model):
-#     predicate = models.CharField(max_length=50)
-#     source = models.ForeignKey(ExternalRelationshipSchema, on_delete=models.CASCADE, null=True, blank=True)
-
-#     def __str__(self):
-#         return f"{self.predicate}"
