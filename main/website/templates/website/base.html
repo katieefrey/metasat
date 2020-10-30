@@ -59,7 +59,7 @@
                         <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item {% block nav-elements %}{% endblock %}">
-                        <a class="nav-link" href="/metasat">Elements</a>
+                        <a class="nav-link" href="/metasat">Concepts</a>
                     </li>
                    <li class="nav-item {% block nav-crosswalk %}{% endblock %}">
                         <a class="nav-link" href="/crosswalk">Crosswalk</a>
@@ -90,12 +90,13 @@
 
                 </ul>          
 
-                <form id="metasattermform" class="form-inline" role="search">
+                <form action="/metasat" class="form-inline" role="search">
                         <div class="form-group mx-sm-3 mb-2">
+                            <input type="hidden" name="view" value="search">
                             <label for="search-input" class="sr-only">MetaSat terms</label>
-                            <input type="text" class="form-control-sm" id="metasat-autocomplete" placeholder="MetaSat Element">
+                            <input type="text" class="form-control-sm" name="lookup" placeholder="MetaSat Concept">
                         </div>
-                        <button type="submit" id="autocompletebutton" class="btn btn-outline-light btn-secondary btn-sm mb-2" style="background-color: #4e687e">Find</button>
+                        <button type="submit" class="btn btn-outline-light btn-secondary btn-sm mb-2" style="background-color: #4e687e">Find</button>
                 </form>
 
              </div>

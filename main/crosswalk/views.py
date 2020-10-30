@@ -20,11 +20,13 @@ def crosswalk(request,crosswalk):
 
     terms = ExternalElement.objects.filter(source=cw.id).exclude(metasatelement__deprecated=True).select_related('metasatelement')
     
+    print (cw.desc)
     context = {
                 "allcrosswalks": allcrosswalks,
                 "terms": terms,
                 "crosswalk": cw.name,
                 "language" : cw.lang,
+                "desc" : cw.desc,
             }
 
     return render(request, "crosswalk/index.html", context)

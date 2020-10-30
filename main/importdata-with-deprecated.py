@@ -35,8 +35,8 @@ def add_Family(data1):
     d, created = ElementFamily.objects.get_or_create(family=data1)
     return d
 
-def add_ExternalSchema(data1, data2, data3, data4):
-    d, created = ExternalSchema.objects.get_or_create(identifier=data1, name=data2, lang=data3, desc=data4)
+def add_ExternalSchema(data1, data2, data3):
+    d, created = ExternalSchema.objects.get_or_create(identifier=data1, name=data2, lang=data3)
     return d
 
 def add_ExternalElement(data1, data3, data4, data5):
@@ -57,22 +57,22 @@ def add_Element(data1, data2, data3, data4, data5, data6, segments, families):
     e1.save()
 
 
-# def update_Element(data1, data2, data3, data4, data5, data6, segments, families):
-#     d = Element.objects.get(identifier=data1)
-#     d.term = data2 
-#     d.desc = data3
-#     d.synonym = data4
-#     d.example = data5
-#     d.source = data6
+def update_Element(data1, data2, data3, data4, data5, data6, segments, families):
+    d = Element.objects.get(identifier=data1)
+    d.term = data2 
+    d.desc = data3
+    d.synonym = data4
+    d.example = data5
+    d.source = data6
 
-#     d.segment.clear()
-#     for x in segments:
-#         d.segment.add(x)
+    d.segment.clear()
+    for x in segments:
+        d.segment.add(x)
 
-#     d.family.clear()
-#     for x in families:
-#         d.family.add(x)
-#     d.save()
+    d.family.clear()
+    for x in families:
+        d.family.add(x)
+    d.save()
 
 
 
@@ -92,22 +92,20 @@ def importelements(elfile):
 
     num = sheet_obj.max_row
 
-    print (num)
-
     for x in range(1,num+1):
 
-        term = sheet_obj.cell(row = x, column = 2)
         identifier = sheet_obj.cell(row = x, column = 1)
-        families = sheet_obj.cell(row = x, column = 4) 
-        segments = sheet_obj.cell(row = x, column = 5) 
-        desc = sheet_obj.cell(row = x, column = 6) 
-        example = sheet_obj.cell(row = x, column = 7)
-        synonyms = sheet_obj.cell(row = x, column = 3)
-        source = sheet_obj.cell(row = x, column = 8)
+        term = sheet_obj.cell(row = x, column = 2)
+        deprecated = sheet_obj.cell(row = x, column = 3)
+        synonyms = sheet_obj.cell(row = x, column = 4)
+        families = sheet_obj.cell(row = x, column = 5) 
+        segments = sheet_obj.cell(row = x, column = 6) 
+        desc = sheet_obj.cell(row = x, column = 7) 
+        example = sheet_obj.cell(row = x, column = 8)
+        source = sheet_obj.cell(row = x, column = 9)
 
-        print(term)
 
-        familys = (families.value).split(", ") 
+        familys = (families.value).split(", ")
         fam = []
         for x in familys:
            z = add_Family(x.strip())
@@ -138,7 +136,6 @@ def importcrosswalks(cwfile):
         id_list = []
         name_list = []
         lang_list = []
-        desc_list = []
 
         for row in csv_reader:
             if header == 0:
@@ -159,12 +156,6 @@ def importcrosswalks(cwfile):
                     lang_list.append(lang)
                 header = 3
 
-            elif header == 3:
-                #entries in the fourth row should be crosswalk descriptions
-                for desc in row:
-                    desc_list.append(desc)
-                header = 4
-
             else:
                 pass
 
@@ -175,13 +166,12 @@ def importcrosswalks(cwfile):
         id_use = id_list[1:]
         name_use = name_list[1:]
         lang_use = lang_list[1:]
-        desc_use = desc_list[1:]
 
-        df = pandas.read_csv(cwfile, encoding = "ISO-8859-1", usecols=id_list, skiprows=[1,2,3,4])
+        df = pandas.read_csv(cwfile, encoding = "ISO-8859-1", usecols=id_list, skiprows=[1,2,3])
 
         num = 0
         for y in id_use:
-            add_ExternalSchema(y.replace(' ','-'), name_use[num], lang_use[num], desc_use[num])
+            add_ExternalSchema(y.replace(' ','-'), name_use[num], lang_use[num])
             schema = ExternalSchema.objects.get(identifier=y.replace(' ','-'))
             print (y)
             count = 0
@@ -232,19 +222,15 @@ elif runwhat == str(4):
     print("    A) Identifier")
     print("        - must be URL safe: no spaces, no accent marks, no diacritics, no punctuation")
     print("    B) Term")
-    print("    C) Synonyms")
+    print("    C) Deprecated status")
+    print("        - if deprecated write 'deprecated' otherwise leave blank")
+    print("    D) Synonyms")
     print("        - must be comma separated")
-    print("    D) Families")
+    print("    E) Families")
     print("        - must be comma separated")
-    print("    E) Segments")
-    print("    F) Description")
-    print("    G) Examples")
-    print("    H) Conditions (not used)")
-    print("    I) Source")
-    print("        - source of defintion")
-    print("    J) Deprecated")
-    print("        - 'yes' or blank")
-    print("    K) Wiki source (not used")
+    print("    F) Segments")
+    print("    G) Description")
+    print("    H) Examples")
     print("")
     print("")
 
