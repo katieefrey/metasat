@@ -24,13 +24,13 @@
                   <br/>
                   <table class="table">
                         <tr>
-                            <td><a href="#introduction">Introduction</a></td>
-                        </tr>
-                        <tr>
                             <td><a href="#using-JSON-LD">How to use JSON-LD</a></td>
                         </tr>
                         <tr>
                             <td><a href="#linked-data">Linked Data</a></td>
+                        </tr>
+                        <tr>
+                          <td><a href="#context">Context section</a></td>
                         </tr>
                         <tr>
                             <td><a href="#algorithms">Transformation Algorithms</a></td>
@@ -55,28 +55,45 @@
     <div class="col-sm-12 col-md-9 offset-md-3" id="content">
         <div class="mainstuff">
 
-            <h1 id="introduction">Advanced Topics</h1>
-            <br/>
+            <h1 id="using-JSON-LD">How to use JSON-LD</h1>
 
-            <h2 id="using-JSON-LD">How to use JSON-LD</h2>
+            <p>JSON-LD (JSON for Linking Data) is more than just a data exchange syntax. The JSON-LD specification also includes a set of transforming algorithms to help you create linked data that is easy for machines to use <i>and</i> for humans to read and write.</p>
 
-            <p>JSON-LD (JSON for Linked Data) is more than just a data exchange syntax. The JSON-LD specification also includes a set of transforming algorithms help you create linked data that is easy for machines to use and easy for humans to read and write.</p>
+            <h2 id="linked-data">Linked Data</h2>
 
-            <h3 id="linked-data">Linked Data</h3>
+            <p>JSON-LD is one of several W3C-recommended implementations of the <a href="/resources/linked-data">Resource Description Framework (RDF)</a>, making it an ideal tool to create <a href="https://www.w3.org/standards/semanticweb/data">linked data</a>. Linking data makes data and information more accessible to both machines and people. It can help simplify knowledge management or even help search engines find information more efficiently. Google already uses JSON-LD and linked data: if you Google something like the name of a famous celebrity, the distance to the sun, or the capital of Nepal, you might see a box with information on the subject before you even get to any links. These are called "<a href="https://support.google.com/knowledgepanel/answer/9163198?hl=en">knowledge panels</a>," and they are created using the magic of JSON-LD and linked data.</p>
 
-            <p>JSON-LD is one of several W3C-recommended implementations of the <a href="/resources/linked-data">Resource Description Framework (RDF)</a>, making it ideal to create <a href="https://www.w3.org/standards/semanticweb/data">linked data</a>. Linking data makes data and information more accessible to both machines and people. It can help simplify knowledge management, or even help search engines find information more efficiently. Google already uses JSON-LD and linked data: if you Google something like the name of a famous celebrity, the distance to the sun, or the capital of Nepal, you might see a box with information on the subject before you even get to any links. These are called "<a href="https://support.google.com/knowledgepanel/answer/9163198?hl=en">knowledge panels</a>," and they are created using the magic of JSON-LD and linked data.</p>
+            <p>That being said, you don't need to know anything about W3C, RDF, or the semantic web to take advantage of JSON-LD and linked data! You can find examples of how you can use transforming algorithms to tap into the power of JSON-LD in the next few sections. But first, let's talk about the <code>@context</code> section, which is necessary to tap into the power of linked data.</p>
 
-            <p>That being said, you don't need to know anything about W3C, RDF, or the semantic web to take advantage of JSON-LD and linked data! You can find examples of how you can use transforming algorithms to tap into the power of JSON-LD in the next few sections.</p>
+            <h2 id="context"><code>@context</code> section</h2>
 
-            <h3 id="algorithms">Transformation algorithms</h3>
+            <p>The <a href="https://gitlab.com/metasat/metasat-schema/-/blob/master/docs/getting_started.md#context"><code>@context</code> section</a> of a JSON-LD file is what sets it apart from plain JSON and makes both linking data and all of the transformation algorithms possible. The <code>@context</code> defines which external vocabularies will be used in your JSON-LD file: Both the base/default vocabulary (using the <code>@vocab</code> tag) and additional vocabularies that can be used as <a href="https://en.wikipedia.org/wiki/CURIE">CURIEs</a>. In addition, the <code>@context</code> section can be used to make aliases for vocabulary terms. For instance, in one of our <a href="https://gitlab.com/metasat/metasat-schema/-/blob/master/examples/satnogs_ground_station_example.jsonld#L5">example files</a>, the MetaSat concept "telecommunicationsNetwork" is aliased to "groundStationNetwork." This can help improve clarity in certain contexts (in the example file, the only type of telecommunications network recorded was the SatNOGS ground station network), or to help your files conform with your own vocabularies more closely.</p>
 
-            <p>The magic of JSON-LD lies in the fact that human-readable keys can be transformed into machine-readable IRIs (<b>I</b>nternationalized <b>R</b>esource <b>I</b>dentifiers, a superset of <a href="/resources/basic-topics">URIs</a>). The human-readable form is called the "compacted" form, and the machine-readable is "expanded."</p>
+            <p>Because of the many existing linked data vocabularies and high potential for aliasing, the <code>@context</code> section of a file may become long and unwieldy. In these cases, you can link out to an external context file. An external context file is a JSON-LD file with only an <code>@context</code> section that can be hosted remotely, separately from the file you are working with. For example, MetaSat has an <a href="https://gitlab.com/metasat/metasat-schema/-/raw/master/context.jsonld">external context file</a> hosted on our <a href="https://gitlab.com/metasat/metasat-schema/-/blob/master/context.jsonld">GitLab repository</a>. This file, or any other external context, can be linked to your file using the <code>@import</code> tag. When using <code>@import</code>, the line <code>"@version": 1.1</code> must be included in the <code>@context</code> section, because the <code>@import</code> tag was introduced with JSON-LD version 1.1.</p>
+
+            <p>An <code>@context</code> section linked to an external context might look like this:</p>
+
+<pre><code>{
+  "@context": {
+    "@version": 1.1,
+    "@import": "https://gitlab.com/metasat/metasat-schema/-/raw/master/context.jsonld",
+    "@vocab": "https://schema.space/metasat/"
+  }
+}</code></pre>
+
+            <p>Anything after the <code>@import</code> tag, such as the <code>@vocab</code> tag in this example, will supersede whatever is in the external context.</p>
+
+            <p>Once our <code>@context</code> section is filled out, our JSON-LD file is capable of linking data. In addition, the <code>@context</code> section is crucial for the set of transformation algorithms that unlock the full potential of JSON-LD.</p>
+
+            <h2 id="algorithms">Transformation algorithms</h2>
+
+            <p>The magic of JSON-LD lies in the fact that human-readable keys can be transformed into machine-readable URIs (<b>U</b>niform <b>R</b>esource <b>I</b>dentifiers). The human-readable form is called the "compacted" form, and the machine-readable is "expanded."</p>
 
             <p>In addition, JSON-LD can be either "flattened" or "framed." A framed document includes nesting, looks more hierarchical, and is easier for humans to understand. Machines prefer the non-nested "flattened" form, which is faster for them to process. Luckily, there are algorithms to flatten and frame JSON-LD, too!</p>
 
             <p>These algorithms all exist as part of the JSON-LD specification, and can be used in several programming environments. You can find them all on the <a href="https://json-ld.org/#developers">JSON-LD homepage</a>. You can also try out any of these transformations in the <a href="https://json-ld.org/playground/">JSON-LD playground</a>.</p>
 
-            <h4 id="expansion">Expansion</h4>
+            <h3 id="expansion">Expansion</h3>
 
             <p>Expanding your JSON-LD relies on the <code>@context</code> section at the beginning of the document. Here's an example of a human-written JSON-LD document, which describes the song that spent the most weeks at number one on the Billboard Hot 100 music chart:</p>
 
@@ -93,7 +110,7 @@
   "artist": "Lil Nas X"
 }</code></pre>
 
-            <p>As a human, you know that this is describing a song called "Old Town Road" by the artist Lil Nas X. But a machine doesn't know what any of that means! This is why you use the <strong>expansion algorithm</strong>: It takes what is in the <code>@context</code> section and uses it to produce something that is easier for a program to understand by replacing the plaintext keys with IRIs. In this example, "song" is replaced with "https://schema.org/MusicRecording," "title" is replaced with "https://schema.org/name," and "artist" is replaced with "https://schema.org/byArtist":</p>
+            <p>As a human, you know that this is describing a song called "Old Town Road" by the artist Lil Nas X. But a machine doesn't know what any of that means! This is why you use the <strong>expansion algorithm</strong>: It takes what is in the <code>@context</code> section and uses it to produce something that is easier for a program to understand by replacing the plaintext keys with URIs. In this example, "song" is replaced with "https://schema.org/MusicRecording," "title" is replaced with "https://schema.org/name," and "artist" is replaced with "https://schema.org/byArtist":</p>
 
 <pre><code>[
 {
@@ -116,7 +133,7 @@
 
             <p>This output file is called an <strong>expanded file</strong>. <code>@id</code>, <code>@type</code>, and <code>@value</code> are not expanded, because they are described by the RDF Schema, which JSON-LD links to by default.</p>
 
-            <h4 id="compaction">Compaction</h4>
+            <h3 id="compaction">Compaction</h3>
 
             <p>Let's say you want to take the file that I've written for "Old Town Road" and incorporate it in your database of hit music singles. However, your database doesn't use the terms I've made up, it uses the terms defined by schema.org. That's where compaction comes in!</p>
 
@@ -142,7 +159,7 @@
 
             <p>Now, this <strong>compacted file</strong> is both human-readable and ready to populate your database.</p>
 
-            <h4 id="flattening">Flattening</h4>
+            <h3 id="flattening">Flattening</h3>
 
             <p>Flattening is used to remove any nesting from a JSON-LD document, which can make its processing faster. Before we go any further, let's add on to our original document:</p>
 
@@ -164,7 +181,7 @@
   }
 }</code></pre>
 
-            <p>Here, we've added a little more information about the artist, including an <code>@id</code> (in the form of a Wikidata URL), the artist's stage name, and his birth name.</p>
+            <p>Here, we've added a little more information about the artist, including an <code>@id</code> (in the form of a Wikidata URL), the artist's stage name, and his given name.</p>
 
             <p>The additional information after the "artist" key is nested—the curly braces mean that this is a separate, new JSON object. Nesting in this way makes it easy for humans to understand, but can take longer for machines to parse, since they have to separate out the individual JSON objects.</p>
 
@@ -211,11 +228,11 @@
 
             <p>Notice that there are square brackets after the <code>@graph</code>, instead of curly braces, since this is an array of JSON objects.</p>
 
-            <h4 id="framing">Framing</h4>
+            <h3 id="framing">Framing</h3>
 
-            <p>The opposite of flattening is framing. A framing algorithm can take a flattened document and a "frame document" as an input, and output a framed document (be careful with the syntax here: a "frame document" is not the same as a "frame<b>d</b> document"—I'll explain more below).</p>
+            <p>The opposite of flattening is framing. A framing algorithm can take a flattened document and a "frame document" as an input, and output a framed document (be careful with the syntax here: a "frame document" is not the same as a "frame<b>d</b> document," as you will see below).</p>
 
-            <p>Let's start by adding a little to our flattened document. We'll add the <code>@context</code> back, too:</p>
+            <p>Let's start by adding a little to our flattened document. We'll add the <code>@context</code> section back, too:</p>
 
 <pre><code>{
   "@context": {
@@ -250,7 +267,7 @@
   ]
 }</code></pre>
 
-            <p>This time we added some information about the album the song is found in. Now we have three separate JSON objects: One for the song, one for the artist, and one for the album. For a machine, this makes perfect sense, since the song is linked with both the artist and album by IRIs. But for a human, it can be a little hard to link together.</p>
+            <p>This time we added some information about the album the song is found in. Now we have three separate JSON objects: One for the song, one for the artist, and one for the album. For a machine, this makes perfect sense, since the song is linked with both the artist and album by URIs. But for a human, it can be a little hard to link together.</p>
 
             <p>You can fix this easily by using a <strong>frame document</strong> and the <strong>framing algorithm</strong>. The frame document defines a structure that can be imposed on the original JSON-LD document. Here, since we want both artist and album nested under the song, our frame document might look like this:</p>
 
@@ -272,7 +289,7 @@
 
             <p>Notice that the frame document still has a <code>@context</code> section. The <code>@context</code> of the frame document can be the same as or different from the original document.</p>
 
-            <p>What the framing algorithm will do is link objects together by their <code>@id</code>. If the "song" object has an "inAlbum" key with an IRI for an value, the algorithm will look for an object with the same <code>@id</code> with a <code>@type</code> of "MusicAlbum." The algorithm will not work if the <code>@id</code>s don't match or if the object is of the incorrect <code>@type</code>.</p>
+            <p>What the framing algorithm will do is link objects together by their <code>@id</code>. If the "song" object has an "inAlbum" key with an URI for an value, the algorithm will look for an object with the same <code>@id</code> with a <code>@type</code> of "MusicAlbum." The algorithm will not work if the <code>@id</code>s don't match or if the object is of the incorrect <code>@type</code>.</p>
 
             <p>The framing algorithm can nest multiple objects of the same <code>@type</code>—for example, you can connect multiple albums or multiple artists in the resulting framed document.</p>
 
