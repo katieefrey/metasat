@@ -55,17 +55,20 @@
     <div class="col-sm-12 col-md-9 offset-md-3" id="content">
         <div class="mainstuff">
 
-            <h1 id="using-JSON-LD">How to use JSON-LD</h1>
+            <a name="using-JSON-LD" class="anchor"></a>
+            <h1>How to use JSON-LD</h1>
 
             <p>JSON-LD (JSON for Linking Data) is more than just a data exchange syntax. The JSON-LD specification also includes a set of transforming algorithms to help you create linked data that is easy for machines to use <i>and</i> for humans to read and write.</p>
 
-            <h2 id="linked-data">Linked Data</h2>
+            <a name="linked-data" class="anchor"></a>
+            <h2>Linked Data</h2>
 
             <p>JSON-LD is one of several W3C-recommended implementations of the <a href="/resources/linked-data">Resource Description Framework (RDF)</a>, making it an ideal tool to create <a href="https://www.w3.org/standards/semanticweb/data">linked data</a>. Linking data makes data and information more accessible to both machines and people. It can help simplify knowledge management or even help search engines find information more efficiently. Google already uses JSON-LD and linked data: if you Google something like the name of a famous celebrity, the distance to the sun, or the capital of Nepal, you might see a box with information on the subject before you even get to any links. These are called "<a href="https://support.google.com/knowledgepanel/answer/9163198?hl=en">knowledge panels</a>," and they are created using the magic of JSON-LD and linked data.</p>
 
             <p>That being said, you don't need to know anything about W3C, RDF, or the semantic web to take advantage of JSON-LD and linked data! You can find examples of how you can use transforming algorithms to tap into the power of JSON-LD in the next few sections. But first, let's talk about the <code>@context</code> section, which is necessary to tap into the power of linked data.</p>
 
-            <h2 id="context"><code>@context</code> section</h2>
+            <a name="context" class="anchor"></a>
+            <h2><code>@context</code> section</h2>
 
             <p>The <a href="https://gitlab.com/metasat/metasat-toolkit/-/blob/master/docs/getting_started.md#context"><code>@context</code> section</a> of a JSON-LD file is what sets it apart from plain JSON and makes both linking data and all of the transformation algorithms possible. The <code>@context</code> defines which external vocabularies will be used in your JSON-LD file: Both the base/default vocabulary (using the <code>@vocab</code> tag) and additional vocabularies that can be used as <a href="https://en.wikipedia.org/wiki/CURIE">CURIEs</a>. In addition, the <code>@context</code> section can be used to make aliases for vocabulary terms. For instance, in one of our <a href="https://gitlab.com/metasat/metasat-toolkit/-/blob/master/examples/satnogs_ground_station_example.jsonld#L5">example files</a>, the MetaSat concept "telecommunicationsNetwork" is aliased to "groundStationNetwork." This can help improve clarity in certain contexts (in the example file, the only type of telecommunications network recorded was the SatNOGS ground station network), or to help your files conform with your own vocabularies more closely.</p>
 
@@ -85,7 +88,8 @@
 
             <p>Once our <code>@context</code> section is filled out, our JSON-LD file is capable of linking data. In addition, the <code>@context</code> section is crucial for the set of transformation algorithms that unlock the full potential of JSON-LD.</p>
 
-            <h2 id="algorithms">Transformation algorithms</h2>
+            <a name="algorithms" class="anchor"></a>
+            <h2>Transformation algorithms</h2>
 
             <p>The magic of JSON-LD lies in the fact that human-readable keys can be transformed into machine-readable URIs (<b>U</b>niform <b>R</b>esource <b>I</b>dentifiers). The human-readable form is called the "compacted" form, and the machine-readable is "expanded."</p>
 
@@ -93,7 +97,8 @@
 
             <p>These algorithms all exist as part of the JSON-LD specification, and can be used in several programming environments. You can find them all on the <a href="https://json-ld.org/#developers">JSON-LD homepage</a>. You can also try out any of these transformations in the <a href="https://json-ld.org/playground/">JSON-LD playground</a>.</p>
 
-            <h3 id="expansion">Expansion</h3>
+            <a name="expansion" class="anchor"></a>
+            <h3>Expansion</h3>
 
             <p>Expanding your JSON-LD relies on the <code>@context</code> section at the beginning of the document. Here's an example of a human-written JSON-LD document, which describes the song that spent the most weeks at number one on the Billboard Hot 100 music chart:</p>
 
@@ -133,7 +138,8 @@
 
             <p>This output file is called an <strong>expanded file</strong>. <code>@id</code>, <code>@type</code>, and <code>@value</code> are not expanded, because they are described by the RDF Schema, which JSON-LD links to by default.</p>
 
-            <h3 id="compaction">Compaction</h3>
+            <a name="compaction" class="anchor"></a>
+            <h3>Compaction</h3>
 
             <p>Let's say you want to take the file that I've written for "Old Town Road" and incorporate it in your database of hit music singles. However, your database doesn't use the terms I've made up, it uses the terms defined by schema.org. That's where compaction comes in!</p>
 
@@ -159,7 +165,8 @@
 
             <p>Now, this <strong>compacted file</strong> is both human-readable and ready to populate your database.</p>
 
-            <h3 id="flattening">Flattening</h3>
+            <a name="flattening" class="anchor"></a>
+            <h3>Flattening</h3>
 
             <p>Flattening is used to remove any nesting from a JSON-LD document, which can make its processing faster. Before we go any further, let's add on to our original document:</p>
 
@@ -228,7 +235,8 @@
 
             <p>Notice that there are square brackets after the <code>@graph</code>, instead of curly braces, since this is an array of JSON objects.</p>
 
-            <h3 id="framing">Framing</h3>
+            <a name="framing" class="anchor"></a>
+            <h3>Framing</h3>
 
             <p>The opposite of flattening is framing. A framing algorithm can take a flattened document and a "frame document" as an input, and output a framed document (be careful with the syntax here: a "frame document" is not the same as a "frame<b>d</b> document," as you will see below).</p>
 

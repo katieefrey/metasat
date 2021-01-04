@@ -47,7 +47,8 @@
         <div class="col-sm-12 col-md-9 offset-md-3" id="content">
             <div class="mainstuff">
 
-                <h1 id="introduction">Getting Started With MetaSat</h1>
+                <a name="introduction" class="anchor"></a>
+                <h1>Getting Started With MetaSat</h1>
                 <br/>
 
                 <p>The MetaSat vocabulary is the core of the MetaSat project. The MetaSat vocabulary is a list of unique concepts that can be used to describe spacecraft, missions, ground stations, and more, each with a unique, permanent URI. A URI, or <b>U</b>niform <b>R</b>esource <b>I</b>dentifier, acts as a machine-readable identifier for the concept. The MetaSat vocabulary and its URIs can be used to describe missions both in private databases and on the web, and since each concept uses its own URI, the vocabulary can be used for linked data applications and schemas that use any format of the <a href="https://schema.space/resources/linked-data">RDF data model</a>, including RDF-XML, Turtle, N-Triples, and more.</p>
@@ -57,10 +58,12 @@
                 <p>MetaSat is useful when describing items in databases such as NASA's <a href="https://spoonsite.com/openstorefront/login/index.html#/">SPOON</a> because our URIs can be referenced directly in any schema without changing its underlying structure. For example, existing entity-relationship models and naming conventions can be retained even when incorporating MetaSat URIs. This way, the schema referred to by your database doesn't need to be a new JSON-LD schema developed by MetaSat.</p>
                 <br />
                 
-                <h2 id="context-crosswalks">Context and Crosswalks</h2>
+                <a name="context-crosswalks" class="anchor"></a>
+                <h2>Context and Crosswalks</h2>
                 <br />
 
-                <h3 id="context">Context</h3>
+                <a name="context" class="anchor"></a>
+                <h3>Context</h3>
                 <p>The "magic" of JSON-LD, and what separates it from plain JSON, is the <code>@context</code> section at the beginning of each file. The <code>@context</code> section lets you define a group of aliases that can then be used to expand each "key," or attribute name, in the document into a machine-readable URI.</p>
 
                 <p>For example, if you  add the line <code>"@vocab": "https://schema.space/metasat/"</code> to your <code>@context</code> section, this will allow each key you use to expand to "https://schema.space/metasat/key" (e.g., "dynamicalTime" will expand to "https://schema.space/metasat/dynamicalTime").</p>
@@ -102,7 +105,8 @@
 
                 <br />
 
-                <h3 id="crosswalks">Crosswalking</h3>
+                <a name="crosswalks" class="anchor"></a>
+                <h3>Crosswalking</h3>
                 <p>We are also hard at work building <a href="/crosswalk">crosswalks</a> for MetaSat. A metadata crosswalk is a set of instructions for converting metadata of one schema or vocabulary into another. Using JSON-LD, it is easy to create crosswalks between different linked data vocabularies, since you just have to update the <code>@context</code> section. You can even combine different vocabularies into a single document, or convert into another RDF syntax, such as Turtle or RDF-XML, without losing any information.</p>
 
                 <p>We are working on making conversions between different vocabularies even easier by building a full MetaSat Crosswalk. Many of our concepts are already crosswalked to the popular schema.org vocabulary, as well as to WikiData items and properties as available.  We are currently working on building connections to other vocabularies, schemas, standards, thesauri, and taxonomies, as well.</p>
@@ -129,7 +133,8 @@
 
                 <p>Lastly, by crosswalking to MetaSat URIs, issues of language and the transfer of information in databases, product datasheets, specifications, etc., quickly diminish. If, for example, vendors in the U.K. wish to submit thermal "louvres" to the user-generated SPOON database, customers in the U.S will recognize these products as thermal "louvers" in American English.  These types of one-to-one connections are made possible by the MetaSat crosswalk and are particularly important when comparing product specifications that utilize different units and measurement systems.</p>
 
-                <h3 id="examples">Example Files</h3>
+                <a name="examples" class="anchor"></a>
+                <h3>Example Files</h3>
 
                 <p>In our GitLab repository, you will find a folder with <a href="https://gitlab.com/metasat/metasat-toolkit/-/tree/master/examples">example MetaSat files</a>. These files are complete MetaSat JSON-LD files that describe real space missions, satellites, ground stations, and more. These files combine a number of linked data concepts, including combining vocabularies, using JSON-LD @ids, and linking concepts within a JSON-LD file.</p>
                 <p>These files are only examples, and do not reflect the only way that MetaSat and JSON-LD could be used to describe their concepts.</p>
