@@ -50,22 +50,22 @@
                 <h1 id="introduction">Getting Started With MetaSat</h1>
                 <br/>
 
-                <p>The MetaSat vocabulary is the core of the MetaSat project. The MetaSat vocabulary is a list of unique terms that can be used to describe spacecraft, missions, ground stations, and more, each with a unique, permanent URI. A URI, or <b>U</b>niform <b>R</b>esource <b>I</b>dentifier, acts as a machine-readable identifier for the concept. The MetaSat vocabulary and its URIs can be used to describe missions both in private databases and on the web, and since each term uses its own URI, the vocabulary can be used for linked data applications and schemas that use any format of the RDF data model, including RDF-XML, Turtle, N-Triples, and more. <em>Unfamiliar with RDF or linked data? Read <a href="/resources/linked-data">our guide here</a>, or visit <a href="https://www.w3.org/standards/semanticweb/data">the W3C page on linked data</a> or <a href="https://5stardata.info/en/">5-star Open Data</a>.</em></p>
+                <p>The MetaSat vocabulary is the core of the MetaSat project. The MetaSat vocabulary is a list of unique concepts that can be used to describe spacecraft, missions, ground stations, and more, each with a unique, permanent URI. A URI, or <b>U</b>niform <b>R</b>esource <b>I</b>dentifier, acts as a machine-readable identifier for the concept. The MetaSat vocabulary and its URIs can be used to describe missions both in private databases and on the web, and since each concept uses its own URI, the vocabulary can be used for linked data applications and schemas that use any format of the <a href="https://schema.space/resources/linked-data">RDF data model</a>, including RDF-XML, Turtle, N-Triples, and more.</p>
 
-                <p>We are also creating example schemas that can be used with our vocabulary. Our schemas use JSON-LD, a highly flexible form of RDF that is built to be easily human-writable and machine-readable. The schemas combine our vocabulary with structure, and give examples and recommendations for how terms relate to each other. For an easy visual of how the sections of our schemas link together, see our <a href="https://drive.google.com/file/d/1lnQWKtYar0cZ8fxcJFXbaN_ZaXartp-S/view?usp=sharing">MetaSat "data model" diagram</a>.</p>
+                <p>We recommend using the MetaSat vocabulary with <a href="https://json-ld.org/">JSON-LD</a>, a highly flexible form of RDF that is built to be easily human-writable and machine-readable. To illustrate how JSON-LD can be used with MetaSat, our GitLab repository has multiple <a href="https://gitlab.com/metasat/metasat-toolkit/-/tree/master/examples">example files</a> that describe real missions. They include descriptions of satellites, satellite parts, and missions, as well as ground stations and observations. These files can be used to inspire your own use of JSON-LD with MetaSat.</p>
 
-                <p>MetaSat is useful when describing items like fuel cells in databases such as NASA's <a href="https://spoonsite.com/openstorefront/login/index.html#/">SPOON</a> because our URIs can be referenced directly in your schema without changing its underlying structure. For example, existing entity-relationship models and naming conventions are retained even when incorporating MetaSat URIs. This way, the schema referred to by your database doesn't need to be a one of the JSON-LD schemas developed by MetaSat.</p>
+                <p>MetaSat is useful when describing items in databases such as NASA's <a href="https://spoonsite.com/openstorefront/login/index.html#/">SPOON</a> because our URIs can be referenced directly in any schema without changing its underlying structure. For example, existing entity-relationship models and naming conventions can be retained even when incorporating MetaSat URIs. This way, the schema referred to by your database doesn't need to be a new JSON-LD schema developed by MetaSat.</p>
                 <br />
                 
                 <h2 id="context-crosswalks">Context and Crosswalks</h2>
                 <br />
 
                 <h3 id="context">Context</h3>
-                <p>The "magic" of JSON-LD, and what separates it from plain JSON, is the <code>@context</code> section at the beginning of each file. The <code>@context</code> section lets you define a group of aliases that can then be used to expand each "key," or attribute name, in the document into a machine-readable URI (Uniform Resource Identifier).</p>
+                <p>The "magic" of JSON-LD, and what separates it from plain JSON, is the <code>@context</code> section at the beginning of each file. The <code>@context</code> section lets you define a group of aliases that can then be used to expand each "key," or attribute name, in the document into a machine-readable URI.</p>
 
                 <p>For example, if you  add the line <code>"@vocab": "https://schema.space/metasat/"</code> to your <code>@context</code> section, this will allow each key you use to expand to "https://schema.space/metasat/key" (e.g., "dynamicalTime" will expand to "https://schema.space/metasat/dynamicalTime").</p>
 
-                <p>You can also include other vocabularies in your <code>@context</code> by creating aliases for their main URLs and using <a href="https://en.wikipedia.org/wiki/CURIE">CURIEs</a>. For example, the <code>@context</code> could include the line <code>"schema": "https://schema.org/"</code>; then, a key such as "schema:Person" would expand to "https://schema.org/Person."
+                <p>You can also include other vocabularies in your <code>@context</code> by creating aliases for their main URLs and using <a href="https://en.wikipedia.org/wiki/CURIE">CURIEs</a>. For example, if the <code>@context</code> includes the line <code>"schema": "https://schema.org/"</code>, a key such as "schema:Person" would expand to "https://schema.org/Person."
                 Here is a simple example, describing <a href="https://network.satnogs.org/observations/2243157/">a SatNOGS observation</a>, that combines each of these ideas:</p>
 
 <pre><code>{
@@ -78,7 +78,7 @@
     "groundStation": "1378 - Wolbach Library"
 }</code></pre>
 
-                <p><code>@id</code> is another JSON-LD specific term, which stores a URI or URL for what is being described; here, it is the SatNOGS observation we are interested in. The code above, when run through an <a href="/resources/advanced#expansion">expansion algorithm</a>, will expand to:</p>
+                <p><code>@id</code> is a JSON-LD specific concept that stores a URI for what is being described; in this example, it is the SatNOGS observation we are interested in. The code above, when run through an <a href="/resources/advanced#expansion">expansion algorithm</a>, will expand to:</p>
 
 <pre><code>{
     "@id": "https://network.satnogs.org/observations/2243157/",
@@ -105,11 +105,11 @@
                 <h3 id="crosswalks">Crosswalking</h3>
                 <p>We are also hard at work building <a href="/crosswalk">crosswalks</a> for MetaSat. A metadata crosswalk is a set of instructions for converting metadata of one schema or vocabulary into another. Using JSON-LD, it is easy to create crosswalks between different linked data vocabularies, since you just have to update the <code>@context</code> section. You can even combine different vocabularies into a single document, or convert into another RDF syntax, such as Turtle or RDF-XML, without losing any information.</p>
 
-                <p>We are working on making conversions between different vocabularies even easier by building a full MetaSat Crosswalk. Many of our terms are already crosswalked to the popular schema.org vocabulary, as well as to WikiData items and properties as available.  We are currently working on building connections to other vocabularies, schemas, standards, thesauri, and taxonomies, as well.</p>
+                <p>We are working on making conversions between different vocabularies even easier by building a full MetaSat Crosswalk. Many of our concepts are already crosswalked to the popular schema.org vocabulary, as well as to WikiData items and properties as available.  We are currently working on building connections to other vocabularies, schemas, standards, thesauri, and taxonomies, as well.</p>
 
                 <table id="basic-table">
                     <tr>
-                        <th class="basic-header">MetaSat term</th>
+                        <th class="basic-header">MetaSat concept</th>
                         <th class="basic-header">WikiData Property</th>
                         <th class="basic-header">Schema.org</th>
                     </tr>
@@ -131,7 +131,7 @@
 
                 <h3 id="examples">Example Files</h3>
 
-                <p>In our GitLab repository, you will find a folder with <a href="https://gitlab.com/metasat/metasat-schema/-/tree/master/Examples">example MetaSat files</a>. These files are complete MetaSat JSON-LD files that describe real space missions, satellites, ground stations, and more. These files combine a number of linked data concepts, including combining vocabularies, using JSON-LD @ids, and linking concepts within a JSON-LD file.</p>
+                <p>In our GitLab repository, you will find a folder with <a href="https://gitlab.com/metasat/metasat-toolkit/-/tree/master/examples">example MetaSat files</a>. These files are complete MetaSat JSON-LD files that describe real space missions, satellites, ground stations, and more. These files combine a number of linked data concepts, including combining vocabularies, using JSON-LD @ids, and linking concepts within a JSON-LD file.</p>
                 <p>These files are only examples, and do not reflect the only way that MetaSat and JSON-LD could be used to describe their concepts.</p>
                 <p>Unless specified otherwise in the file name, the example files describe entities that can be found in the <a href="https://network.satnogs.org/">SatNOGS network</a> or <a href="https://db.satnogs.org/">SatNOGS DB</a>.</p>
             </div>
