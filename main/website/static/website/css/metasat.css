@@ -107,7 +107,7 @@ pre {
 }
 
 .card-body {
-    padding: 0rem .3rem; /**this is not working correctly for reasons I don't understand**/
+    padding: .5rem; 
 }
 
 /**basic-table is on the basic topics page**/
