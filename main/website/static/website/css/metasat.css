@@ -110,6 +110,16 @@ pre {
     padding: .5rem; 
 }
 
+.card-deck .card {
+    margin-right: 0;
+    margin-bottom: 1rem;
+    margin-left: 0;
+}
+
+.card-deck {
+    margin: 0;
+} /**Do not remove, prevents unecessary horizontal scroll bar on resources page**/
+
 /**basic-table is on the basic topics page**/
 
 table#basic-table {
