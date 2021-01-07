@@ -106,14 +106,29 @@ pre {
     font-style: italic;
 }
 
+.anchor {
+    position:relative;
+    top:-75px;
+}
+
 .card-body {
     padding: .5rem; 
 }
 
 .card-deck .card {
-    margin-right: 0;
     margin-bottom: 1rem;
-    margin-left: 0;
+    margin-left: 0rem;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+}
+
+
+@media (min-width: 768px) {
+  .card-deck .card {
+    margin-right: 3%;
+    -ms-flex: 0 0 47%;
+    flex: 0 0 47%;
+  }
 }
 
 .card-deck {
