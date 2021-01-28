@@ -31,6 +31,9 @@ def advanced(request):
 def linkeddata(request):
     return render(request, "website/linked-data.html")
 
+def semantic(request):
+    return render(request, "website/url-semantic-web.html")
+
 
 
 #send user to login form
