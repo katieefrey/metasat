@@ -2,6 +2,7 @@ from django.db import models
 
 
 class ElementFamily(models.Model):
+    id = models.AutoField(primary_key=True)
     family = models.CharField(max_length=255, unique=True)
 
     def __str__(self):
@@ -9,6 +10,7 @@ class ElementFamily(models.Model):
 
 
 class Segment(models.Model):
+    id = models.AutoField(primary_key=True)
     segment = models.CharField(max_length=255, unique=True)
 
     def __str__(self):
@@ -16,6 +18,7 @@ class Segment(models.Model):
 
 
 class Element(models.Model):
+    id = models.AutoField(primary_key=True)
     identifier = models.CharField(max_length=255, unique=True)
     term = models.CharField(max_length=255)
     synonym = models.CharField(max_length=255, null=True, blank=True)

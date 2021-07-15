@@ -3,6 +3,8 @@ from metasat.models import Element
 
 class ExternalSchema(models.Model):
 
+    id = models.AutoField(primary_key=True)
+
     # url safe identifier
     identifier = models.CharField(max_length=255, null=True, blank=True)
 
@@ -24,6 +26,7 @@ class ExternalSchema(models.Model):
 
 # assumes each external element only has one relationship to a metasat element
 class ExternalElement(models.Model):
+    id = models.AutoField(primary_key=True)
     identifier = models.CharField(max_length=255)
     label = models.CharField(max_length=50, null=True, blank=True)
     url = models.TextField(null=True, blank=True)
